@@ -60,6 +60,195 @@ interface ExperienceNote {
   accent: string;
 }
 
+interface InstagramProfile {
+  brandName: string;
+  handle: string;
+  fullName: string;
+  biographyLines: string[];
+  followersCount: number;
+  followsCount: number;
+  highlightsCount: number;
+  postsCount: number;
+  externalUrl: string;
+  profileImage: string;
+}
+
+interface InstagramPost {
+  type: 'Image' | 'Sidecar' | 'Video';
+  shortCode: string;
+  dateLabel: string;
+  location: string;
+  likes: number;
+  comments: number;
+  views?: number;
+  caption: string;
+  image: string;
+  href: string;
+  alt: string;
+}
+
+const INSTAGRAM_URL = 'https://www.instagram.com/jackgarcia.co/';
+const LINKTREE_URL = 'https://linktr.ee/jackgarcia.co';
+const NUMBER_FORMATTER = new Intl.NumberFormat('en-US');
+
+const PROFILE: InstagramProfile = {
+  brandName: 'Jack Garcia & Co.',
+  handle: 'jackgarcia.co',
+  fullName: 'FLORIDA PHOTOGRAPHER',
+  biographyLines: [
+    'Natural Light | Timeless Storytelling',
+    'Lifestyle | Weddings',
+    'Based in Florida | Available for Travel',
+    'DM to Inquire'
+  ],
+  followersCount: 814,
+  followsCount: 676,
+  highlightsCount: 10,
+  postsCount: 51,
+  externalUrl: LINKTREE_URL,
+  profileImage:
+    'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-19/573734543_17948446257047912_4237563899148563029_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=YWsEt4y54_gQ7kNvwGDrzf6&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Afw3HepEAStDie6sTqXrl4HTRWR0nrMKH12CBf1irIya-w&oe=69BFCE18&_nc_sid=8b3546'
+};
+
+const RECENT_POSTS: InstagramPost[] = [
+  {
+    type: 'Video',
+    shortCode: 'DV8077-jatl',
+    dateLabel: 'Mar 16',
+    location: 'Arizona',
+    likes: 72,
+    comments: 2,
+    views: 1593,
+    caption: '',
+    image:
+      'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/645714325_17961791469047912_4621030012649385767_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=wLr_RhT89tcQ7kNvwEA6wK4&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfyhUw9tlq829auR3-0pw5axxWrxXZ1A9-wGu3lpzmEweg&oe=69BFB453&_nc_sid=8b3546',
+    href: 'https://www.instagram.com/p/DV8077-jatl/',
+    alt: 'Recent Jack Garcia & Co. reel cover posted from Arizona on March 16, 2026.'
+  },
+  {
+    type: 'Sidecar',
+    shortCode: 'DV1F6RbDXin',
+    dateLabel: 'Mar 13',
+    location: 'Florida',
+    likes: 117,
+    comments: 4,
+    caption: 'Love this car couple shoot.',
+    image:
+      'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/645775584_17961790593047912_6976471790705355562_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=hzmBqqsd5VsQ7kNvwFKAK3L&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=Mzg0NTE0NDI2NzQzNDM1NTc2Mg%3D%3D.3-ccb7-5&oh=00_Afwp4gpcgpnRtXo30zueRMqmIsB5-MF68HkObacgIgrE0A&oe=69BFC9C7&_nc_sid=8b3546',
+    href: 'https://www.instagram.com/p/DV1F6RbDXin/',
+    alt: 'Jack Garcia & Co. couples session post shared from Florida on March 13, 2026.'
+  },
+  {
+    type: 'Sidecar',
+    shortCode: 'DV1Dph5jTum',
+    dateLabel: 'Mar 11',
+    location: 'Lake Wales, Florida',
+    likes: 123,
+    comments: 3,
+    caption: 'Trying to manifest more shoots at Bok Tower Gardens.',
+    image:
+      'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/645819718_17961789651047912_5582991189694122744_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=oypJAANWoQIQ7kNvwHa6_a5&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=Mzg0NTEzNTgyMDA3MjU1MDI3MA%3D%3D.3-ccb7-5&oh=00_Afws-8aMQSR5HmCVp6UdmTf3XECDWc7lhzN0MFtIVSivlg&oe=69BFBE5F&_nc_sid=8b3546',
+    href: 'https://www.instagram.com/p/DV1Dph5jTum/',
+    alt: 'Jack Garcia & Co. portrait post from Lake Wales, Florida shared on March 11, 2026.'
+  },
+  {
+    type: 'Video',
+    shortCode: 'DVq9DuSDU0q',
+    dateLabel: 'Mar 9',
+    location: 'Florida',
+    likes: 66,
+    comments: 5,
+    views: 308,
+    caption: '',
+    image:
+      'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/639862545_17961068625047912_7541171992783888713_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=yx9ot4l54eYQ7kNvwHENqmP&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfyMz1O6PxDg1XlTe-p9gDOStG67FQAtTssOsxKTSzjtIg&oe=69BFCB30&_nc_sid=8b3546',
+    href: 'https://www.instagram.com/p/DVq9DuSDU0q/',
+    alt: 'Jack Garcia & Co. reel cover shared from Florida on March 9, 2026.'
+  },
+  {
+    type: 'Video',
+    shortCode: 'DVZMEnhjXtp',
+    dateLabel: 'Mar 4',
+    location: 'St. Petersburg, FL',
+    likes: 50,
+    comments: 2,
+    views: 311,
+    caption: '',
+    image:
+      'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/641045593_17961068523047912_8316571364081537640_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=-9Z5um5pZ7sQ7kNvwE5s5Z3&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfytX5Bgneu9yOnCjAImIsRS4hzIXgcensa0kgZX7tlk2g&oe=69BFC172&_nc_sid=8b3546',
+    href: 'https://www.instagram.com/p/DVZMEnhjXtp/',
+    alt: 'Jack Garcia & Co. reel cover shared from St. Petersburg, Florida on March 4, 2026.'
+  },
+  {
+    type: 'Sidecar',
+    shortCode: 'DVjTQEZABUP',
+    dateLabel: 'Mar 2',
+    location: 'Florida',
+    likes: 112,
+    comments: 1,
+    caption: 'Obsessed with these. Movement shots always give what they need to give.',
+    image:
+      'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/639748462_17960667078047912_6882501336475370482_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=0Q4YmGxh4N4Q7kNvwHUgVSH&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=MzgzODI5NTI0ODc1MzE0MTMwNw%3D%3D.3-ccb7-5&oh=00_AfwTfuN2kUo-MiZS6iOwlIt-cN1rBPzTFgjA1mr_WP_KCQ&oe=69BFA185&_nc_sid=8b3546',
+    href: 'https://www.instagram.com/p/DVjTQEZABUP/',
+    alt: 'Jack Garcia & Co. motion portrait post shared from Florida on March 2, 2026.'
+  },
+  {
+    type: 'Sidecar',
+    shortCode: 'DU_gudzkt16',
+    dateLabel: 'Feb 20',
+    location: 'Bonnet Springs Park',
+    likes: 65,
+    comments: 0,
+    caption: 'Your love deserves to be documented beautifully. Engagement sessions are now open for booking.',
+    image:
+      'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/630130837_17960115669047912_6671945884795074875_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=_dwtFjpO_t8Q7kNvwG5Ofd5&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=MzgzNDgyNjkzMTAwMzY0NTY2MQ%3D%3D.3-ccb7-5&oh=00_AfxW4I26KN4bn3qAa7rkHBaTBwFSQLw8B799PR6dnwnt-A&oe=69BFA647&_nc_sid=8b3546',
+    href: 'https://www.instagram.com/p/DU_gudzkt16/',
+    alt: 'Jack Garcia & Co. engagement session post shared from Bonnet Springs Park on February 20, 2026.'
+  },
+  {
+    type: 'Sidecar',
+    shortCode: 'DUomtZmkmPJ',
+    dateLabel: 'Feb 11',
+    location: 'Bonnet Springs Park',
+    likes: 77,
+    comments: 0,
+    caption: 'Baby on the way, and the glow says it all. Message me to book your maternity session.',
+    image:
+      'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/626001810_17959019880047912_1279483812305296447_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=TGGQBd6F7rEQ7kNvwEydUm3&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=MzgyNzYwMDIwMTY5MjEyNTc0MA%3D%3D.3-ccb7-5&oh=00_AfyI2iKJ26tcytd7z5r9VOo5fk5BK_cmXBFUCXSUjxME0Q&oe=69BFCF70&_nc_sid=8b3546',
+    href: 'https://www.instagram.com/p/DUomtZmkmPJ/',
+    alt: 'Jack Garcia & Co. maternity session post shared from Bonnet Springs Park on February 11, 2026.'
+  }
+];
+
+function formatCount(value: number): string {
+  return NUMBER_FORMATTER.format(value);
+}
+
+function trimCopy(value: string, fallback: string, limit: number): string {
+  const normalized = value.replace(/\s+/g, ' ').trim();
+
+  if (!normalized) {
+    return fallback;
+  }
+
+  if (normalized.length <= limit) {
+    return normalized;
+  }
+
+  return `${normalized.slice(0, limit - 1).trimEnd()}...`;
+}
+
+function postHeadline(post: InstagramPost): string {
+  const fallback = post.type === 'Video' ? `Recent reel from ${post.location}` : `Recent post from ${post.location}`;
+  return trimCopy(post.caption, fallback, 52);
+}
+
+function postMeta(post: InstagramPost): string {
+  return [post.location, `${formatCount(post.likes)} likes`, `${formatCount(post.comments)} comments`, post.views ? `${formatCount(post.views)} views` : null]
+    .filter(Boolean)
+    .join(' | ');
+}
+
 @Component({
   selector: 'app-root',
   imports: [
@@ -95,222 +284,189 @@ export class App implements AfterViewInit {
     { label: 'Inquire', href: 'contact' }
   ];
 
+  protected readonly instagramProfile = PROFILE;
+  protected readonly latestExportLabel = 'March 17, 2026';
+  protected readonly instagramLinkLabel = 'linktr.ee/jackgarcia.co';
+  protected readonly heroEyebrow = PROFILE.biographyLines[0];
+  protected readonly heroTitle = 'Natural-light photography for weddings, couples, and milestone seasons.';
+  protected readonly heroSummary =
+    'The current profile positions Jack Garcia & Co. as a Florida-based photographer available for travel, with recent work spanning couples, engagement, maternity, and short-form reels.';
+  protected readonly heroNoteTitle = 'Florida based, available for travel.';
+  protected readonly heroNoteBody =
+    'The March 17, 2026 Instagram export keeps the brand promise simple: timeless storytelling, lifestyle, weddings, and a DM-first inquiry path.';
+
   protected readonly heroMetrics: Metric[] = [
-    { label: 'Wedding collections', value: 'From $800' },
-    { label: 'Portrait sessions', value: 'From $150' },
-    { label: 'Inquiry flow', value: 'Short, mobile-friendly, and DM-ready' }
+    { label: 'Instagram posts', value: formatCount(PROFILE.postsCount) },
+    { label: 'Followers', value: formatCount(PROFILE.followersCount) },
+    { label: 'Booking path', value: 'DM + Linktree' }
   ];
 
   protected readonly collectionHighlights: CollectionHighlight[] = [
     {
-      title: 'Editorial wedding coverage',
-      description: 'A warm, guided experience with enough structure to keep the day moving and enough softness to keep it personal.',
-      details: 'Coverage can scale from smaller keepsake collections to full-day storytelling with add-on moments folded in.',
-      price: 'Starting at $800'
+      title: 'Weddings and custom coverage',
+      description: 'Weddings sit at the center of Jack\'s bio and feed, but pricing is kept custom so coverage can match the day.',
+      details: 'Use the inquiry form or Instagram DM to build a custom wedding quote around location, travel, and timeline.',
+      price: 'Custom quote'
     },
     {
-      title: 'Milestone portraits',
-      description: 'Graduation, maternity, family, and couples sessions shaped for clients who want confident posing without looking over-directed.',
-      details: 'These sessions stay approachable, polished, and quick to understand on a small screen.',
-      price: 'Starting at $180'
+      title: 'Portraits, couples, and milestones',
+      description: 'Graduation, family, maternity, and couples sessions already have clear starting prices in Jack\'s service notes.',
+      details: 'Portrait sessions start at $180, while couples, engagement, and maternity coverage stay in the $200-$225 range.',
+      price: 'From $180'
     },
     {
-      title: 'Brand and motion stories',
-      description: 'Branding and automotive shoots get the same editorial pacing, with tighter crops and cleaner calls to action.',
-      details: 'The visual language flexes from keepsake work into campaign-ready selects without feeling like a separate brand.',
-      price: 'Starting at $150'
+      title: 'Branding and automotive work',
+      description: 'The pricing notes also list branding and automotive sessions, giving the site a real third booking lane beyond portraits and weddings.',
+      details: 'Branding starts at $200 and automotive starts at $150.',
+      price: 'From $150'
     }
   ];
 
   protected readonly serviceGroups: ServiceGroup[] = [
     {
       label: 'Portrait and milestone sessions',
-      summary: 'Flexible coverage for personal milestones with polished direction from start to finish.',
+      summary: 'Real prices pulled from the pricing notes file included with the project.',
       items: [
         { name: 'Graduation', price: '$200' },
         { name: 'Portraits', price: '$180' },
         { name: 'Family', price: '$250' },
-        { name: 'Couple', price: '$200' },
-        { name: 'Engagement', price: '$225' },
         { name: 'Maternity', price: '$200' },
         { name: 'Baby / newborn', price: '$300' }
       ]
     },
     {
-      label: 'Brand and lifestyle work',
-      summary: 'Sessions shaped for entrepreneurs, makers, and visual-first brands that need scroll-stopping selects.',
+      label: 'Couples and wedding inquiries',
+      summary: 'Couples and engagement pricing are listed directly, while wedding coverage now points to a custom inquiry instead of fabricated package tiers.',
       items: [
-        { name: 'Branding', price: '$200' },
-        { name: 'Automotive', price: '$150' }
+        { name: 'Couple', price: '$200' },
+        { name: 'Engagement', price: '$225' },
+        { name: 'Wedding coverage', price: 'Custom quote' },
+        { name: 'Travel weddings', price: 'Custom quote' }
       ]
     },
     {
-      label: 'Wedding collections',
-      summary: 'The existing collection boards already point toward a refined wedding offering, so the page keeps that lane elegant and easy to scan.',
+      label: 'Brand and specialty sessions',
+      summary: 'Branding and automotive pricing stay visible for non-wedding clients landing on the site.',
       items: [
-        { name: 'Mini story collection', price: 'Starting at $800' },
-        { name: 'Classic story collection', price: 'Starting at $1,800' },
-        { name: 'Editorial story collection', price: 'Starting at $2,600' },
-        { name: 'Base coverage', price: '$400' },
-        { name: 'Add-on wedding moments', price: '$200 each' }
+        { name: 'Branding', price: '$200' },
+        { name: 'Automotive', price: '$150' }
       ]
     }
   ];
 
   protected readonly portfolioFrames: GalleryFrame[] = [
     {
-      eyebrow: 'Wedding direction',
-      title: 'Ceremony atmosphere with fashion energy',
-      caption: 'The larger frame sets the tone: elegant greens, soft texture, and enough negative space to feel calm instead of crowded.',
-      image: '/Services/service-image.jpeg',
-      alt: 'Jack Garcia wedding mood board with soft editorial styling',
-      objectPosition: '50% 12%'
+      eyebrow: 'Mar 13 post',
+      title: 'Car couple session in Florida',
+      caption: 'Captioned "Love this car couple shoot" and posted with 117 likes and 4 comments.',
+      image: RECENT_POSTS[1].image,
+      alt: RECENT_POSTS[1].alt,
+      href: RECENT_POSTS[1].href
     },
     {
-      eyebrow: 'Detail studies',
-      title: 'Texture that slows the scroll',
-      caption: 'Close crops give florals, paper goods, and small keepsakes a stronger role in the visual story.',
-      image: '/Services/service-image-2.jpeg',
-      alt: 'Jack Garcia detail board with florals and layered textures',
-      objectPosition: '48% 18%'
+      eyebrow: 'Mar 11 post',
+      title: 'Bok Tower session in Lake Wales',
+      caption: 'A Lake Wales post with 123 likes and a note about manifesting more shoots at Bok Tower Gardens.',
+      image: RECENT_POSTS[2].image,
+      alt: RECENT_POSTS[2].alt,
+      href: RECENT_POSTS[2].href
     },
     {
-      eyebrow: 'Portrait pacing',
-      title: 'Guided moments that still feel relaxed',
-      caption: 'The mosaic leaves space for portrait-led storytelling without pushing the layout into a rigid portfolio grid.',
-      image: '/Services/service-image.jpeg',
-      alt: 'Editorial portrait-inspired crop from the Jack Garcia collection board',
-      objectPosition: '44% 32%'
+      eyebrow: 'Feb 20 post',
+      title: 'Engagement sessions now open',
+      caption: 'This Bonnet Springs Park post explicitly invites couples to inquire and secure their engagement date.',
+      image: RECENT_POSTS[6].image,
+      alt: RECENT_POSTS[6].alt,
+      href: RECENT_POSTS[6].href
     },
     {
-      eyebrow: 'Brand polish',
-      title: 'Crops that can flex into lifestyle work',
-      caption: 'Tighter framing helps the same art direction stretch into brand and motion projects without feeling disconnected.',
-      image: '/Services/service-image-2.jpeg',
-      alt: 'Brand-ready crop from the Jack Garcia detail board',
-      objectPosition: '52% 46%'
+      eyebrow: 'Feb 11 post',
+      title: 'Maternity storytelling at Bonnet Springs',
+      caption: 'The maternity post reinforces the milestone side of the brand with 77 likes and a direct booking callout.',
+      image: RECENT_POSTS[7].image,
+      alt: RECENT_POSTS[7].alt,
+      href: RECENT_POSTS[7].href
     }
   ];
 
+  protected readonly heroFeatureFrame = this.portfolioFrames[0];
   protected readonly heroFrames: GalleryFrame[] = this.portfolioFrames.slice(1, 3);
 
-  protected readonly socialFrames: GalleryFrame[] = [
-    {
-      eyebrow: 'Feed slot 01',
-      title: 'Warm portrait energy',
-      caption: 'This layout slot is ready for a fresh Instagram export whenever you want to swap in a newer portrait image.',
-      image: '/Services/service-image.jpeg',
-      alt: 'Placeholder portrait-style frame for the Instagram section',
-      href: 'https://www.instagram.com/jackgarcia.co/',
-      objectPosition: '42% 28%'
-    },
-    {
-      eyebrow: 'Feed slot 02',
-      title: 'Detail-driven still life',
-      caption: 'A taller card keeps the page visually dense on mobile, even before live social images are dropped in.',
-      image: '/Services/service-image-2.jpeg',
-      alt: 'Placeholder detail frame for the Instagram section',
-      href: 'https://www.instagram.com/jackgarcia.co/',
-      objectPosition: '52% 14%'
-    },
-    {
-      eyebrow: 'Feed slot 03',
-      title: 'Motion and couples crop',
-      caption: 'This smaller tile is tuned for a fast mobile glance and can be replaced without touching the section styling.',
-      image: '/Services/service-image.jpeg',
-      alt: 'Placeholder movement-focused frame for the Instagram section',
-      href: 'https://www.instagram.com/jackgarcia.co/',
-      objectPosition: '58% 42%'
-    },
-    {
-      eyebrow: 'Feed slot 04',
-      title: 'Brand or tablescape highlight',
-      caption: 'The grid stays flexible enough for wedding detail, brand texture, or a portrait crop from the latest post.',
-      image: '/Services/service-image-2.jpeg',
-      alt: 'Placeholder brand-style frame for the Instagram section',
-      href: 'https://www.instagram.com/jackgarcia.co/',
-      objectPosition: '45% 62%'
-    },
-    {
-      eyebrow: 'Feed slot 05',
-      title: 'Ceremony color study',
-      caption: 'A square crop lets bouquet tones, fabric texture, and skin tone stay balanced like a real feed post.',
-      image: '/Services/service-image.jpeg',
-      alt: 'Placeholder ceremony-inspired frame for the Instagram section',
-      href: 'https://www.instagram.com/jackgarcia.co/',
-      objectPosition: '46% 18%'
-    },
-    {
-      eyebrow: 'Feed slot 06',
-      title: 'Quiet in-between moment',
-      caption: 'The sixth tile rounds the mock feed into two full rows so the section lands closer to Instagram at a glance.',
-      image: '/Services/service-image-2.jpeg',
-      alt: 'Placeholder candid-inspired frame for the Instagram section',
-      href: 'https://www.instagram.com/jackgarcia.co/',
-      objectPosition: '58% 36%'
-    }
+  protected readonly socialFrames: GalleryFrame[] = RECENT_POSTS.slice(0, 6).map((post) => ({
+    eyebrow: `${post.dateLabel} | ${post.type === 'Video' ? 'Reel' : 'Post'}`,
+    title: postHeadline(post),
+    caption: postMeta(post),
+    image: post.image,
+    alt: post.alt,
+    href: post.href
+  }));
+
+  protected readonly instagramStats: Metric[] = [
+    { label: 'posts', value: formatCount(PROFILE.postsCount) },
+    { label: 'followers', value: formatCount(PROFILE.followersCount) },
+    { label: 'highlights', value: formatCount(PROFILE.highlightsCount) }
   ];
 
   protected readonly trustNotes: ExperienceNote[] = [
     {
-      title: 'Direction that never feels stiff',
-      body: 'Every section reinforces the same promise: clear guidance, relaxed pacing, and room for genuine emotion.',
-      accent: 'Guided'
+      title: 'Natural light and timeless storytelling',
+      body: 'Those two phrases lead the Instagram bio, so the site now repeats the same positioning instead of invented brand language.',
+      accent: 'Bio'
     },
     {
-      title: 'A stronger visual system without a bulky build',
-      body: 'The styling now uses one cohesive set of panel, spacing, and color tokens so future edits stay quick and predictable.',
-      accent: 'System'
+      title: 'Florida base with travel built in',
+      body: 'The profile explicitly says Florida based and available for travel, which matches the recent Arizona and Florida posts in the feed.',
+      accent: 'Travel'
     },
     {
-      title: 'A clear handoff to booking',
-      body: 'The inquiry form still turns the page into a usable booking tool by generating a clean brief clients can paste into a DM or email.',
-      accent: 'Actionable'
+      title: 'A real audience and active archive',
+      body: `${formatCount(PROFILE.postsCount)} posts, ${formatCount(PROFILE.followersCount)} followers, and ${formatCount(PROFILE.highlightsCount)} highlights give the site concrete proof of an active business.`,
+      accent: 'Proof'
     }
   ];
 
   protected readonly processSteps: ProcessStep[] = [
     {
       phase: '01',
-      step: 'Inquire',
-      title: 'Share the kind of story you want to tell',
-      description: 'The contact section keeps the first step simple: session type, a reply email, and a few lines about the mood you are after.'
+      step: 'Discover',
+      title: 'Start with the feed, pricing, and current session mix',
+      description: 'The site now leads with Jack\'s real pricing notes, current bio, and recent Instagram posts instead of filler content.'
     },
     {
       phase: '02',
-      step: 'Shape',
-      title: 'Build coverage around the moments that matter most',
-      description: 'Wedding clients can scale into fuller collections, while portraits and brand sessions stay focused and easy to customize.'
+      step: 'Inquire',
+      title: 'Send a concise brief through the same DM-first flow',
+      description: 'The profile bio says DM to inquire, so the form still builds a message someone can paste into Instagram or email.'
     },
     {
       phase: '03',
-      step: 'Photograph',
-      title: 'Move through the shoot with calm direction',
-      description: 'The brand lane stays polished and editorial, but the experience is still built around helping people feel comfortable in front of the camera.'
+      step: 'Plan',
+      title: 'Shape the session around location, travel, and story',
+      description: 'Couples, maternity, engagement, and wedding clients can all use the same inquiry path and then tailor the details with Jack.'
     },
     {
       phase: '04',
-      step: 'Deliver',
-      title: 'Turn lived moments into keepsake images',
-      description: 'The page ends with a lighter-friction inquiry path so the visual momentum carries cleanly into the next message.'
+      step: 'Shoot',
+      title: 'Turn the plan into a natural-light story',
+      description: 'The recent posts show Jack moving between intimate portrait work, milestone sessions, and wedding-adjacent storytelling.'
     }
   ];
 
   protected readonly experienceNotes: ExperienceNote[] = [
     {
-      title: 'A softer luxury tone',
-      body: 'The refreshed styling feels more collected and bespoke, without pushing the brand into something cold or inaccessible.',
-      accent: 'Refined'
+      title: 'Couples, motion, and lifestyle work are active now',
+      body: 'March posts include a car couple shoot, a Bok Tower session, and motion-heavy portrait work, so the page reflects the current mix instead of generic placeholders.',
+      accent: 'Recent'
     },
     {
-      title: 'Mobile layouts that still feel designed',
-      body: 'Panels stack cleanly, image cards reshape without collapsing, and the inquiry path stays short enough to finish one-handed.',
-      accent: 'Responsive'
+      title: 'Engagement and maternity are clearly bookable',
+      body: 'Two February captions directly mention engagement and maternity availability, which makes those services worth featuring in the main conversion path.',
+      accent: 'Bookable'
     },
     {
-      title: 'Motion that supports the photos',
-      body: 'GSAP reveals stay subtle, trigger once, and step aside entirely when reduced motion is preferred.',
-      accent: 'Accessible'
+      title: 'The off-site handoff is already part of the brand',
+      body: `The profile points to ${PROFILE.externalUrl.replace('https://', '')}, so the website now aligns with the same simple route clients already see on Instagram.`,
+      accent: 'Linked'
     }
   ];
 
@@ -370,7 +526,7 @@ export class App implements AfterViewInit {
       return;
     }
 
-    window.open('https://www.instagram.com/jackgarcia.co/', '_blank', 'noopener,noreferrer');
+    window.open(INSTAGRAM_URL, '_blank', 'noopener,noreferrer');
   }
 
   protected submitInquiry(): void {

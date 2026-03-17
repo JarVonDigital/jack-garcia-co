@@ -4,7 +4,7 @@
 
   <header class="topbar">
     <button class="brand-lockup" type="button" (click)="scrollToId('hero')">
-      <span class="brand-kicker">Jack Garcia &amp; Co.</span>
+      <span class="brand-kicker">{{ instagramProfile.brandName }}</span>
     </button>
 
     <nav class="topbar-nav" aria-label="Section navigation">
@@ -25,11 +25,10 @@
   <main class="story-page">
     <section class="hero section" id="hero">
       <div class="hero-copy panel-surface" #revealBlock>
-        <p class="eyebrow">Editorial photography for modern keepsakes</p>
-        <h1 class="hero-title">Editorial storytelling for weddings, portraits, and every season worth remembering.</h1>
+        <p class="eyebrow">{{ heroEyebrow }}</p>
+        <h1 class="hero-title">{{ heroTitle }}</h1>
         <p class="hero-summary">
-          Jack Garcia &amp; Co. frames milestones with calm direction, polished detail, and a visual rhythm that still
-          feels personal on the page.
+          {{ heroSummary }}
         </p>
 
         <div class="hero-actions">
@@ -39,7 +38,7 @@
             (onClick)="scrollToId('contact')"
           ></p-button>
           <p-button
-            label="View collections"
+            label="View pricing"
             severity="secondary"
             variant="outlined"
             styleClass="jack-button jack-button-outline"
@@ -60,7 +59,7 @@
       <div class="hero-visual panel-surface" #revealBlock>
         <div class="hero-visual-grid">
           <figure class="hero-figure hero-figure-main">
-            <img src="/Services/service-image.jpeg" alt="Jack Garcia wedding collection mood board" />
+            <img [src]="heroFeatureFrame.image" [alt]="heroFeatureFrame.alt" [style.object-position]="heroFeatureFrame.objectPosition ?? 'center'" />
           </figure>
 
           <div class="hero-mini-grid">
@@ -77,11 +76,10 @@
         </div>
 
         <aside class="hero-note">
-          <p class="hero-note-kicker">Art direction</p>
-          <h2>Warm greens, soft paper tones, and a page that feels like a keepsake box.</h2>
+          <p class="hero-note-kicker">Current profile</p>
+          <h2>{{ heroNoteTitle }}</h2>
           <p>
-            The new styling leans into layered panels, varied image crops, and quieter motion so the photography feels
-            more bespoke than templated.
+            {{ heroNoteBody }}
           </p>
         </aside>
       </div>
@@ -90,10 +88,10 @@
     <section class="section" id="services">
       <div class="section-heading" #revealBlock>
         <p class="eyebrow">Services overview</p>
-        <h2>Collections stay scannable up front, then unfold into details when someone wants to linger.</h2>
+        <h2>Real pricing stays visible, and weddings now point to a custom quote instead of made-up package tiers.</h2>
         <p>
-          The section structure leads with the main booking lanes, keeps pricing useful, and avoids burying portrait or
-          brand clients under wedding-only language.
+          The pricing notes file covers portraits, couples, family, branding, and automotive work, while the Instagram feed
+          confirms weddings, engagement sessions, and maternity are active parts of the brand.
         </p>
       </div>
 
@@ -132,11 +130,11 @@
 
     <section class="section portfolio-section" id="portfolio">
       <div class="section-heading" #revealBlock>
-        <p class="eyebrow">Portfolio direction</p>
-        <h2>A fuller image system built around the collection artwork that was already in the project.</h2>
+        <p class="eyebrow">Recent session mix</p>
+        <h2>The portfolio now points at actual couples, engagement, maternity, and garden-session work from the export.</h2>
         <p>
-          Instead of leaning on a flat two-card gallery, the updated section uses varied crops and asymmetry to make the
-          page feel more editorial and alive.
+          These featured tiles are tied to real posts from February and March 2026, so the visual story reflects what Jack
+          is actively shooting instead of generic placeholder boards.
         </p>
       </div>
 
@@ -149,7 +147,7 @@
                 [class.portfolio-story-copy-up]="portfolioTransitionDirection() === 'up'"
                 [class.portfolio-story-copy-down]="portfolioTransitionDirection() === 'down'"
               >
-                <p class="eyebrow">Portfolio direction</p>
+                <p class="eyebrow">Portfolio focus</p>
                 <p class="portfolio-story-step">{{ frame.eyebrow }}</p>
                 <h3>{{ frame.title }}</h3>
                 <p>{{ frame.caption }}</p>
@@ -181,21 +179,23 @@
 
     <section class="section journal-section" id="journal">
       <div class="section-heading" #revealBlock>
-        <p class="eyebrow">Instagram-ready filler</p>
-        <h2>A six-post grid makes the filler section feel closer to a real Instagram feed.</h2>
+        <p class="eyebrow">Instagram export</p>
+        <h2>Profile counts and post tiles now come from Jack's {{ latestExportLabel }} scraper dataset.</h2>
         <p>
-          The mock profile bar and square post grid are ready for fresh exports from Instagram whenever they are
-          available, so newer images can drop in without reworking the section.
+          The grid below uses real captions, counts, locations, and profile metadata from the March 17, 2026 Instagram
+          scraper export.
         </p>
       </div>
 
       <div class="instagram-shell panel-surface" #revealBlock>
         <div class="instagram-header">
           <div class="instagram-identity">
-            <div class="instagram-avatar" aria-hidden="true">JG</div>
+            <div class="instagram-avatar">
+              <img [src]="instagramProfile.profileImage" [alt]="instagramProfile.brandName + ' Instagram profile photo'" />
+            </div>
             <div>
-              <p class="instagram-handle">jackgarcia.co</p>
-              <p class="instagram-meta">Editorial weddings, portraits, and brand stories.</p>
+              <p class="instagram-handle">{{ instagramProfile.handle }}</p>
+              <p class="instagram-meta">{{ instagramProfile.biographyLines[0] }} | {{ instagramProfile.biographyLines[1] }}</p>
             </div>
           </div>
 
@@ -205,28 +205,22 @@
         </div>
 
         <div class="instagram-stats" aria-label="Instagram profile summary">
-          <article>
-            <strong>{{ socialFrames.length }}</strong>
-            <span>posts mocked</span>
-          </article>
-          <article>
-            <strong>Scroll-first</strong>
-            <span>square crops</span>
-          </article>
-          <article>
-            <strong>DM-ready</strong>
-            <span>easy refreshes</span>
-          </article>
+          @for (metric of instagramStats; track metric.label) {
+            <article>
+              <strong>{{ metric.value }}</strong>
+              <span>{{ metric.label }}</span>
+            </article>
+          }
         </div>
 
         <div class="instagram-tabs" aria-label="Instagram content types">
           <span class="is-active">Posts</span>
-          <span>Reels</span>
-          <span>Tagged</span>
+          <span>Highlights</span>
+          <span>Link in bio</span>
         </div>
 
         <div class="instagram-grid">
-          @for (frame of socialFrames; track frame.title) {
+          @for (frame of socialFrames; track frame.href) {
             <a class="instagram-post" [attr.href]="frame.href" target="_blank" rel="noopener noreferrer">
               <figure class="instagram-post-media">
                 <img
@@ -251,19 +245,18 @@
     <section class="section about-section" id="about">
       <div class="section-heading" #revealBlock>
         <p class="eyebrow">About Jack</p>
-        <h2>A visual approach that feels romantic, guided, and grounded in real connection.</h2>
+        <h2>The brand language now mirrors the real bio: natural light, timeless storytelling, Florida roots, and travel.</h2>
       </div>
 
       <div class="about-layout">
         <article class="about-copy panel-surface" #revealBlock>
           <p>
-            Jack Garcia &amp; Co. reads strongest when the brand voice stays personal and polished. The updated art
-            direction positions Jack as a photographer who can move between intimate weddings, milestone portraits, and
-            brand stories without losing warmth.
+            {{ instagramProfile.brandName }} presents Jack as a photographer working across lifestyle sessions, weddings,
+            and milestone stories, with a straightforward invitation to inquire by DM.
           </p>
           <p>
-            The copy still favors conversation over jargon, so prospective clients can picture the experience and know
-            what to do next within seconds of landing.
+            Recent posts back that up with real examples: a Florida car couple shoot, a Lake Wales garden session,
+            engagement work at Bonnet Springs Park, maternity portraits, and reels shot in both Florida and Arizona.
           </p>
         </article>
 
@@ -282,7 +275,7 @@
     <section class="section process-section" id="process">
       <div class="section-heading" #revealBlock>
         <p class="eyebrow">Process</p>
-        <h2>The scroll still moves from first impression to inquiry, but now with a clearer rhythm on smaller screens.</h2>
+        <h2>The site now follows the same booking rhythm clients already see on Instagram: browse, inquire, plan, and shoot.</h2>
       </div>
 
       <div class="timeline-shell panel-surface" #revealBlock>
@@ -306,11 +299,11 @@
 
     <section class="section experience-section" id="experience">
       <div class="section-heading" #revealBlock>
-        <p class="eyebrow">Experience notes</p>
-        <h2>What the page communicates before someone ever opens the inquiry form.</h2>
+        <p class="eyebrow">What the feed says</p>
+        <h2>The supporting carousel now summarizes the real themes showing up in Jack's recent posts.</h2>
         <p>
-          Instead of fabricated testimonials, the carousel focuses on the strengths that are already evident in the
-          materials and the new art direction.
+          Instead of generic experience copy, these notes point at the actual session types and booking signals present in
+          the current profile export.
         </p>
       </div>
 
@@ -339,20 +332,20 @@
     <section class="section contact-section" id="contact">
       <div class="section-heading" #revealBlock>
         <p class="eyebrow">Contact / inquiry</p>
-        <h2>Build a polished inquiry brief, then paste it into a DM or email.</h2>
+        <h2>Build a brief here, then send it through the same Instagram-first path Jack already uses.</h2>
         <p>
-          With no backend in the repo, the cleanest conversion path is still a friction-light form that prepares the
-          message for Jack and pairs it with a direct Instagram handoff.
+          The profile still says "DM to Inquire," and the bio links out through {{ instagramLinkLabel }},
+          so the contact section now supports that exact workflow.
         </p>
       </div>
 
       <div class="contact-layout">
         <article class="contact-copy panel-surface" #revealBlock>
-          <h3>What the page is optimized to do</h3>
+          <h3>What this page now answers quickly</h3>
           <ul>
-            <li>Show pricing quickly enough to qualify the right leads.</li>
-            <li>Keep weddings aspirational without burying portrait clients.</li>
-            <li>Move interested visitors toward a clear, low-friction next step.</li>
+            <li>Which session types have visible starting prices right now.</li>
+            <li>What Jack has actually been posting and booking in recent weeks.</li>
+            <li>Where to send the inquiry once the brief is ready.</li>
           </ul>
 
           <p-button

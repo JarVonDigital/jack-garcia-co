@@ -1,0 +1,390 @@
+<div class="page-shell">
+  <div class="background-orb background-orb-left"></div>
+  <div class="background-orb background-orb-right"></div>
+
+  <header class="topbar">
+    <button class="brand-lockup" type="button" (click)="scrollToId('hero')">
+      <span class="brand-kicker">Jack Garcia &amp; Co.</span>
+    </button>
+
+    <nav class="topbar-nav" aria-label="Section navigation">
+      @for (item of navItems; track item.label) {
+        <button type="button" (click)="scrollToId(item.href)">{{ item.label }}</button>
+      }
+    </nav>
+
+    <p-button
+      label="Instagram"
+      severity="secondary"
+      variant="outlined"
+      styleClass="jack-button jack-button-outline topbar-instagram"
+      (onClick)="openInstagram()"
+    ></p-button>
+  </header>
+
+  <main class="story-page">
+    <section class="hero section" id="hero">
+      <div class="hero-copy panel-surface" #revealBlock>
+        <p class="eyebrow">Editorial photography for modern keepsakes</p>
+        <h1 class="hero-title">Editorial storytelling for weddings, portraits, and every season worth remembering.</h1>
+        <p class="hero-summary">
+          Jack Garcia &amp; Co. frames milestones with calm direction, polished detail, and a visual rhythm that still
+          feels personal on the page.
+        </p>
+
+        <div class="hero-actions">
+          <p-button
+            label="Start an inquiry"
+            styleClass="jack-button jack-button-primary"
+            (onClick)="scrollToId('contact')"
+          ></p-button>
+          <p-button
+            label="View collections"
+            severity="secondary"
+            variant="outlined"
+            styleClass="jack-button jack-button-outline"
+            (onClick)="scrollToId('services')"
+          ></p-button>
+        </div>
+
+        <div class="hero-metrics">
+          @for (metric of heroMetrics; track metric.label) {
+            <article class="metric-chip">
+              <span>{{ metric.label }}</span>
+              <strong>{{ metric.value }}</strong>
+            </article>
+          }
+        </div>
+      </div>
+
+      <div class="hero-visual panel-surface" #revealBlock>
+        <div class="hero-visual-grid">
+          <figure class="hero-figure hero-figure-main">
+            <img src="/Services/service-image.jpeg" alt="Jack Garcia wedding collection mood board" />
+          </figure>
+
+          <div class="hero-mini-grid">
+            @for (frame of heroFrames; track frame.title) {
+              <figure class="hero-figure hero-figure-mini">
+                <img
+                  [src]="frame.image"
+                  [alt]="frame.alt"
+                  [style.object-position]="frame.objectPosition ?? 'center'"
+                />
+              </figure>
+            }
+          </div>
+        </div>
+
+        <aside class="hero-note">
+          <p class="hero-note-kicker">Art direction</p>
+          <h2>Warm greens, soft paper tones, and a page that feels like a keepsake box.</h2>
+          <p>
+            The new styling leans into layered panels, varied image crops, and quieter motion so the photography feels
+            more bespoke than templated.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="section-heading" #revealBlock>
+        <p class="eyebrow">Services overview</p>
+        <h2>Collections stay scannable up front, then unfold into details when someone wants to linger.</h2>
+        <p>
+          The section structure leads with the main booking lanes, keeps pricing useful, and avoids burying portrait or
+          brand clients under wedding-only language.
+        </p>
+      </div>
+
+      <div class="collection-grid">
+        @for (collection of collectionHighlights; track collection.title) {
+          <article class="collection-card panel-surface" #revealBlock>
+            <p class="collection-price">{{ collection.price }}</p>
+            <h3>{{ collection.title }}</h3>
+            <p>{{ collection.description }}</p>
+            <span>{{ collection.details }}</span>
+          </article>
+        }
+      </div>
+
+      <div class="pricing-panel panel-surface" #revealBlock>
+        <p-accordion value="0" styleClass="jack-accordion">
+          @for (group of serviceGroups; track group.label; let groupIndex = $index) {
+            <p-accordion-panel [value]="groupIndex">
+              <p-accordion-header>{{ group.label }}</p-accordion-header>
+              <p-accordion-content>
+                <p class="accordion-summary">{{ group.summary }}</p>
+                <div class="service-list">
+                  @for (item of group.items; track item.name) {
+                    <div class="service-list-row">
+                      <span>{{ item.name }}</span>
+                      <strong>{{ item.price }}</strong>
+                    </div>
+                  }
+                </div>
+              </p-accordion-content>
+            </p-accordion-panel>
+          }
+        </p-accordion>
+      </div>
+    </section>
+
+    <section class="section portfolio-section" id="portfolio">
+      <div class="section-heading" #revealBlock>
+        <p class="eyebrow">Portfolio direction</p>
+        <h2>A fuller image system built around the collection artwork that was already in the project.</h2>
+        <p>
+          Instead of leaning on a flat two-card gallery, the updated section uses varied crops and asymmetry to make the
+          page feel more editorial and alive.
+        </p>
+      </div>
+
+      <div class="portfolio-layout">
+        <div class="portfolio-story-rail">
+          <div class="portfolio-story-panel panel-surface" #revealBlock>
+            @for (frame of [activePortfolioFrame()]; track activePortfolioTransitionKey()) {
+              <div
+                class="portfolio-story-copy"
+                [class.portfolio-story-copy-up]="portfolioTransitionDirection() === 'up'"
+                [class.portfolio-story-copy-down]="portfolioTransitionDirection() === 'down'"
+              >
+                <p class="eyebrow">Portfolio direction</p>
+                <p class="portfolio-story-step">{{ frame.eyebrow }}</p>
+                <h3>{{ frame.title }}</h3>
+                <p>{{ frame.caption }}</p>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="portfolio-grid">
+          @for (frame of portfolioFrames; track frame.title) {
+            <figure class="portfolio-frame panel-surface" #revealBlock #portfolioItem>
+              <img
+                [src]="frame.image"
+                [alt]="frame.alt"
+                [style.object-position]="frame.objectPosition ?? 'center'"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                <p class="portfolio-tag">{{ frame.eyebrow }}</p>
+                <h3>{{ frame.title }}</h3>
+                <p>{{ frame.caption }}</p>
+              </figcaption>
+            </figure>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section journal-section" id="journal">
+      <div class="section-heading" #revealBlock>
+        <p class="eyebrow">Instagram-ready filler</p>
+        <h2>Four swappable feed slots keep the page image-rich without forcing a redesign later.</h2>
+        <p>
+          The card system is ready for fresh exports from Instagram whenever they are available, so newer images can drop
+          in without reworking the layout.
+        </p>
+      </div>
+
+      <div class="journal-layout">
+        @for (frame of socialFrames; track frame.title) {
+          <a
+            class="journal-card panel-surface"
+            #revealBlock
+            [attr.href]="frame.href"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <figure class="journal-figure">
+              <img [src]="frame.image" [alt]="frame.alt" [style.object-position]="frame.objectPosition ?? 'center'" />
+            </figure>
+            <div class="journal-copy">
+              <p class="portfolio-tag">{{ frame.eyebrow }}</p>
+              <h3>{{ frame.title }}</h3>
+              <p>{{ frame.caption }}</p>
+            </div>
+          </a>
+        }
+      </div>
+    </section>
+
+    <section class="section about-section" id="about">
+      <div class="section-heading" #revealBlock>
+        <p class="eyebrow">About Jack</p>
+        <h2>A visual approach that feels romantic, guided, and grounded in real connection.</h2>
+      </div>
+
+      <div class="about-layout">
+        <article class="about-copy panel-surface" #revealBlock>
+          <p>
+            Jack Garcia &amp; Co. reads strongest when the brand voice stays personal and polished. The updated art
+            direction positions Jack as a photographer who can move between intimate weddings, milestone portraits, and
+            brand stories without losing warmth.
+          </p>
+          <p>
+            The copy still favors conversation over jargon, so prospective clients can picture the experience and know
+            what to do next within seconds of landing.
+          </p>
+        </article>
+
+        <div class="trust-grid">
+          @for (note of trustNotes; track note.title) {
+            <article class="trust-card panel-surface" #revealBlock>
+              <span>{{ note.accent }}</span>
+              <h3>{{ note.title }}</h3>
+              <p>{{ note.body }}</p>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section process-section" id="process">
+      <div class="section-heading" #revealBlock>
+        <p class="eyebrow">Process</p>
+        <h2>The scroll still moves from first impression to inquiry, but now with a clearer rhythm on smaller screens.</h2>
+      </div>
+
+      <div class="timeline-shell panel-surface" #revealBlock>
+        <p-timeline [value]="processSteps" align="alternate" styleClass="jack-process-timeline">
+          <ng-template #marker let-step>
+            <span class="timeline-marker">{{ step.phase }}</span>
+          </ng-template>
+          <ng-template #opposite let-step>
+            <span class="timeline-step">{{ step.step }}</span>
+          </ng-template>
+          <ng-template #content let-step>
+            <article class="timeline-card">
+              <span class="timeline-step timeline-step-mobile">{{ step.step }}</span>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.description }}</p>
+            </article>
+          </ng-template>
+        </p-timeline>
+      </div>
+    </section>
+
+    <section class="section experience-section" id="experience">
+      <div class="section-heading" #revealBlock>
+        <p class="eyebrow">Experience notes</p>
+        <h2>What the page communicates before someone ever opens the inquiry form.</h2>
+        <p>
+          Instead of fabricated testimonials, the carousel focuses on the strengths that are already evident in the
+          materials and the new art direction.
+        </p>
+      </div>
+
+      <div class="experience-carousel-shell panel-surface" #revealBlock>
+        <p-carousel
+          [value]="experienceNotes"
+          [numVisible]="1"
+          [numScroll]="1"
+          [circular]="true"
+          [showNavigators]="false"
+          [showIndicators]="true"
+          [autoplayInterval]="prefersReducedMotion() ? null : 5000"
+          styleClass="jack-carousel"
+        >
+          <ng-template #item let-note>
+            <article class="experience-card">
+              <span>{{ note.accent }}</span>
+              <h3>{{ note.title }}</h3>
+              <p>{{ note.body }}</p>
+            </article>
+          </ng-template>
+        </p-carousel>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="section-heading" #revealBlock>
+        <p class="eyebrow">Contact / inquiry</p>
+        <h2>Build a polished inquiry brief, then paste it into a DM or email.</h2>
+        <p>
+          With no backend in the repo, the cleanest conversion path is still a friction-light form that prepares the
+          message for Jack and pairs it with a direct Instagram handoff.
+        </p>
+      </div>
+
+      <div class="contact-layout">
+        <article class="contact-copy panel-surface" #revealBlock>
+          <h3>What the page is optimized to do</h3>
+          <ul>
+            <li>Show pricing quickly enough to qualify the right leads.</li>
+            <li>Keep weddings aspirational without burying portrait clients.</li>
+            <li>Move interested visitors toward a clear, low-friction next step.</li>
+          </ul>
+
+          <p-button
+            label="Open Instagram"
+            severity="secondary"
+            variant="outlined"
+            styleClass="jack-button jack-button-outline"
+            (onClick)="openInstagram()"
+          ></p-button>
+        </article>
+
+        <div class="contact-form-panel panel-surface" #revealBlock>
+          <form class="inquiry-form" [formGroup]="inquiryForm" (ngSubmit)="submitInquiry()">
+            <p-floatlabel variant="on">
+              <input id="name" pInputText formControlName="name" />
+              <label for="name">Your name</label>
+            </p-floatlabel>
+            @if (controlInvalid('name')) {
+              <small class="field-error">Let Jack know who is reaching out.</small>
+            }
+
+            <p-floatlabel variant="on">
+              <input id="email" pInputText formControlName="email" />
+              <label for="email">Email address</label>
+            </p-floatlabel>
+            @if (controlInvalid('email')) {
+              <small class="field-error">Add a valid reply email for follow-up.</small>
+            }
+
+            <p-floatlabel variant="on">
+              <input id="sessionType" pInputText formControlName="sessionType" />
+              <label for="sessionType">Session type</label>
+            </p-floatlabel>
+            @if (controlInvalid('sessionType')) {
+              <small class="field-error">Name the kind of session you want to book.</small>
+            }
+
+            <p-floatlabel variant="on">
+              <textarea id="vision" pTextarea formControlName="vision" rows="5"></textarea>
+              <label for="vision">What should the shoot feel like?</label>
+            </p-floatlabel>
+            @if (controlInvalid('vision')) {
+              <small class="field-error">Share a few details so the inquiry feels specific.</small>
+            }
+
+            <div class="form-actions">
+              <p-button type="submit" label="Build inquiry brief" styleClass="jack-button jack-button-primary"></p-button>
+              @if (inquiryDraft()) {
+                <p-button
+                  type="button"
+                  label="Copy again"
+                  severity="secondary"
+                  variant="outlined"
+                  styleClass="jack-button jack-button-outline"
+                  (onClick)="copyInquiry()"
+                ></p-button>
+              }
+            </div>
+          </form>
+
+          @if (inquiryDraft()) {
+            <div class="inquiry-result">
+              <p class="inquiry-result-kicker">Ready to send</p>
+              <pre>{{ inquiryDraft() }}</pre>
+              <p>{{ copyFeedback() }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

@@ -59,14 +59,14 @@
       <div class="hero-visual panel-surface" #revealBlock>
         <div class="hero-visual-grid">
           <figure class="hero-figure hero-figure-main">
-            <img [src]="heroFeatureFrame.image" [alt]="heroFeatureFrame.alt" [style.object-position]="heroFeatureFrame.objectPosition ?? 'center'" />
+            <img [src]="heroFeatureFrame.assetPath" [alt]="heroFeatureFrame.alt" [style.object-position]="heroFeatureFrame.objectPosition ?? 'center'" />
           </figure>
 
           <div class="hero-mini-grid">
             @for (frame of heroFrames; track frame.title) {
               <figure class="hero-figure hero-figure-mini">
                 <img
-                  [src]="frame.image"
+                  [src]="frame.assetPath"
                   [alt]="frame.alt"
                   [style.object-position]="frame.objectPosition ?? 'center'"
                 />
@@ -160,7 +160,7 @@
           @for (frame of portfolioFrames; track frame.title) {
             <figure class="portfolio-frame panel-surface" #revealBlock #portfolioItem>
               <img
-                [src]="frame.image"
+                [src]="frame.assetPath"
                 [alt]="frame.alt"
                 [style.object-position]="frame.objectPosition ?? 'center'"
                 loading="lazy"
@@ -191,7 +191,7 @@
         <div class="instagram-header">
           <div class="instagram-identity">
             <div class="instagram-avatar">
-              <img [src]="instagramProfile.profileImage" [alt]="instagramProfile.brandName + ' Instagram profile photo'" />
+              <img [src]="instagramProfile.profileImageAssetPath" [alt]="instagramProfile.brandName + ' Instagram profile photo'" />
             </div>
             <div>
               <p class="instagram-handle">{{ instagramProfile.handle }}</p>
@@ -224,7 +224,7 @@
             <a class="instagram-post" [attr.href]="frame.href" target="_blank" rel="noopener noreferrer">
               <figure class="instagram-post-media">
                 <img
-                  [src]="frame.image"
+                  [src]="frame.assetPath"
                   [alt]="frame.alt"
                   [style.object-position]="frame.objectPosition ?? 'center'"
                   loading="lazy"

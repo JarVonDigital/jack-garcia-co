@@ -41,7 +41,8 @@ interface GalleryFrame {
   eyebrow: string;
   title: string;
   caption: string;
-  image: string;
+  displayUrl: string;
+  assetPath: string;
   alt: string;
   objectPosition?: string;
   href?: string;
@@ -70,7 +71,8 @@ interface InstagramProfile {
   highlightsCount: number;
   postsCount: number;
   externalUrl: string;
-  profileImage: string;
+  profileImageUrl: string;
+  profileImageAssetPath: string;
 }
 
 interface InstagramPost {
@@ -82,7 +84,8 @@ interface InstagramPost {
   comments: number;
   views?: number;
   caption: string;
-  image: string;
+  displayUrl: string;
+  assetPath: string;
   href: string;
   alt: string;
 }
@@ -106,8 +109,9 @@ const PROFILE: InstagramProfile = {
   highlightsCount: 10,
   postsCount: 51,
   externalUrl: LINKTREE_URL,
-  profileImage:
-    'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-19/573734543_17948446257047912_4237563899148563029_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=YWsEt4y54_gQ7kNvwGDrzf6&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Afw3HepEAStDie6sTqXrl4HTRWR0nrMKH12CBf1irIya-w&oe=69BFCE18&_nc_sid=8b3546'
+  profileImageUrl:
+    'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-19/573734543_17948446257047912_4237563899148563029_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=YWsEt4y54_gQ7kNvwGDrzf6&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_Afw3HepEAStDie6sTqXrl4HTRWR0nrMKH12CBf1irIya-w&oe=69BFCE18&_nc_sid=8b3546',
+  profileImageAssetPath: '/instagram/profile-61411303911.jpg'
 };
 
 const RECENT_POSTS: InstagramPost[] = [
@@ -120,8 +124,9 @@ const RECENT_POSTS: InstagramPost[] = [
     comments: 2,
     views: 1593,
     caption: '',
-    image:
+    displayUrl:
       'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/645714325_17961791469047912_4621030012649385767_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=wLr_RhT89tcQ7kNvwEA6wK4&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfyhUw9tlq829auR3-0pw5axxWrxXZ1A9-wGu3lpzmEweg&oe=69BFB453&_nc_sid=8b3546',
+    assetPath: '/instagram/DV8077-jatl.jpg',
     href: 'https://www.instagram.com/p/DV8077-jatl/',
     alt: 'Recent Jack Garcia & Co. reel cover posted from Arizona on March 16, 2026.'
   },
@@ -133,8 +138,9 @@ const RECENT_POSTS: InstagramPost[] = [
     likes: 117,
     comments: 4,
     caption: 'Love this car couple shoot.',
-    image:
+    displayUrl:
       'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/645775584_17961790593047912_6976471790705355562_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=hzmBqqsd5VsQ7kNvwFKAK3L&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=Mzg0NTE0NDI2NzQzNDM1NTc2Mg%3D%3D.3-ccb7-5&oh=00_Afwp4gpcgpnRtXo30zueRMqmIsB5-MF68HkObacgIgrE0A&oe=69BFC9C7&_nc_sid=8b3546',
+    assetPath: '/instagram/DV1F6RbDXin.jpg',
     href: 'https://www.instagram.com/p/DV1F6RbDXin/',
     alt: 'Jack Garcia & Co. couples session post shared from Florida on March 13, 2026.'
   },
@@ -146,8 +152,9 @@ const RECENT_POSTS: InstagramPost[] = [
     likes: 123,
     comments: 3,
     caption: 'Trying to manifest more shoots at Bok Tower Gardens.',
-    image:
+    displayUrl:
       'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/645819718_17961789651047912_5582991189694122744_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=oypJAANWoQIQ7kNvwHa6_a5&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=Mzg0NTEzNTgyMDA3MjU1MDI3MA%3D%3D.3-ccb7-5&oh=00_Afws-8aMQSR5HmCVp6UdmTf3XECDWc7lhzN0MFtIVSivlg&oe=69BFBE5F&_nc_sid=8b3546',
+    assetPath: '/instagram/DV1Dph5jTum.jpg',
     href: 'https://www.instagram.com/p/DV1Dph5jTum/',
     alt: 'Jack Garcia & Co. portrait post from Lake Wales, Florida shared on March 11, 2026.'
   },
@@ -160,8 +167,9 @@ const RECENT_POSTS: InstagramPost[] = [
     comments: 5,
     views: 308,
     caption: '',
-    image:
+    displayUrl:
       'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/639862545_17961068625047912_7541171992783888713_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=yx9ot4l54eYQ7kNvwHENqmP&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfyMz1O6PxDg1XlTe-p9gDOStG67FQAtTssOsxKTSzjtIg&oe=69BFCB30&_nc_sid=8b3546',
+    assetPath: '/instagram/DVq9DuSDU0q.jpg',
     href: 'https://www.instagram.com/p/DVq9DuSDU0q/',
     alt: 'Jack Garcia & Co. reel cover shared from Florida on March 9, 2026.'
   },
@@ -174,8 +182,9 @@ const RECENT_POSTS: InstagramPost[] = [
     comments: 2,
     views: 311,
     caption: '',
-    image:
+    displayUrl:
       'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/641045593_17961068523047912_8316571364081537640_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=-9Z5um5pZ7sQ7kNvwE5s5Z3&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfytX5Bgneu9yOnCjAImIsRS4hzIXgcensa0kgZX7tlk2g&oe=69BFC172&_nc_sid=8b3546',
+    assetPath: '/instagram/DVZMEnhjXtp.jpg',
     href: 'https://www.instagram.com/p/DVZMEnhjXtp/',
     alt: 'Jack Garcia & Co. reel cover shared from St. Petersburg, Florida on March 4, 2026.'
   },
@@ -187,8 +196,9 @@ const RECENT_POSTS: InstagramPost[] = [
     likes: 112,
     comments: 1,
     caption: 'Obsessed with these. Movement shots always give what they need to give.',
-    image:
+    displayUrl:
       'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/639748462_17960667078047912_6882501336475370482_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=0Q4YmGxh4N4Q7kNvwHUgVSH&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=MzgzODI5NTI0ODc1MzE0MTMwNw%3D%3D.3-ccb7-5&oh=00_AfwTfuN2kUo-MiZS6iOwlIt-cN1rBPzTFgjA1mr_WP_KCQ&oe=69BFA185&_nc_sid=8b3546',
+    assetPath: '/instagram/DVjTQEZABUP.jpg',
     href: 'https://www.instagram.com/p/DVjTQEZABUP/',
     alt: 'Jack Garcia & Co. motion portrait post shared from Florida on March 2, 2026.'
   },
@@ -200,8 +210,9 @@ const RECENT_POSTS: InstagramPost[] = [
     likes: 65,
     comments: 0,
     caption: 'Your love deserves to be documented beautifully. Engagement sessions are now open for booking.',
-    image:
+    displayUrl:
       'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/630130837_17960115669047912_6671945884795074875_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=_dwtFjpO_t8Q7kNvwG5Ofd5&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=MzgzNDgyNjkzMTAwMzY0NTY2MQ%3D%3D.3-ccb7-5&oh=00_AfxW4I26KN4bn3qAa7rkHBaTBwFSQLw8B799PR6dnwnt-A&oe=69BFA647&_nc_sid=8b3546',
+    assetPath: '/instagram/DU_gudzkt16.jpg',
     href: 'https://www.instagram.com/p/DU_gudzkt16/',
     alt: 'Jack Garcia & Co. engagement session post shared from Bonnet Springs Park on February 20, 2026.'
   },
@@ -213,8 +224,9 @@ const RECENT_POSTS: InstagramPost[] = [
     likes: 77,
     comments: 0,
     caption: 'Baby on the way, and the glow says it all. Message me to book your maternity session.',
-    image:
+    displayUrl:
       'https://scontent-phx1-1.cdninstagram.com/v/t51.82787-15/626001810_17959019880047912_1279483812305296447_n.jpg?stp=dst-jpg_e35_p1080x1080_sh0.08_tt6&_nc_ht=scontent-phx1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2QGFZi1POz_dmgY-M3LX0xvnnRbgtdxcE0pefJe06TmI0lY21GJ9FNDvNHLRwFJAa58&_nc_ohc=TGGQBd6F7rEQ7kNvwEydUm3&_nc_gid=uUldxY7WNsNPYG6OktWN-g&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=MzgyNzYwMDIwMTY5MjEyNTc0MA%3D%3D.3-ccb7-5&oh=00_AfyI2iKJ26tcytd7z5r9VOo5fk5BK_cmXBFUCXSUjxME0Q&oe=69BFCF70&_nc_sid=8b3546',
+    assetPath: '/instagram/DUomtZmkmPJ.jpg',
     href: 'https://www.instagram.com/p/DUomtZmkmPJ/',
     alt: 'Jack Garcia & Co. maternity session post shared from Bonnet Springs Park on February 11, 2026.'
   }
@@ -359,7 +371,8 @@ export class App implements AfterViewInit {
       eyebrow: 'Mar 13 post',
       title: 'Car couple session in Florida',
       caption: 'Captioned "Love this car couple shoot" and posted with 117 likes and 4 comments.',
-      image: RECENT_POSTS[1].image,
+      displayUrl: RECENT_POSTS[1].displayUrl,
+      assetPath: RECENT_POSTS[1].assetPath,
       alt: RECENT_POSTS[1].alt,
       href: RECENT_POSTS[1].href
     },
@@ -367,7 +380,8 @@ export class App implements AfterViewInit {
       eyebrow: 'Mar 11 post',
       title: 'Bok Tower session in Lake Wales',
       caption: 'A Lake Wales post with 123 likes and a note about manifesting more shoots at Bok Tower Gardens.',
-      image: RECENT_POSTS[2].image,
+      displayUrl: RECENT_POSTS[2].displayUrl,
+      assetPath: RECENT_POSTS[2].assetPath,
       alt: RECENT_POSTS[2].alt,
       href: RECENT_POSTS[2].href
     },
@@ -375,7 +389,8 @@ export class App implements AfterViewInit {
       eyebrow: 'Feb 20 post',
       title: 'Engagement sessions now open',
       caption: 'This Bonnet Springs Park post explicitly invites couples to inquire and secure their engagement date.',
-      image: RECENT_POSTS[6].image,
+      displayUrl: RECENT_POSTS[6].displayUrl,
+      assetPath: RECENT_POSTS[6].assetPath,
       alt: RECENT_POSTS[6].alt,
       href: RECENT_POSTS[6].href
     },
@@ -383,7 +398,8 @@ export class App implements AfterViewInit {
       eyebrow: 'Feb 11 post',
       title: 'Maternity storytelling at Bonnet Springs',
       caption: 'The maternity post reinforces the milestone side of the brand with 77 likes and a direct booking callout.',
-      image: RECENT_POSTS[7].image,
+      displayUrl: RECENT_POSTS[7].displayUrl,
+      assetPath: RECENT_POSTS[7].assetPath,
       alt: RECENT_POSTS[7].alt,
       href: RECENT_POSTS[7].href
     }
@@ -396,7 +412,8 @@ export class App implements AfterViewInit {
     eyebrow: `${post.dateLabel} | ${post.type === 'Video' ? 'Reel' : 'Post'}`,
     title: postHeadline(post),
     caption: postMeta(post),
-    image: post.image,
+    displayUrl: post.displayUrl,
+    assetPath: post.assetPath,
     alt: post.alt,
     href: post.href
   }));

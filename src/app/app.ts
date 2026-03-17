@@ -230,6 +230,24 @@ export class App implements AfterViewInit {
       alt: 'Placeholder brand-style frame for the Instagram section',
       href: 'https://www.instagram.com/jackgarcia.co/',
       objectPosition: '45% 62%'
+    },
+    {
+      eyebrow: 'Feed slot 05',
+      title: 'Ceremony color study',
+      caption: 'A square crop lets bouquet tones, fabric texture, and skin tone stay balanced like a real feed post.',
+      image: '/Services/service-image.jpeg',
+      alt: 'Placeholder ceremony-inspired frame for the Instagram section',
+      href: 'https://www.instagram.com/jackgarcia.co/',
+      objectPosition: '46% 18%'
+    },
+    {
+      eyebrow: 'Feed slot 06',
+      title: 'Quiet in-between moment',
+      caption: 'The sixth tile rounds the mock feed into two full rows so the section lands closer to Instagram at a glance.',
+      image: '/Services/service-image-2.jpeg',
+      alt: 'Placeholder candid-inspired frame for the Instagram section',
+      href: 'https://www.instagram.com/jackgarcia.co/',
+      objectPosition: '58% 36%'
     }
   ];
 

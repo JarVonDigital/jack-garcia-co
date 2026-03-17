@@ -182,32 +182,69 @@
     <section class="section journal-section" id="journal">
       <div class="section-heading" #revealBlock>
         <p class="eyebrow">Instagram-ready filler</p>
-        <h2>Four swappable feed slots keep the page image-rich without forcing a redesign later.</h2>
+        <h2>A six-post grid makes the filler section feel closer to a real Instagram feed.</h2>
         <p>
-          The card system is ready for fresh exports from Instagram whenever they are available, so newer images can drop
-          in without reworking the layout.
+          The mock profile bar and square post grid are ready for fresh exports from Instagram whenever they are
+          available, so newer images can drop in without reworking the section.
         </p>
       </div>
 
-      <div class="journal-layout">
-        @for (frame of socialFrames; track frame.title) {
-          <a
-            class="journal-card panel-surface"
-            #revealBlock
-            [attr.href]="frame.href"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <figure class="journal-figure">
-              <img [src]="frame.image" [alt]="frame.alt" [style.object-position]="frame.objectPosition ?? 'center'" />
-            </figure>
-            <div class="journal-copy">
-              <p class="portfolio-tag">{{ frame.eyebrow }}</p>
-              <h3>{{ frame.title }}</h3>
-              <p>{{ frame.caption }}</p>
+      <div class="instagram-shell panel-surface" #revealBlock>
+        <div class="instagram-header">
+          <div class="instagram-identity">
+            <div class="instagram-avatar" aria-hidden="true">JG</div>
+            <div>
+              <p class="instagram-handle">jackgarcia.co</p>
+              <p class="instagram-meta">Editorial weddings, portraits, and brand stories.</p>
             </div>
+          </div>
+
+          <a class="instagram-cta" href="https://www.instagram.com/jackgarcia.co/" target="_blank" rel="noopener noreferrer">
+            View profile
           </a>
-        }
+        </div>
+
+        <div class="instagram-stats" aria-label="Instagram profile summary">
+          <article>
+            <strong>{{ socialFrames.length }}</strong>
+            <span>posts mocked</span>
+          </article>
+          <article>
+            <strong>Scroll-first</strong>
+            <span>square crops</span>
+          </article>
+          <article>
+            <strong>DM-ready</strong>
+            <span>easy refreshes</span>
+          </article>
+        </div>
+
+        <div class="instagram-tabs" aria-label="Instagram content types">
+          <span class="is-active">Posts</span>
+          <span>Reels</span>
+          <span>Tagged</span>
+        </div>
+
+        <div class="instagram-grid">
+          @for (frame of socialFrames; track frame.title) {
+            <a class="instagram-post" [attr.href]="frame.href" target="_blank" rel="noopener noreferrer">
+              <figure class="instagram-post-media">
+                <img
+                  [src]="frame.image"
+                  [alt]="frame.alt"
+                  [style.object-position]="frame.objectPosition ?? 'center'"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="instagram-post-overlay">
+                  <p class="instagram-post-index">{{ frame.eyebrow }}</p>
+                  <h3>{{ frame.title }}</h3>
+                  <p>{{ frame.caption }}</p>
+                </figcaption>
+              </figure>
+            </a>
+          }
+        </div>
       </div>
     </section>
 

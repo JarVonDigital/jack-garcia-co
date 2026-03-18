@@ -1,5 +1,7 @@
 node_modules/
 dist/
+.angular/
+coverage/
 .tmp/
 out-tsc/
 npm-debug.log*

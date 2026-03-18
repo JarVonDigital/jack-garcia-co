@@ -4,6 +4,7 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  HostListener,
   QueryList,
   ViewChildren,
   computed,
@@ -70,6 +71,8 @@ interface ExperienceNote {
   body: string;
   accent: string;
 }
+
+type LegalModal = 'privacy' | 'terms';
 
 interface InstagramProfile {
   brandName: string;
@@ -535,6 +538,8 @@ export class App implements AfterViewInit {
   protected readonly copyFeedback = signal('');
   protected readonly activePortfolioIndex = signal(0);
   protected readonly portfolioTransitionDirection = signal<'up' | 'down'>('down');
+  protected readonly currentYear = new Date().getFullYear();
+  protected readonly activeLegalModal = signal<LegalModal | null>(null);
   protected readonly activePortfolioTransitionKey = computed(
     () => `${this.activePortfolioIndex()}-${this.portfolioTransitionDirection()}`,
   );
@@ -592,6 +597,15 @@ export class App implements AfterViewInit {
     this.isNavDrawerOpen.update((isOpen) => !isOpen);
   }
 
+  protected openLegalModal(modal: LegalModal): void {
+    this.isNavDrawerOpen.set(false);
+    this.activeLegalModal.set(modal);
+  }
+
+  protected closeLegalModal(): void {
+    this.activeLegalModal.set(null);
+  }
+
   protected submitInquiry(): void {
     this.submitted.set(true);
     this.copyFeedback.set('');
@@ -642,6 +656,17 @@ export class App implements AfterViewInit {
       this.copyFeedback.set(
         'Copy was blocked, but the brief is ready below for you to copy manually.',
       );
+    }
+  }
+
+  @HostListener('document:keydown.escape')
+  protected handleEscape(): void {
+    if (this.activeLegalModal()) {
+      this.closeLegalModal();
+    }
+
+    if (this.isNavDrawerOpen()) {
+      this.isNavDrawerOpen.set(false);
     }
   }
 

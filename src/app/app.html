@@ -465,5 +465,92 @@
         </div>
       </div>
     </section>
+
+    <footer class="site-footer panel-surface">
+      <div class="site-footer-copy">
+        <p class="eyebrow">Jack Garcia Co.</p>
+        <p>&copy; {{ currentYear }} Jack Garcia. All rights reserved.</p>
+        <p>Designed by JarVonDigital LLC.</p>
+      </div>
+
+      <div class="site-footer-actions">
+        <button type="button" class="footer-link" (click)="openLegalModal('privacy')">
+          Privacy Policy
+        </button>
+        <button type="button" class="footer-link" (click)="openLegalModal('terms')">
+          Terms of Use
+        </button>
+      </div>
+    </footer>
   </main>
+
+  @if (activeLegalModal(); as legalModal) {
+    <div class="legal-modal-backdrop" (click)="closeLegalModal()">
+      <section
+        class="legal-modal"
+        role="dialog"
+        aria-modal="true"
+        [attr.aria-labelledby]="legalModal + '-title'"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="legal-modal-header">
+          <p class="eyebrow">Legal</p>
+          <button
+            type="button"
+            class="legal-modal-close"
+            (click)="closeLegalModal()"
+            aria-label="Close legal dialog"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        @if (legalModal === 'privacy') {
+          <div class="legal-modal-body">
+            <h2 id="privacy-title">Privacy Policy</h2>
+            <p>
+              Jack Garcia Co. collects the information you choose to share through inquiry forms,
+              email, Instagram messages, or booking conversations so your session request can be
+              reviewed and answered.
+            </p>
+            <p>
+              Contact details, session preferences, and project notes are used only to communicate,
+              prepare quotes, schedule services, and deliver the client experience. Personal
+              information is not sold or rented to third parties.
+            </p>
+            <p>
+              Trusted services such as email, hosting, scheduling, or analytics platforms may
+              process limited data when needed to operate the site and respond to inquiries.
+            </p>
+            <p>
+              By using this site, you consent to this use of information. If you need your details
+              updated or removed, contact Jack Garcia Co. directly through the listed inquiry
+              channels.
+            </p>
+          </div>
+        } @else {
+          <div class="legal-modal-body">
+            <h2 id="terms-title">Terms of Use</h2>
+            <p>
+              This website is provided for general information, portfolio viewing, and inquiry
+              purposes. Using the site means you agree to use it lawfully and respectfully.
+            </p>
+            <p>
+              All photographs, branding, copy, and creative assets on this site are the property of
+              Jack Garcia Co. and may not be copied, reproduced, distributed, or reused without
+              prior written permission.
+            </p>
+            <p>
+              Pricing, availability, and service details may change without notice. Submitting an
+              inquiry does not guarantee booking until both parties confirm the project.
+            </p>
+            <p>
+              Jack Garcia Co. is not responsible for third-party sites linked from this website.
+              Continued use of the site indicates acceptance of these terms.
+            </p>
+          </div>
+        }
+      </section>
+    </div>
+  }
 </div>

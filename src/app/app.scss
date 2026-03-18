@@ -204,7 +204,7 @@
     transform 180ms ease;
 }
 
-.topbar-nav button {
+.topbar-nav button:not(.topbar-nav-instagram) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -219,15 +219,15 @@
     transform 180ms ease;
 }
 
-.topbar-nav button:hover,
-.topbar-nav button:focus-visible,
+.topbar-nav button:not(.topbar-nav-instagram):hover,
+.topbar-nav button:not(.topbar-nav-instagram):focus-visible,
 .brand-lockup:hover,
 .brand-lockup:focus-visible {
   color: var(--ink);
 }
 
-.topbar-nav button:hover,
-.topbar-nav button:focus-visible {
+.topbar-nav button:not(.topbar-nav-instagram):hover,
+.topbar-nav button:not(.topbar-nav-instagram):focus-visible {
   background: rgba(76, 88, 65, 0.08);
   transform: translateY(-1px);
 }
@@ -1011,6 +1011,130 @@
   white-space: pre-wrap;
 }
 
+.site-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: clamp(1.3rem, 3vw, 1.9rem);
+}
+
+.site-footer-copy {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.site-footer-copy p {
+  margin: 0;
+}
+
+.site-footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.footer-link,
+.legal-modal-close {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(76, 88, 65, 0.16);
+  border-radius: 999px;
+  color: var(--moss-dark);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  border-color: rgba(76, 88, 65, 0.3);
+  background: rgba(76, 88, 65, 0.08);
+  transform: translateY(-1px);
+}
+
+.legal-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(32, 26, 22, 0.42);
+  backdrop-filter: blur(14px);
+  z-index: 1200;
+}
+
+.legal-modal {
+  @include panel-surface(var(--panel-fill-strong), var(--panel-shadow));
+
+  width: min(100%, 42rem);
+  max-height: min(100vh - 2rem, 44rem);
+  padding: clamp(1.3rem, 3vw, 2rem);
+  overflow: auto;
+}
+
+.legal-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.legal-modal-body {
+  display: grid;
+  gap: 1rem;
+}
+
+.legal-modal-body h2 {
+  margin: 0;
+  color: var(--moss-dark);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  line-height: 0.98;
+}
+
+.legal-modal-body p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+.legal-modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: rgba(76, 88, 65, 0.08);
+  color: var(--moss-dark);
+  font-size: 1.8rem;
+  line-height: 1;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.legal-modal-close:hover,
+.legal-modal-close:focus-visible {
+  background: rgba(76, 88, 65, 0.16);
+  transform: rotate(90deg);
+}
+
 :host ::ng-deep .jack-button .p-button,
 :host ::ng-deep .topbar-instagram .p-button {
   border-radius: 999px;
@@ -1095,6 +1219,15 @@
 
   .contact-copy {
     position: static;
+  }
+
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-footer-actions {
+    justify-content: flex-start;
   }
 }
 
@@ -1230,7 +1363,9 @@
   .timeline-shell,
   .experience-carousel-shell,
   .contact-copy,
-  .contact-form-panel {
+  .contact-form-panel,
+  .site-footer,
+  .legal-modal {
     padding: 1.2rem;
   }
 
@@ -1264,11 +1399,24 @@
     margin-bottom: 0.75rem;
   }
 
+  :host ::ng-deep .jack-process-timeline .p-timeline-event {
+    margin-block: 0.75rem;
+  }
+
   :host ::ng-deep .jack-process-timeline .p-timeline-event-opposite {
     display: none;
   }
 
   :host ::ng-deep .jack-process-timeline .p-timeline-event-content {
     padding-left: 0.85rem;
+  }
+
+  .site-footer-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .footer-link {
+    width: 100%;
   }
 }

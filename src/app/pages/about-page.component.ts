@@ -11,8 +11,8 @@ import { RouterLink } from '@angular/router';
           <p class="eyebrow">About</p>
           <h1>Meet the photographer behind the warm, polished experience Jack Garcia Co. is known for.</h1>
           <p class="lede">
-            This page is built to hold Jack's real story, his Florida base, and the way he guides people
-            through portraits and wedding days with a calm editorial eye.
+            Based in Florida, Jack photographs weddings and portraits with an editorial approach that keeps people
+            relaxed, present, and fully seen throughout the day.
           </p>
           <div class="button-row">
             <a class="button-link button-link-primary" routerLink="/inquire">Inquire with Jack</a>
@@ -21,40 +21,41 @@ import { RouterLink } from '@angular/router';
         </div>
 
         <div class="editorial-card portrait-placeholder">
-          <p class="eyebrow">Portrait area</p>
+          <p class="eyebrow">Photographer</p>
           <div class="portrait-frame">
-            <img src="/instagram/profile-61411303911.jpg" alt="Portrait placeholder for Jack Garcia" />
+            <img src="/instagram/profile-61411303911.jpg" alt="Portrait of photographer Jack Garcia" />
           </div>
           <p class="placeholder-note">
-            Replace this temporary image with Jack's preferred portrait or headshot once the final asset is ready.
+            Jack works with couples, families, and brands who want direction that feels natural and photographs that
+            hold both style and emotion.
           </p>
         </div>
       </section>
 
       <section class="section-block">
         <div class="section-header">
-          <p class="eyebrow">Personal story</p>
-          <h2>Shape the page around Jack's voice instead of generic studio language.</h2>
+          <p class="eyebrow">Approach</p>
+          <h2>A polished process built around comfort, clarity, and strong storytelling.</h2>
           <p class="lede">
-            These content blocks keep the About page personal and useful now, while clearly marking the details
-            still needed from Jack before launch.
+            From first inquiry to gallery delivery, Jack keeps communication clear and the pace calm so clients can
+            focus on the moments that matter.
           </p>
         </div>
         <div class="editorial-grid editorial-grid-two">
           <article class="editorial-card">
-            <p class="testimonial-label">Story prompt</p>
-            <h3>Who Jack is</h3>
+            <p class="testimonial-label">Before the shoot</p>
+            <h3>Planning with intention</h3>
             <p>
-              Add a short first-person or close-third-person introduction that explains who Jack is, where he is
-              based, and the kind of moments he loves documenting.
+              Clients receive guidance on timeline, wardrobe, location, and session flow so the day runs smoothly and
+              images feel cohesive from start to finish.
             </p>
           </article>
           <article class="editorial-card">
-            <p class="testimonial-label">Experience prompt</p>
-            <h3>How he photographs people</h3>
+            <p class="testimonial-label">During the shoot</p>
+            <h3>Direction without pressure</h3>
             <p>
-              Use this section for Jack's approach to direction, pacing, and helping couples and families feel at
-              ease in front of the camera.
+              Jack blends editorial composition with real moments, giving clients clear cues while preserving the
+              emotion and energy of the day.
             </p>
           </article>
         </div>
@@ -63,30 +64,30 @@ import { RouterLink } from '@angular/router';
       <section class="section-block">
         <div class="editorial-grid editorial-grid-three">
           <article class="editorial-card">
-            <p class="testimonial-label">What to include</p>
-            <h3>Background details</h3>
+            <p class="testimonial-label">Coverage</p>
+            <h3>Where Jack works</h3>
             <ul class="stack-list">
-              <li>Home base in Florida and travel availability</li>
-              <li>How long Jack has been photographing professionally</li>
-              <li>What first drew him to weddings and portraits</li>
+              <li>Florida-based wedding and portrait photography</li>
+              <li>Travel-ready for destination sessions and events</li>
+              <li>Coverage tailored to timelines and priorities</li>
             </ul>
           </article>
           <article class="editorial-card">
-            <p class="testimonial-label">Client experience</p>
-            <h3>Approach and values</h3>
+            <p class="testimonial-label">Experience</p>
+            <h3>What clients can expect</h3>
             <ul class="stack-list">
-              <li>How Jack keeps sessions relaxed and guided</li>
-              <li>What makes the work feel warm, polished, and editorial</li>
-              <li>What clients can expect before, during, and after a session</li>
+              <li>Prompt communication from inquiry through delivery</li>
+              <li>Natural posing guidance that avoids stiff results</li>
+              <li>Consistent editing with a warm editorial finish</li>
             </ul>
           </article>
           <article class="editorial-card">
-            <p class="testimonial-label">Still needed</p>
-            <h3>Missing final content</h3>
+            <p class="testimonial-label">Specialties</p>
+            <h3>Signature sessions</h3>
             <ul class="stack-list">
-              <li>Final portrait or headshot selection</li>
-              <li>Personal background copy in Jack's voice</li>
-              <li>Any short facts, locations, or specialties he wants highlighted</li>
+              <li>Wedding days and engagement sessions</li>
+              <li>Family, graduation, and milestone portraits</li>
+              <li>Select brand and lifestyle storytelling projects</li>
             </ul>
           </article>
         </div>
@@ -94,8 +95,8 @@ import { RouterLink } from '@angular/router';
 
       <section class="cta-banner">
         <div>
-          <p class="eyebrow">Next step</p>
-          <h2>Let Jack's story build trust, then guide visitors toward reaching out.</h2>
+          <p class="eyebrow">Let&apos;s connect</p>
+          <h2>If this approach fits your vision, start with an inquiry.</h2>
         </div>
         <div class="button-row">
           <a class="button-link button-link-secondary" routerLink="/reviews">View reviews</a>

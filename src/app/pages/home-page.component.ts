@@ -11,8 +11,8 @@ import { RouterLink } from '@angular/router';
           <p class="eyebrow">Home</p>
           <h1 class="hero-title">Florida wedding and portrait photography with a warm editorial point of view.</h1>
           <p class="lede">
-            The new site opens with Jack's work, approach, and inquiry path first so couples and families
-            can understand the experience without the brand feeling tied to an Instagram profile.
+            Jack Garcia Co. documents weddings and milestones with calm direction, polished detail, and imagery that
+            still feels personal. Every page is built to move visitors from discovery to inquiry without friction.
           </p>
           <div class="button-row">
             <a class="button-link button-link-primary" routerLink="/inquire">Inquire today</a>
@@ -23,7 +23,7 @@ import { RouterLink } from '@angular/router';
         <div class="hero-visual editorial-card">
           <div class="image-stack">
             <div class="image-panel image-panel-tall">
-              <img src="/instagram/profile-61411303911.jpg" alt="Jack Garcia Co. portrait placeholder" />
+              <img src="/instagram/profile-61411303911.jpg" alt="Portrait of Jack Garcia" />
             </div>
             <div class="image-panel">
               <img src="/instagram/DV1F6RbDXin.jpg" alt="Couples session preview" />
@@ -36,8 +36,8 @@ import { RouterLink } from '@angular/router';
             <p class="eyebrow">Now leading with</p>
             <h2>Clear offers, trust signals, and a visible inquiry path.</h2>
             <p>
-              The home page holds only the strongest overview: signature services, a more personal brand
-              introduction, review visibility, and direct routes deeper into the site.
+              Couples, families, and graduates can quickly understand services, pricing direction, and what it feels
+              like to work with Jack before opening the inquiry page.
             </p>
           </div>
         </div>
@@ -51,15 +51,15 @@ import { RouterLink } from '@angular/router';
         <div class="editorial-grid editorial-grid-three">
           <article class="editorial-card">
             <h3>Weddings</h3>
-            <p>Package-led coverage with clear inclusions, limits, and room for future travel details.</p>
+            <p>Editorial wedding coverage designed around timeline flow, emotional moments, and clean delivery.</p>
           </article>
           <article class="editorial-card">
             <h3>Portrait sessions</h3>
-            <p>Engagement, family, graduation, and couple sessions stay visible without competing for attention.</p>
+            <p>Engagement, family, graduation, and couple sessions guided for natural posture and confident images.</p>
           </article>
           <article class="editorial-card">
             <h3>Inquiry-first conversion</h3>
-            <p>Every major page points back to a polished inquiry flow instead of an extended booking explainer.</p>
+            <p>A direct inquiry path keeps momentum high while still giving clients clear context before they reach out.</p>
           </article>
         </div>
       </section>
@@ -67,24 +67,24 @@ import { RouterLink } from '@angular/router';
       <section class="section-block">
         <div class="stat-strip editorial-card">
           <div>
-            <p class="eyebrow">Architecture shift</p>
-            <strong>Multi-page routing</strong>
+            <p class="eyebrow">Collections</p>
+            <strong>Wedding coverage from $800</strong>
           </div>
           <div>
-            <p class="eyebrow">Trust layer</p>
-            <strong>About + Reviews pages</strong>
+            <p class="eyebrow">Sessions</p>
+            <strong>Portrait offerings from $180</strong>
           </div>
           <div>
-            <p class="eyebrow">Future-ready</p>
-            <strong>Portfolio and Journal can slot in later</strong>
+            <p class="eyebrow">Approach</p>
+            <strong>Guided direction, fast communication</strong>
           </div>
         </div>
       </section>
 
       <section class="cta-banner">
         <div>
-          <p class="eyebrow">Next step</p>
-          <h2>Make the next step obvious on the very first visit.</h2>
+          <p class="eyebrow">Start here</p>
+          <h2>Share your date and vision to begin planning your session.</h2>
         </div>
         <a class="button-link button-link-primary" routerLink="/inquire">Inquire today</a>
       </section>

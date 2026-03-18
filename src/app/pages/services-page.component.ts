@@ -8,10 +8,10 @@ import { RouterLink } from '@angular/router';
     <section class="page">
       <section class="page-intro editorial-card editorial-card-strong">
         <p class="eyebrow">Services</p>
-        <h1>Thoughtfully structured offers, now split into clear booking categories.</h1>
+        <h1>Thoughtfully structured coverage with clear starting points.</h1>
         <p class="lede">
-          The services page now keeps Jack's priority offers easy to compare while directing visitors
-          toward a single, clear inquiry path.
+          Services are organized so clients can quickly compare options, understand pricing direction, and choose the
+          best fit for their event or session.
         </p>
       </section>
 
@@ -19,27 +19,27 @@ import { RouterLink } from '@angular/router';
         <div class="editorial-grid editorial-grid-three">
           <article class="editorial-card">
             <h3>Weddings</h3>
-            <p>Lead with package cards instead of generic coverage language.</p>
+            <p>Editorial wedding storytelling with coverage designed around timeline pace and meaningful moments.</p>
           </article>
           <article class="editorial-card">
             <h3>Engagement</h3>
-            <p>Positioned as a distinct portrait offering with its own story and booking path.</p>
+            <p>Couples sessions tailored to save-the-date season, announcement imagery, and personal storytelling.</p>
           </article>
           <article class="editorial-card">
             <h3>Families</h3>
-            <p>Kept visible for seasonal sessions without crowding the hero experience.</p>
+            <p>Seasonal and milestone family sessions with relaxed guidance and polished final galleries.</p>
           </article>
           <article class="editorial-card">
             <h3>Graduation</h3>
-            <p>Easy to scan, direct to inquire, and consistent with the rest of the pricing language.</p>
+            <p>Senior and graduation portraits that balance personality, location, and clean editorial framing.</p>
           </article>
           <article class="editorial-card">
             <h3>Couple</h3>
-            <p>Retained exactly as requested until Jack confirms whether public copy should read Couples.</p>
+            <p>Lifestyle-focused couple sessions with direction that stays natural and camera-confident.</p>
           </article>
           <article class="editorial-card editorial-card-muted">
-            <h3>Other</h3>
-            <p>Reserved for secondary offerings so the main categories stay focused and easy to compare.</p>
+            <h3>Brand & lifestyle</h3>
+            <p>Select branding and automotive projects for clients who need refined, story-led visual content.</p>
           </article>
         </div>
       </section>
@@ -47,34 +47,34 @@ import { RouterLink } from '@angular/router';
       <section class="section-block">
         <div class="section-header">
           <p class="eyebrow">Wedding packages</p>
-          <h2>Clear placeholders are ready for the details still needed from Jack.</h2>
+          <h2>Package structure that keeps choices clear and easy to scan.</h2>
         </div>
         <div class="editorial-grid editorial-grid-three">
           <article class="package-card editorial-card">
-            <p class="package-kicker">Package one</p>
-            <h3>Name pending</h3>
+            <p class="package-kicker">Collection I</p>
+            <h3>Mini story collection</h3>
             <ul class="stack-list">
-              <li>Hours of coverage</li>
-              <li>Gallery delivery details</li>
-              <li>Engagement session or add-ons</li>
+              <li>Starting at $800</li>
+              <li>Essential timeline coverage</li>
+              <li>Online gallery delivery</li>
             </ul>
           </article>
           <article class="package-card editorial-card">
-            <p class="package-kicker">Package two</p>
-            <h3>Name pending</h3>
+            <p class="package-kicker">Collection II</p>
+            <h3>Classic story collection</h3>
             <ul class="stack-list">
-              <li>Lead photographer coverage</li>
-              <li>Second shooter confirmation</li>
-              <li>Travel and timeline notes</li>
+              <li>Starting at $1,800</li>
+              <li>Extended lead-photographer coverage</li>
+              <li>Timeline planning support</li>
             </ul>
           </article>
           <article class="package-card editorial-card">
-            <p class="package-kicker">Package three</p>
-            <h3>Name pending</h3>
+            <p class="package-kicker">Collection III</p>
+            <h3>Editorial story collection</h3>
             <ul class="stack-list">
-              <li>Starting price</li>
-              <li>Coverage limits</li>
-              <li>Album or print options</li>
+              <li>Starting at $2,600</li>
+              <li>Full-day narrative-focused coverage</li>
+              <li>Priority add-on options</li>
             </ul>
           </article>
         </div>
@@ -82,8 +82,8 @@ import { RouterLink } from '@angular/router';
 
       <section class="cta-banner">
         <div>
-          <p class="eyebrow">Cross-page path</p>
-          <h2>Choose the right session, then move straight into inquiry.</h2>
+          <p class="eyebrow">Booking</p>
+          <h2>Select your session type, then share your date and vision.</h2>
         </div>
         <a class="button-link button-link-primary" routerLink="/inquire">Inquire today</a>
       </section>

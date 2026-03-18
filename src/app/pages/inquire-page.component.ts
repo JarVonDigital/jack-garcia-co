@@ -8,10 +8,10 @@ import { RouterLink } from '@angular/router';
     <section class="page">
       <section class="page-intro editorial-card editorial-card-strong">
         <p class="eyebrow">Inquire</p>
-        <h1>Make it easy for visitors to start the conversation.</h1>
+        <h1>Start the conversation with a clear, focused inquiry.</h1>
         <p class="lede">
-          This page now replaces the old step-heavy flow with a direct booking step and a clean place
-          to drop in Jack's preferred form, email, or linked contact destination.
+          Share the essentials and Jack can quickly recommend coverage, availability, and next steps based on your
+          timeline and priorities.
         </p>
       </section>
 
@@ -27,11 +27,11 @@ import { RouterLink } from '@angular/router';
           </article>
 
           <article class="editorial-card editorial-card-muted">
-            <h2>Still needed to publish the final contact flow</h2>
+            <h2>What happens after inquiry</h2>
             <ul class="stack-list">
-              <li>Preferred inquiry destination</li>
-              <li>Email, form, Instagram, or mixed routing</li>
-              <li>Any travel or response-time notes</li>
+              <li>Availability and package guidance</li>
+              <li>Timeline support and planning notes</li>
+              <li>Booking and retainer details</li>
             </ul>
           </article>
         </div>
@@ -39,20 +39,18 @@ import { RouterLink } from '@angular/router';
 
       <section class="section-block">
         <div class="editorial-card">
-          <p class="eyebrow">What this page should communicate</p>
+          <p class="eyebrow">Communication standard</p>
           <div class="editorial-grid editorial-grid-two">
             <div>
-              <h2>Simple booking language</h2>
+              <h2>Simple, direct details</h2>
               <p class="lede">
-                Keep the copy direct: invite people to share their date, session type, location, and the
-                feeling they want captured.
+                Clear details at the start help Jack build an accurate proposal without multiple rounds of follow-up.
               </p>
             </div>
             <div>
-              <h2>Clear response expectations</h2>
+              <h2>Reliable response expectations</h2>
               <p class="lede">
-                Once Jack confirms timing, this page can promise the response window and any travel or
-                destination notes without changing the overall site structure.
+                Clients can expect thoughtful guidance on coverage, schedule, and next steps tailored to their event.
               </p>
             </div>
           </div>
@@ -61,8 +59,8 @@ import { RouterLink } from '@angular/router';
 
       <section class="cta-banner">
         <div>
-          <p class="eyebrow">Before they reach out</p>
-          <h2>Visitors can review services and trust signals, then come right back here.</h2>
+          <p class="eyebrow">Need context first</p>
+          <h2>Review services and client feedback, then return to inquire.</h2>
         </div>
         <div class="button-row">
           <a class="button-link button-link-secondary" routerLink="/services">Review services</a>

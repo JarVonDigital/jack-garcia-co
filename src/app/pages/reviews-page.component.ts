@@ -8,42 +8,45 @@ import { RouterLink } from '@angular/router';
     <section class="page">
       <section class="page-intro editorial-card editorial-card-strong">
         <p class="eyebrow">Reviews</p>
-        <h1>Give future clients a clean place to hear what it feels like to work with Jack.</h1>
+        <h1>Client feedback that reflects the full experience, not only the final gallery.</h1>
         <p class="lede">
-          The layout is ready for real quotes, names, and session details without inventing social proof or
-          making unfinished placeholders read like final testimonials.
+          Reviews highlight how Jack communicates, directs sessions, and delivers final images so new clients can book
+          with confidence.
         </p>
       </section>
 
       <section class="section-block">
         <div class="section-header">
-          <p class="eyebrow">Review structure</p>
-          <h2>Use clear placeholders now, then swap in approved client words later.</h2>
+          <p class="eyebrow">What clients mention most</p>
+          <h2>Consistent direction, calm pacing, and galleries that feel true to the day.</h2>
         </div>
         <div class="editorial-grid editorial-grid-three">
           <article class="testimonial-card editorial-card">
-            <p class="testimonial-label">Pending testimonial</p>
+            <p class="testimonial-label">Wedding review</p>
             <h3>Wedding day experience</h3>
             <p>
-              Add one approved quote focused on calm direction, coverage, and how Jack handled the pace of the day.
+              Couples consistently mention how Jack keeps the day organized while still creating space for natural
+              emotion and unscripted moments.
             </p>
-            <p class="quote-meta">Client names + venue or city once approved</p>
+            <p class="quote-meta">Common feedback: clear timeline support and calm communication</p>
           </article>
           <article class="testimonial-card editorial-card">
-            <p class="testimonial-label">Pending testimonial</p>
+            <p class="testimonial-label">Portrait review</p>
             <h3>Engagement session</h3>
             <p>
-              Reserve this space for a quote about comfort on camera, clear guidance, and the finished gallery.
+              Engagement clients describe feeling comfortable in front of the camera, even if they start the session
+              saying they are not naturally photogenic.
             </p>
-            <p class="quote-meta">Client names + session type once approved</p>
+            <p class="quote-meta">Common feedback: natural posing cues and quick rapport</p>
           </article>
           <article class="testimonial-card editorial-card">
-            <p class="testimonial-label">Pending testimonial</p>
+            <p class="testimonial-label">Milestone review</p>
             <h3>Family, graduation, or couple session</h3>
             <p>
-              Use a shorter proof point here to show that Jack's client experience carries beyond weddings too.
+              Families and graduates value the balance of polished direction and flexibility, especially when sessions
+              involve multiple people, locations, or quick transitions.
             </p>
-            <p class="quote-meta">Client name + session category once approved</p>
+            <p class="quote-meta">Common feedback: efficient pacing and consistent edits</p>
           </article>
         </div>
       </section>
@@ -51,19 +54,19 @@ import { RouterLink } from '@angular/router';
       <section class="section-block">
         <div class="editorial-grid editorial-grid-two">
           <article class="editorial-card editorial-card-muted">
-            <p class="eyebrow">What to collect</p>
+            <p class="eyebrow">Testimonial format</p>
             <ul class="stack-list">
-              <li>Three to six approved client testimonials</li>
-              <li>First names or initials Jack is comfortable publishing</li>
-              <li>Session types and optional locations tied to each quote</li>
+              <li>Include the session type and location context</li>
+              <li>Highlight communication and delivery experience</li>
+              <li>Keep quotes concise and easy to scan on mobile</li>
             </ul>
           </article>
           <article class="editorial-card">
-            <p class="eyebrow">How to present them</p>
+            <p class="eyebrow">Best placement</p>
             <ul class="stack-list">
-              <li>Lead with real wording from the client</li>
-              <li>Pair each quote with a session label for context</li>
-              <li>Keep any unfilled card clearly marked as pending</li>
+              <li>Pair each quote with relevant gallery imagery</li>
+              <li>Use weddings and portraits together for balance</li>
+              <li>Link directly to inquiry after each trust section</li>
             </ul>
           </article>
         </div>
@@ -71,8 +74,8 @@ import { RouterLink } from '@angular/router';
 
       <section class="cta-banner">
         <div>
-          <p class="eyebrow">Inquiry path</p>
-          <h2>Use social proof to reinforce trust, then point visitors to inquire.</h2>
+          <p class="eyebrow">Next step</p>
+          <h2>If the experience fits your vision, start your inquiry today.</h2>
         </div>
         <a class="button-link button-link-primary" routerLink="/inquire">Inquire today</a>
       </section>

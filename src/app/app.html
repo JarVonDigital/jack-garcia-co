@@ -2,15 +2,35 @@
   <div class="background-orb background-orb-left"></div>
   <div class="background-orb background-orb-right"></div>
 
-  <header class="topbar">
+  <header class="topbar" [class.topbar-drawer-open]="isNavDrawerOpen()">
     <button class="brand-lockup" type="button" (click)="scrollToId('hero')">
       <span class="brand-kicker">{{ instagramProfile.brandName }}</span>
     </button>
 
-    <nav class="topbar-nav" aria-label="Section navigation">
+    <button
+      class="topbar-menu-toggle"
+      type="button"
+      aria-label="Toggle navigation menu"
+      aria-controls="topbar-nav"
+      [attr.aria-expanded]="isNavDrawerOpen()"
+      (click)="toggleNavDrawer()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      class="topbar-nav"
+      id="topbar-nav"
+      [class.topbar-nav-open]="isNavDrawerOpen()"
+      aria-label="Section navigation"
+    >
       @for (item of navItems; track item.label) {
         <button type="button" (click)="scrollToId(item.href)">{{ item.label }}</button>
       }
+
+      <button class="topbar-nav-instagram" type="button" (click)="openInstagram()">Instagram</button>
     </nav>
 
     <p-button
@@ -59,7 +79,11 @@
       <div class="hero-visual panel-surface" #revealBlock>
         <div class="hero-visual-grid">
           <figure class="hero-figure hero-figure-main">
-            <img [src]="heroFeatureFrame.assetPath" [alt]="heroFeatureFrame.alt" [style.object-position]="heroFeatureFrame.objectPosition ?? 'center'" />
+            <img
+              [src]="heroFeatureFrame.assetPath"
+              [alt]="heroFeatureFrame.alt"
+              [style.object-position]="heroFeatureFrame.objectPosition ?? 'center'"
+            />
           </figure>
 
           <div class="hero-mini-grid">
@@ -87,11 +111,11 @@
 
     <section class="section" id="services">
       <div class="section-heading" #revealBlock>
-        <p class="eyebrow">Services overview</p>
-        <h2>Real pricing stays visible, and weddings now point to a custom quote instead of made-up package tiers.</h2>
+        <p class="eyebrow">Services</p>
+        <h2>Thoughtfully priced sessions for every season worth remembering.</h2>
         <p>
-          The pricing notes file covers portraits, couples, family, branding, and automotive work, while the Instagram feed
-          confirms weddings, engagement sessions, and maternity are active parts of the brand.
+          From portraits and couples sessions to branding, automotive work, and custom wedding
+          coverage, the experience stays clear, personal, and easy to book.
         </p>
       </div>
 
@@ -130,11 +154,11 @@
 
     <section class="section portfolio-section" id="portfolio">
       <div class="section-heading" #revealBlock>
-        <p class="eyebrow">Recent session mix</p>
-        <h2>The portfolio now points at actual couples, engagement, maternity, and garden-session work from the export.</h2>
+        <p class="eyebrow">Featured work</p>
+        <h2>A portfolio shaped by couples, milestones, and sun-soaked Florida stories.</h2>
         <p>
-          These featured tiles are tied to real posts from February and March 2026, so the visual story reflects what Jack
-          is actively shooting instead of generic placeholder boards.
+          The featured work moves from editorial couples sessions and garden backdrops to engagement
+          and maternity portraits filled with ease, warmth, and movement.
         </p>
       </div>
 
@@ -179,11 +203,11 @@
 
     <section class="section journal-section" id="journal">
       <div class="section-heading" #revealBlock>
-        <p class="eyebrow">Instagram export</p>
-        <h2>Profile counts and post tiles now come from Jack's {{ latestExportLabel }} scraper dataset.</h2>
+        <p class="eyebrow">On Instagram</p>
+        <h2>Follow the latest sessions, locations, and visual moments shaping the brand.</h2>
         <p>
-          The grid below uses real captions, counts, locations, and profile metadata from the March 17, 2026 Instagram
-          scraper export.
+          Recent posts offer a quick look at the couples sessions, maternity portraits, reels, and
+          destination work that keep the portfolio moving.
         </p>
       </div>
 
@@ -191,15 +215,25 @@
         <div class="instagram-header">
           <div class="instagram-identity">
             <div class="instagram-avatar">
-              <img [src]="instagramProfile.profileImageAssetPath" [alt]="instagramProfile.brandName + ' Instagram profile photo'" />
+              <img
+                [src]="instagramProfile.profileImageAssetPath"
+                [alt]="instagramProfile.brandName + ' Instagram profile photo'"
+              />
             </div>
             <div>
               <p class="instagram-handle">{{ instagramProfile.handle }}</p>
-              <p class="instagram-meta">{{ instagramProfile.biographyLines[0] }} | {{ instagramProfile.biographyLines[1] }}</p>
+              <p class="instagram-meta">
+                {{ instagramProfile.biographyLines[0] }} | {{ instagramProfile.biographyLines[1] }}
+              </p>
             </div>
           </div>
 
-          <a class="instagram-cta" href="https://www.instagram.com/jackgarcia.co/" target="_blank" rel="noopener noreferrer">
+          <a
+            class="instagram-cta"
+            href="https://www.instagram.com/jackgarcia.co/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             View profile
           </a>
         </div>
@@ -221,7 +255,12 @@
 
         <div class="instagram-grid">
           @for (frame of socialFrames; track frame.href) {
-            <a class="instagram-post" [attr.href]="frame.href" target="_blank" rel="noopener noreferrer">
+            <a
+              class="instagram-post"
+              [attr.href]="frame.href"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <figure class="instagram-post-media">
                 <img
                   [src]="frame.assetPath"
@@ -244,19 +283,21 @@
 
     <section class="section about-section" id="about">
       <div class="section-heading" #revealBlock>
-        <p class="eyebrow">About Jack</p>
-        <h2>The brand language now mirrors the real bio: natural light, timeless storytelling, Florida roots, and travel.</h2>
+        <p class="eyebrow">About</p>
+        <h2>Warm direction, honest emotion, and imagery designed to feel timeless.</h2>
       </div>
 
       <div class="about-layout">
         <article class="about-copy panel-surface" #revealBlock>
           <p>
-            {{ instagramProfile.brandName }} presents Jack as a photographer working across lifestyle sessions, weddings,
-            and milestone stories, with a straightforward invitation to inquire by DM.
+            {{ instagramProfile.brandName }} photographs weddings, lifestyle sessions, and milestone
+            stories with a relaxed approach that leaves room for movement, personality, and genuine
+            connection.
           </p>
           <p>
-            Recent posts back that up with real examples: a Florida car couple shoot, a Lake Wales garden session,
-            engagement work at Bonnet Springs Park, maternity portraits, and reels shot in both Florida and Arizona.
+            Whether the shoot happens in Florida, at Bok Tower Gardens, at Bonnet Springs Park, or
+            on the road, the work balances soft light, clean composition, and a cinematic sense of
+            place.
           </p>
         </article>
 
@@ -275,7 +316,7 @@
     <section class="section process-section" id="process">
       <div class="section-heading" #revealBlock>
         <p class="eyebrow">Process</p>
-        <h2>The site now follows the same booking rhythm clients already see on Instagram: browse, inquire, plan, and shoot.</h2>
+        <h2>A clear, personal process from the first inquiry to the final gallery.</h2>
       </div>
 
       <div class="timeline-shell panel-surface" #revealBlock>
@@ -299,11 +340,14 @@
 
     <section class="section experience-section" id="experience">
       <div class="section-heading" #revealBlock>
-        <p class="eyebrow">What the feed says</p>
-        <h2>The supporting carousel now summarizes the real themes showing up in Jack's recent posts.</h2>
+        <p class="eyebrow">Recent highlights</p>
+        <h2>
+          The recent work points to a brand built on connection, movement, and milestone
+          storytelling.
+        </h2>
         <p>
-          Instead of generic experience copy, these notes point at the actual session types and booking signals present in
-          the current profile export.
+          From engagement announcements and maternity portraits to editorial couples sessions and
+          reels, the latest highlights show the range clients can book right now.
         </p>
       </div>
 
@@ -331,25 +375,26 @@
 
     <section class="section contact-section" id="contact">
       <div class="section-heading" #revealBlock>
-        <p class="eyebrow">Contact / inquiry</p>
-        <h2>Build a brief here, then send it through the same Instagram-first path Jack already uses.</h2>
+        <p class="eyebrow">Inquire</p>
+        <h2>Share what you are planning, and start the conversation with a polished brief.</h2>
         <p>
-          The profile still says "DM to Inquire," and the bio links out through {{ instagramLinkLabel }},
-          so the contact section now supports that exact workflow.
+          Whether you are planning a wedding day, a couples session, a maternity shoot, or fresh
+          brand imagery, this form helps you send a clear first message through the channels Jack
+          already uses.
         </p>
       </div>
 
       <div class="contact-layout">
         <article class="contact-copy panel-surface" #revealBlock>
-          <h3>What this page now answers quickly</h3>
+          <h3>What to include in your inquiry</h3>
           <ul>
-            <li>Which session types have visible starting prices right now.</li>
-            <li>What Jack has actually been posting and booking in recent weeks.</li>
-            <li>Where to send the inquiry once the brief is ready.</li>
+            <li>The session or celebration you are planning.</li>
+            <li>Your ideal date, timeframe, or destination.</li>
+            <li>The mood, setting, or story you want the images to hold.</li>
           </ul>
 
           <p-button
-            label="Open Instagram"
+            label="Message on Instagram"
             severity="secondary"
             variant="outlined"
             styleClass="jack-button jack-button-outline"
@@ -392,7 +437,11 @@
             }
 
             <div class="form-actions">
-              <p-button type="submit" label="Build inquiry brief" styleClass="jack-button jack-button-primary"></p-button>
+              <p-button
+                type="submit"
+                label="Build inquiry brief"
+                styleClass="jack-button jack-button-primary"
+              ></p-button>
               @if (inquiryDraft()) {
                 <p-button
                   type="button"

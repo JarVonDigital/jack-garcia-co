@@ -90,8 +90,7 @@
   top: clamp(0.75rem, 2vw, 1.25rem);
   left: 50%;
   transform: translateX(-50%);
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
   gap: 0.8rem;
   width: min(calc(100% - 1.8rem), calc(var(--page-max) + 1rem));
@@ -116,6 +115,7 @@
 .brand-lockup {
   display: inline-flex;
   align-items: center;
+  flex: 0 0 auto;
   padding: 0;
   text-align: left;
 }
@@ -134,11 +134,80 @@
 .topbar-nav {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-end;
   gap: 0.3rem;
+  margin-left: auto;
+}
+
+.topbar-menu-toggle,
+.topbar-nav-instagram {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.topbar-menu-toggle {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.24rem;
+  width: 2.85rem;
+  height: 2.85rem;
+  margin-left: auto;
+  border-radius: 50%;
+  background: rgba(76, 88, 65, 0.08);
+  transition: background-color 180ms ease;
+}
+
+.topbar-menu-toggle span {
+  display: block;
+  width: 1.15rem;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.topbar-drawer-open .topbar-menu-toggle span:nth-child(1) {
+  transform: translateY(0.38rem) rotate(45deg);
+}
+
+.topbar-drawer-open .topbar-menu-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.topbar-drawer-open .topbar-menu-toggle span:nth-child(3) {
+  transform: translateY(-0.38rem) rotate(-45deg);
+}
+
+.topbar-menu-toggle:hover,
+.topbar-menu-toggle:focus-visible {
+  background: rgba(76, 88, 65, 0.14);
+}
+
+.topbar-nav-instagram {
+  width: 100%;
+  justify-content: center;
+  padding: 0.85rem 1rem;
+  border-radius: 999px;
+  background: var(--moss);
+  color: #fffaf4;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
 }
 
 .topbar-nav button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.45rem 0.7rem;
   border-radius: 999px;
   color: var(--ink-soft);
@@ -160,6 +229,12 @@
 .topbar-nav button:hover,
 .topbar-nav button:focus-visible {
   background: rgba(76, 88, 65, 0.08);
+  transform: translateY(-1px);
+}
+
+.topbar-nav-instagram:hover,
+.topbar-nav-instagram:focus-visible {
+  background: var(--moss-dark);
   transform: translateY(-1px);
 }
 
@@ -1001,15 +1076,7 @@
 
 @media (max-width: 1120px) {
   .topbar {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
     width: min(calc(100% - 1.6rem), 38rem);
-    border-radius: 1.75rem;
-  }
-
-  .brand-lockup {
-    text-align: center;
   }
 }
 
@@ -1041,16 +1108,57 @@
   }
 
   .topbar {
+    align-items: center;
     width: calc(100% - 1.2rem);
     padding: 0.8rem;
+    border-radius: 1.6rem;
+  }
+
+  .brand-lockup {
+    margin-left: 0;
   }
 
   .topbar-nav {
-    width: 100%;
+    position: absolute;
+    top: calc(100% + 0.65rem);
+    right: 0;
+    display: none;
+    width: min(18rem, calc(100vw - 1.8rem));
+    margin-left: 0;
+    padding: 0.9rem;
+    border: var(--panel-border);
+    border-radius: 1.4rem;
+    background: rgba(255, 249, 242, 0.96);
+    box-shadow: var(--panel-shadow-soft);
+    backdrop-filter: blur(24px);
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .topbar-nav.topbar-nav-open {
+    display: flex;
   }
 
   .topbar-nav button {
-    flex: 1 1 42%;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0.75rem 0.85rem;
+    text-align: left;
+  }
+
+  .topbar-menu-toggle,
+  .topbar-nav-instagram {
+    display: inline-flex;
+  }
+
+  .topbar-menu-toggle {
+    order: -1;
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .topbar-instagram {
+    display: none;
   }
 
   .hero-title {

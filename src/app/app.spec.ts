@@ -1,25 +1,14 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter, Router } from '@angular/router';
 
 import { App } from './app';
+import { routes } from './app.routes';
 
 describe('App', () => {
   beforeEach(async () => {
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: (query: string) => ({
-        matches: false,
-        media: query,
-        onchange: null,
-        addListener: () => {},
-        removeListener: () => {},
-        addEventListener: () => {},
-        removeEventListener: () => {},
-        dispatchEvent: () => false,
-      }),
-    });
-
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [provideRouter(routes)],
     }).compileComponents();
   });
 
@@ -28,9 +17,15 @@ describe('App', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('renders the hero headline', () => {
+  it('renders the routed home headline', async () => {
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/');
+
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
     const compiled = fixture.nativeElement as HTMLElement;
 
     expect(compiled.querySelector('.hero-title')?.textContent).toContain(
@@ -46,5 +41,13 @@ describe('App', () => {
 
     expect(footerText).toContain(`${new Date().getFullYear()} Jack Garcia`);
     expect(footerText).toContain('JarVonDigital LLC');
+  });
+
+  it('renders the primary inquiry call to action', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    expect(compiled.querySelector('.topbar-cta')?.textContent).toContain('Inquire today');
   });
 });

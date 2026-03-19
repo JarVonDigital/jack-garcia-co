@@ -27,111 +27,100 @@
 }
 
 .services-hero {
-  gap: clamp(1.1rem, 1.9vw, 1.6rem);
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 24rem);
+  gap: clamp(1.25rem, 2vw, 2.5rem);
+  align-items: stretch;
   border-color: rgba(57, 66, 51, 0.1);
   background:
-    radial-gradient(circle at top right, rgba(219, 228, 209, 0.28), rgba(219, 228, 209, 0) 32%),
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.9),
-      rgba(241, 237, 229, 0.95) 52%,
-      rgba(226, 232, 216, 0.76)
-    ),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(241, 237, 229, 0.92)),
     var(--paper-strong);
   box-shadow:
-    0 1.1rem 2.4rem rgba(57, 66, 51, 0.05),
-    0 0 0 1px rgba(255, 255, 255, 0.42) inset;
-}
-
-.services-hero::before {
-  content: '';
-  position: absolute;
-  top: -18%;
-  right: -4%;
-  width: clamp(14rem, 26vw, 20rem);
-  height: clamp(14rem, 26vw, 20rem);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(200, 214, 185, 0.44), rgba(200, 214, 185, 0));
-  filter: blur(14px);
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-.services-hero-header,
-.services-hero-copy,
-.services-hero-signals {
-  position: relative;
-  z-index: 1;
-}
-
-.services-hero-header {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(16rem, 20rem);
-  gap: clamp(1rem, 2vw, 1.8rem);
-  align-items: end;
+    0 1rem 2.2rem rgba(57, 66, 51, 0.045),
+    0 0 0 1px rgba(255, 255, 255, 0.48) inset;
 }
 
 .services-hero-copy {
   display: grid;
-  gap: 0.95rem;
+  gap: 1rem;
   align-content: start;
+  max-width: 42rem;
 }
 
 .services-hero h1 {
-  max-width: 13ch;
-  font-size: clamp(1.95rem, 3.5vw, 3rem);
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(2.3rem, 4vw, 4.1rem);
+  line-height: 0.94;
+  letter-spacing: -0.05em;
 }
 
 .services-hero .lede {
-  max-width: 56ch;
-  font-size: 0.98rem;
-  line-height: 1.72;
+  max-width: 58ch;
+  font-size: 1rem;
+  line-height: 1.78;
 }
 
 .services-page .section-header h2 {
   font-size: clamp(1.75rem, 3vw, 2.65rem);
 }
 
-.services-hero-note {
-  max-width: 20rem;
+.services-hero-panel {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  padding: clamp(1.1rem, 2vw, 1.4rem);
+  border: 1px solid rgba(57, 66, 51, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(228, 235, 219, 0.56)),
+    rgba(248, 245, 238, 0.92);
+  box-shadow:
+    0 0.85rem 1.8rem rgba(57, 66, 51, 0.04),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+}
+
+.services-hero-panel-label {
   margin: 0;
-  justify-self: end;
   color: var(--olive-700);
-  font-size: 0.92rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.services-hero-note {
+  margin: 0;
+  color: var(--olive-700);
+  font-size: 0.9rem;
   line-height: 1.7;
-  text-align: left;
 }
 
 .services-hero-signals {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem 1.2rem;
-  padding-top: 1rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.services-hero-signals article {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  padding: 0.9rem 0 0;
   border-top: 1px solid rgba(57, 66, 51, 0.08);
 }
 
 .services-hero-signals span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin: 0;
-  color: var(--ink-soft);
-  font-size: 0.86rem;
-  line-height: 1.55;
-}
-
-.services-hero-signals span::before {
-  content: '';
-  width: 0.32rem;
-  height: 0.32rem;
-  border-radius: 50%;
-  background: rgba(122, 136, 104, 0.72);
+  color: var(--olive-700);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .services-hero-signals strong {
   color: var(--olive-950);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  line-height: 1.15;
 }
 
 .services-header-compact {
@@ -574,7 +563,7 @@
 }
 
 @media (max-width: 900px) {
-  .services-hero-header,
+  .services-hero,
   .pricing-stage,
   .pricing-highlights,
   .pricing-selector {
@@ -582,12 +571,7 @@
   }
 
   .services-hero h1 {
-    max-width: 14ch;
-  }
-
-  .services-hero-note {
-    max-width: 34rem;
-    justify-self: start;
+    max-width: 12ch;
   }
 
   .session-card-top {
@@ -608,7 +592,11 @@
   }
 
   .services-hero-signals {
-    gap: 0.5rem 0.9rem;
+    gap: 0.65rem;
+  }
+
+  .services-hero h1 {
+    font-size: clamp(2rem, 12vw, 3rem);
   }
 
   .pricing-lens-stage {

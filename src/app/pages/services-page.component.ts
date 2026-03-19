@@ -47,36 +47,45 @@ interface PlanningStep {
   template: `
     <section class="page services-page">
       <section class="page-intro editorial-card editorial-card-strong services-hero">
-        <div class="services-hero-header">
-          <div class="services-hero-copy">
-            <p class="eyebrow">Services</p>
+        <div class="services-hero-copy">
+          <p class="eyebrow">Services</p>
+          <h1>Simple offers. Strong direction. Photographs that hold their weight.</h1>
+          <p class="lede">
+            This page lays out the work clearly, from starting investment to what each experience
+            includes, so clients can move forward with confidence instead of guesswork.
+          </p>
 
-            <h1>Clear collections, elevated imagery, and an experience that feels effortless.</h1>
-            <p class="lede">
-              Every offer is designed to answer the questions clients care about most: where pricing
-              begins, how coverage scales, and what support comes with it before the camera ever
-              comes out.
-            </p>
+          <div class="button-row">
+            <a class="button-link button-link-primary" routerLink="/inquire">Start an inquiry</a>
+            <a class="button-link button-link-secondary" routerLink="/reviews"
+              >Read client reviews</a
+            >
+          </div>
+        </div>
 
-            <div class="button-row">
-              <a class="button-link button-link-primary" routerLink="/inquire">Start an inquiry</a>
-              <a class="button-link button-link-secondary" routerLink="/reviews"
-                >Read client reviews</a
-              >
-            </div>
+        <aside class="services-hero-panel" aria-label="Service overview">
+          <p class="services-hero-panel-label">What clients can expect</p>
+
+          <div class="services-hero-signals">
+            <article>
+              <span>Wedding coverage</span>
+              <strong>From $800</strong>
+            </article>
+            <article>
+              <span>Portrait sessions</span>
+              <strong>From $180</strong>
+            </article>
+            <article>
+              <span>Creative approach</span>
+              <strong>Calm, guided, polished</strong>
+            </article>
           </div>
 
           <p class="services-hero-note">
-            Wedding coverage, portrait sessions, and brand storytelling built around clear planning,
-            calm direction, and polished delivery.
+            Built for couples, portraits, and brands that want clear planning, real presence, and a
+            finished gallery that feels elevated from the start.
           </p>
-        </div>
-
-        <div class="services-hero-signals" aria-label="Starting prices and experience highlights">
-          <span><strong>Wedding collections</strong> from $800</span>
-          <span><strong>Portrait sessions</strong> from $180</span>
-          <span><strong>Approach</strong> planning-first and quietly guided</span>
-        </div>
+        </aside>
       </section>
 
       <section class="section-block">

@@ -39,7 +39,7 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const footerText = compiled.querySelector('.site-footer')?.textContent ?? '';
 
-    expect(footerText).toContain(`${new Date().getFullYear()} Jack Garcia`);
+    expect(footerText).toContain(`${new Date().getFullYear()} Jack Garcia Co.`);
     expect(footerText).toContain('JarVonDigital LLC');
   });
 

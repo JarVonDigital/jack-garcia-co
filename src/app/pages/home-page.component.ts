@@ -8,31 +8,25 @@ import { RouterLink } from '@angular/router';
     <section class="page page-home">
       <section class="hero hero-home">
         <div class="hero-copy editorial-card editorial-card-strong">
-          <p class="eyebrow">Home</p>
-          <h1 class="hero-title">Florida wedding and portrait photography with a warm editorial point of view.</h1>
-          <p class="lede">
-            Jack Garcia Co. documents weddings and milestones with calm direction, polished detail, and imagery that
-            still feels personal. Every page is built to move visitors from discovery to inquiry without friction.
-          </p>
-          <div class="button-row">
-            <a class="button-link button-link-primary" routerLink="/inquire">Inquire today</a>
-            <a class="button-link button-link-secondary" routerLink="/services">Explore services</a>
-          </div>
-        </div>
+          <div class="hero-copy-layout">
+            <div class="hero-copy-main">
+              <p class="eyebrow">Home</p>
+              <h1 class="hero-title">Florida wedding and portrait photography with a warm editorial point of view.</h1>
+              <p class="lede">
+                Jack Garcia Co. documents weddings and milestones with calm direction, polished detail, and imagery that
+                still feels personal. Every page is built to move visitors from discovery to inquiry without friction.
+              </p>
+              <div class="button-row">
+                <a class="button-link button-link-primary" routerLink="/inquire">Inquire today</a>
+                <a class="button-link button-link-secondary" routerLink="/services">Explore services</a>
+              </div>
+            </div>
 
-        <div class="hero-visual editorial-card">
-          <div class="image-stack">
-            <div class="image-panel image-panel-tall">
+            <div class="image-panel image-panel-inline-hero">
               <img src="/instagram/profile-61411303911.jpg" alt="Portrait of Jack Garcia" />
             </div>
-            <div class="image-panel">
-              <img src="/instagram/DV1F6RbDXin.jpg" alt="Couples session preview" />
-            </div>
-            <div class="image-panel">
-              <img src="/instagram/DV8077-jatl.jpg" alt="Wedding and portrait work preview" />
-            </div>
           </div>
-          <div class="callout-note">
+          <div class="callout-note callout-note-inset">
             <p class="eyebrow">Now leading with</p>
             <h2>Clear offers, trust signals, and a visible inquiry path.</h2>
             <p>
@@ -88,8 +82,67 @@ import { RouterLink } from '@angular/router';
         </div>
         <a class="button-link button-link-primary" routerLink="/inquire">Inquire today</a>
       </section>
+
+      <section class="section-block swipe-gallery-section">
+        <div class="section-header">
+          <p class="eyebrow">Swipe the story</p>
+          <h2>An overlapping ribbon of recent frames keeps the page moving.</h2>
+          <p class="lede">
+            Flick through highlights from weddings, portraits, and celebrations. The gallery drifts on its own, but it
+            also supports a manual swipe so visitors can slow down and explore.
+          </p>
+        </div>
+
+        <section class="swipe-gallery-shell editorial-card editorial-card-strong" aria-label="Featured image gallery">
+          <div class="swipe-gallery-marquee">
+            <div class="swipe-gallery-track">
+              @for (image of galleryImages; track image.src; let index = $index) {
+                <figure class="swipe-gallery-card" [style.--card-order]="index">
+                  <img [src]="image.src" [alt]="image.alt" loading="lazy" />
+                </figure>
+              }
+              @for (image of galleryImages; track 'duplicate-' + image.src; let index = $index) {
+                <figure
+                  class="swipe-gallery-card swipe-gallery-card-echo"
+                  [style.--card-order]="index + galleryImages.length"
+                  aria-hidden="true"
+                >
+                  <img [src]="image.src" alt="" loading="lazy" />
+                </figure>
+              }
+            </div>
+          </div>
+        </section>
+      </section>
     </section>
   `,
   styleUrl: './page-styles.scss',
 })
-export class HomePageComponent {}
+export class HomePageComponent {
+  protected readonly galleryImages = [
+    {
+      src: '/instagram/DVcqqfoDU_7.jpg',
+      alt: 'Bride and groom smiling during sunset portraits.',
+    },
+    {
+      src: '/instagram/DU4Csankl9p.jpg',
+      alt: 'Couple embracing during an editorial-style portrait session.',
+    },
+    {
+      src: '/instagram/DVjTQEZABUP.jpg',
+      alt: 'Bride posing with bouquet in soft natural light.',
+    },
+    {
+      src: '/instagram/DT3DzShiL9l.jpg',
+      alt: 'Graduation portrait with a warm golden-hour backdrop.',
+    },
+    {
+      src: '/instagram/DVEXTFSgLUr.jpg',
+      alt: 'Romantic wedding detail image with layered florals.',
+    },
+    {
+      src: '/instagram/DUWW5b-gG7g.jpg',
+      alt: 'Elegant portrait session framed with movement and texture.',
+    },
+  ];
+}

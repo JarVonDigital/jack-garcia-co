@@ -15,4 +15,4 @@ frontend:
     paths:
       - node_modules/**/*
   runtime-versions:
-        nodejs: 20
+    nodejs: 20

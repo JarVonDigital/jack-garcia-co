@@ -54,7 +54,7 @@
   padding: 0.85rem 1rem;
 }
 
-.nav-cta span {
+.nav-cta app-icon {
   margin-left: 1rem;
 }
 
@@ -87,7 +87,9 @@
 
 @media (max-width: 800px) {
   .site-header {
-    height: 72px;
+    background: rgba(37, 53, 44, 0.96);
+    height: calc(72px + env(safe-area-inset-top));
+    padding-top: env(safe-area-inset-top);
   }
 
   .menu-toggle {
@@ -98,7 +100,7 @@
     background: var(--color-green-950);
     display: none;
     flex-direction: column;
-    inset: 72px 0 auto;
+    inset: calc(72px + env(safe-area-inset-top)) 0 auto;
     padding: 2rem;
     position: absolute;
     text-align: center;

@@ -83,12 +83,6 @@ section[id] {
   color: var(--color-green-800);
 }
 
-@media (max-width: 700px) {
-  .hero-bottom span:last-child {
-    display: none;
-  }
-}
-
 @media (max-width: 640px) {
   .site-footer {
     align-items: center;
@@ -295,7 +289,19 @@ section[id] {
 
 @media (max-width: 540px) {
   .portfolio-gallery {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: 0.9rem;
+    margin-right: calc(clamp(1.25rem, 4vw, 4.5rem) * -1);
+    overflow-x: auto;
+    padding-right: clamp(1.25rem, 4vw, 4.5rem);
+    scroll-padding-inline: 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+  .portfolio-gallery figure {
+    aspect-ratio: 0.78 !important;
+    flex: 0 0 min(76vw, 320px);
+    scroll-snap-align: start;
   }
   .gallery-feed-item-0 {
     grid-row: auto;
@@ -324,28 +330,11 @@ section[id] {
     drop-shadow(0 1px 1px rgba(37, 53, 44, 0.9));
 }
 
-/* Keep the scroll invitation in a dedicated, centered second row. */
+/* Match the investment hero's two-label rail on the home page. */
 .hero-bottom {
   align-items: center;
-  display: grid;
-  gap: 0.7rem;
-  justify-items: center;
-}
-
-.hero-meta {
   display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-.hero-scroll {
-  text-align: center;
-}
-
-@media (max-width: 540px) {
-  .hero-meta {
-    gap: 0;
-  }
+  justify-content: space-between;
 }
 
 .form-note {

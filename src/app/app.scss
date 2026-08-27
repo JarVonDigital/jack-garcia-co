@@ -697,9 +697,6 @@ textarea {
   .hero {
     min-height: 700px;
   }
-  .hero-bottom span:first-child {
-    display: none;
-  }
   .intro-grid,
   .content-creation,
   .inquiry-grid {
@@ -764,11 +761,11 @@ textarea {
   }
 }
 @media (max-width: 540px) {
-  .hero-bottom span:nth-child(2) {
-    display: none;
-  }
   .hero-bottom {
     justify-content: flex-end;
+  }
+  .hero-bottom span:first-child {
+    display: none;
   }
   .intro h2,
   .section-top h2,

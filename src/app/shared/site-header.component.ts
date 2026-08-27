@@ -1,8 +1,10 @@
 import { Component, signal } from '@angular/core';
+import { IconComponent } from './icon.component';
 
 @Component({
   standalone: true,
   selector: 'app-site-header',
+  imports: [IconComponent],
   template: `
     <header class="site-header" [class.menu-open]="menuOpen()" [class.scrolled]="scrolled()">
       <a class="brand" href="/" aria-label="Jack Garcia and Co. home">Jack Garcia <i>&amp; Co.</i></a>
@@ -21,7 +23,7 @@ import { Component, signal } from '@angular/core';
         ><a href="/#testimonials" (click)="closeMenu()">Kind words</a
         ><a href="/wedding-packages" (click)="closeMenu()">Investment</a
         ><a class="nav-cta" href="/#inquire" (click)="closeMenu()"
-          >Inquire now <span aria-hidden="true">↗</span></a
+          >Inquire now <app-icon name="arrow-up-right" aria-hidden="true" /></a
         >
       </nav>
     </header>

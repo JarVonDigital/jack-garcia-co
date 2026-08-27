@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { SiteFooterComponent } from '../shared/site-footer.component';
 import { SiteHeaderComponent } from '../shared/site-header.component';
+import { IconComponent } from '../shared/icon.component';
 
 @Component({
   standalone: true,
   selector: 'app-wedding-packages-page',
-  imports: [SiteFooterComponent, SiteHeaderComponent],
+  imports: [IconComponent, SiteFooterComponent, SiteHeaderComponent],
   template: `
     <main class="packages-page">
       <app-site-header />
@@ -19,7 +20,7 @@ import { SiteHeaderComponent } from '../shared/site-header.component';
             celebration feel complete.
           </p>
           <a class="button button-light" href="#wedding-menu"
-            >Explore the menu <span aria-hidden="true">↓</span></a
+            >Explore the menu <app-icon name="arrow-down" aria-hidden="true" /></a
           >
         </div>
         <div class="packages-hero-bottom shell">
@@ -49,7 +50,7 @@ import { SiteHeaderComponent } from '../shared/site-header.component';
                 <li>Online gallery of high-resolution images</li>
               </ul>
               <p class="collection-price"><span>Starting at</span>$800</p>
-              <a class="text-link" href="/#inquire">Inquire about this collection <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="/#inquire">Inquire about this collection <app-icon name="arrow-up-right" aria-hidden="true" /></a>
             </article>
 
             <article class="collection-card collection-card-featured">
@@ -62,7 +63,7 @@ import { SiteHeaderComponent } from '../shared/site-header.component';
                 <li>Online gallery of high-resolution images</li>
               </ul>
               <p class="collection-price"><span>Starting at</span>$1,800</p>
-              <a class="text-link" href="/#inquire">Inquire about this collection <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="/#inquire">Inquire about this collection <app-icon name="arrow-up-right" aria-hidden="true" /></a>
             </article>
 
             <article class="collection-card">
@@ -75,7 +76,7 @@ import { SiteHeaderComponent } from '../shared/site-header.component';
                 <li>Second photographer included</li>
               </ul>
               <p class="collection-price"><span>Starting at</span>$2,600</p>
-              <a class="text-link" href="/#inquire">Inquire about this collection <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="/#inquire">Inquire about this collection <app-icon name="arrow-up-right" aria-hidden="true" /></a>
             </article>
           </div>
         </div>
@@ -203,7 +204,7 @@ import { SiteHeaderComponent } from '../shared/site-header.component';
           <h2>Ready to build your <em>coverage?</em></h2>
         </div>
         <a class="button button-light" href="/#inquire"
-          >Start an inquiry <span aria-hidden="true">↗</span></a
+          >Start an inquiry <app-icon name="arrow-up-right" aria-hidden="true" /></a
         >
       </section>
       <app-site-footer />

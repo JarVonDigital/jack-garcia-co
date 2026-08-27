@@ -13,14 +13,11 @@
           wherever your story takes you.
         </p>
         <a class="button button-light" href="#inquire"
-          >Begin your story <span aria-hidden="true">↓</span></a
+          >Begin your story <app-icon name="arrow-down" aria-hidden="true" /></a
         >
       </div>
       <div class="hero-bottom shell">
-        <div class="hero-meta">
-          <span>Jack Garcia &amp; Co.</span><span>Florida + available anywhere</span>
-        </div>
-        <div class="hero-scroll">Scroll to explore <b aria-hidden="true">↓</b></div>
+        <span>Wedding &amp; lifestyle photography</span><span>Florida + available anywhere</span>
       </div>
     </section>
     <section class="intro shell section" id="about">
@@ -34,7 +31,7 @@
             the laughter, movement, and honest connection that make your story yours.
           </p>
           <a class="text-link" href="#inquire"
-            >Meet your photographer <span aria-hidden="true">↗</span></a
+            >Meet your photographer <app-icon name="arrow-up-right" aria-hidden="true" /></a
           >
         </div>
       </div>
@@ -64,7 +61,7 @@
               <h3>{{ service.title }}</h3>
               <p>{{ service.description }}</p>
               <a class="text-link" [href]="service.link"
-                >{{ service.action }} <span aria-hidden="true">↘</span></a
+                >{{ service.action }} <app-icon name="arrow-down-right" aria-hidden="true" /></a
               >
             </div>
           </article>
@@ -93,7 +90,7 @@
             </blockquote>
             <figcaption>— Tatiana Benitez, Google review</figcaption>
             <a class="text-link" href="#inquire"
-              >Create your own story <span aria-hidden="true">↗</span></a
+              >Create your own story <app-icon name="arrow-up-right" aria-hidden="true" /></a
             >
           </figure>
         </div>
@@ -102,7 +99,7 @@
             href="https://www.google.com/maps/place/Jack+Garcia+%26+Co./@27.698638,-83.804601,7z/data=!3m1!4b1!4m6!3m5!1s0x27ace56edb23204f:0x731de65368019cc4!8m2!3d27.698638!4d-83.804601!16s%2Fg%2F11y_zf646_?entry=ttu"
             target="_blank"
             rel="noreferrer"
-            >5.0 on Google from 13 reviews <span aria-hidden="true">↗</span></a
+            >5.0 on Google from 13 reviews <app-icon name="arrow-up-right" aria-hidden="true" /></a
           >
         </p>
       </div>
@@ -123,7 +120,7 @@
           24–48 hours, with edited Reels delivered in 2–4 days.
         </p>
         <a class="text-link" href="/wedding-packages#content-creation"
-          >Explore content creation <span aria-hidden="true">↗</span></a
+          >Explore content creation <app-icon name="arrow-up-right" aria-hidden="true" /></a
         >
       </div>
     </section>
@@ -171,7 +168,7 @@
             href="https://www.instagram.com/jackgarcia.co/"
             target="_blank"
             rel="noreferrer"
-            >See more on Instagram <span aria-hidden="true">↗</span></a
+            >See more on Instagram <app-icon name="arrow-up-right" aria-hidden="true" /></a
           >
         </div>
         <div class="portfolio-gallery" aria-label="Latest work from Instagram">
@@ -286,12 +283,17 @@
               aria-hidden="true"
               >✓</span
             ><span><b>Quick human check</b><small>I’m not a robot</small></span></label
-          ><button class="button button-light" type="submit">
-            Send inquiry <span aria-hidden="true">↗</span>
+          ><button class="button button-light" type="submit" [disabled]="submitting()">
+            @if (submitting()) { Sending inquiry… } @else { Send inquiry <app-icon name="arrow-up-right" aria-hidden="true" /> }
           </button>
           @if (submitted()) {
             <p class="form-success" role="status">
-              Your email app should now be open with your complete inquiry. Thank you!
+              Your inquiry has been sent. Thank you — I’ll be in touch soon.
+            </p>
+          }
+          @if (submissionError()) {
+            <p class="form-error" role="alert">
+              Your inquiry could not be sent. Please try again or email me directly.
             </p>
           }
         </form>

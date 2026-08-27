@@ -3,17 +3,20 @@ import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angula
 import { WeddingPackagesPageComponent } from './pages/wedding-packages-page.component';
 import { SiteFooterComponent } from './shared/site-footer.component';
 import { SiteHeaderComponent } from './shared/site-header.component';
+import { IconComponent } from './shared/icon.component';
 
 type InstagramImage = { src: string; alt: string };
 
 @Component({
   selector: 'app-root',
-  imports: [ReactiveFormsModule, SiteFooterComponent, SiteHeaderComponent, WeddingPackagesPageComponent],
+  imports: [ReactiveFormsModule, IconComponent, SiteFooterComponent, SiteHeaderComponent, WeddingPackagesPageComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.scss', './layout-updates.scss'],
 })
 export class App implements OnInit {
   protected readonly submitted = signal(false);
+  protected readonly submitting = signal(false);
+  protected readonly submissionError = signal(false);
   protected readonly isWeddingPackagesPage = signal(
     typeof window !== 'undefined' && window.location.pathname === '/wedding-packages',
   );
@@ -98,24 +101,42 @@ export class App implements OnInit {
       })
       .catch(() => undefined);
   }
-  protected sendInquiry(): void {
+  protected async sendInquiry(): Promise<void> {
     if (this.inquiryForm.invalid) {
       this.inquiryForm.markAllAsTouched();
       return;
     }
     const form = this.inquiryForm.getRawValue();
-    const lines = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Phone: ${form.phone}`,
-      `Service: ${form.service}`,
-      `Date: ${form.date}`,
-      `Location: ${form.location}`,
-      `About their day: ${form.details}`,
-    ]
-      .filter(Boolean)
-      .join('\n');
-    window.location.href = `mailto:jdgimages06@gmail.com?subject=${encodeURIComponent(`New ${form.service} inquiry from ${form.name}`)}&body=${encodeURIComponent(lines)}`;
-    this.submitted.set(true);
+    this.submitting.set(true);
+    this.submissionError.set(false);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/jdgimages06@gmail.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          service: form.service,
+          date: form.date,
+          location: form.location,
+          details: form.details,
+          _subject: `New ${form.service} inquiry from ${form.name}`,
+          _replyto: form.email,
+          _template: 'table',
+          _honey: '',
+        }),
+      });
+      const result: unknown = await response.json().catch(() => null);
+      if (!response.ok || (typeof result === 'object' && result !== null && 'success' in result && result.success === false)) {
+        throw new Error('Inquiry delivery failed');
+      }
+      this.submitted.set(true);
+    } catch {
+      this.submissionError.set(true);
+    } finally {
+      this.submitting.set(false);
+    }
   }
 }

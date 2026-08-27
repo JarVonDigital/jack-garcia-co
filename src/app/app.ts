@@ -1,5 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
 import { WeddingPackagesPageComponent } from './pages/wedding-packages-page.component';
 import { SiteFooterComponent } from './shared/site-footer.component';
 import { SiteHeaderComponent } from './shared/site-header.component';
@@ -17,9 +18,7 @@ export class App implements OnInit {
   protected readonly submitted = signal(false);
   protected readonly submitting = signal(false);
   protected readonly submissionError = signal(false);
-  protected readonly isWeddingPackagesPage = signal(
-    typeof window !== 'undefined' && window.location.pathname === '/wedding-packages',
-  );
+  protected readonly isWeddingPackagesPage = signal(false);
   protected readonly instagramImages = signal<InstagramImage[]>([
     { src: '/instagram/DPgqnz2DZqB.jpg', alt: 'Recent work by Jack Garcia Co.' },
     { src: '/instagram/DV8077-jatl.jpg', alt: 'Recent work by Jack Garcia Co.' },
@@ -85,9 +84,23 @@ export class App implements OnInit {
       alt: 'Graduate standing in a wildflower field',
     },
   ];
+
+  constructor(private readonly router: Router) {
+    this.syncPageFromRoute(this.router.url);
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) this.syncPageFromRoute(event.urlAfterRedirects);
+    });
+  }
+
   ngOnInit(): void {
     if (!this.isWeddingPackagesPage()) this.loadInstagramFeed();
   }
+
+  private syncPageFromRoute(url: string): void {
+    const path = url.split(/[?#]/, 1)[0].replace(/\/+$/, '') || '/';
+    this.isWeddingPackagesPage.set(path === '/wedding-packages');
+  }
+
   protected loadInstagramFeed(): void {
     fetch('/instagram/feed.json')
       .then((response) => (response.ok ? response.json() : Promise.reject(response)))

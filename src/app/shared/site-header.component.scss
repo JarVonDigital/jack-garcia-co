@@ -1,0 +1,110 @@
+:host {
+  display: contents;
+}
+
+.site-header {
+  align-items: center;
+  background: transparent;
+  color: var(--color-neutral-0);
+  display: flex;
+  height: 88px;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 clamp(1.25rem, 4vw, 4.5rem);
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+  z-index: 10;
+}
+
+.site-header.scrolled {
+  background: rgba(37, 53, 44, 0.96);
+  box-shadow: 0 1px 0 rgba(197, 207, 193, 0.24);
+}
+
+.brand {
+  background: url('/jack-garcia-logo.svg') center / 120% auto no-repeat;
+  display: block;
+  filter: invert(66%) sepia(18%) saturate(744%) hue-rotate(354deg) brightness(88%) contrast(89%);
+  font-size: 0;
+  height: 52px;
+  text-decoration: none;
+  width: 176px;
+}
+
+.site-header nav {
+  align-items: center;
+  display: flex;
+  gap: clamp(1rem, 2.2vw, 2.5rem);
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.site-header nav a {
+  text-decoration: none;
+}
+
+.nav-cta {
+  background: var(--color-neutral-0);
+  color: var(--color-green-950);
+  padding: 0.85rem 1rem;
+}
+
+.nav-cta span {
+  margin-left: 1rem;
+}
+
+.menu-toggle {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: none;
+  padding: 0.5rem;
+}
+
+.menu-toggle span:not(.sr-only) {
+  background: currentColor;
+  display: block;
+  height: 1px;
+  margin: 5px 0;
+  width: 24px;
+}
+
+.sr-only {
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (max-width: 800px) {
+  .site-header {
+    height: 72px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .site-header nav {
+    background: var(--color-green-950);
+    display: none;
+    flex-direction: column;
+    inset: 72px 0 auto;
+    padding: 2rem;
+    position: absolute;
+    text-align: center;
+  }
+
+  .menu-open nav {
+    display: flex;
+  }
+}

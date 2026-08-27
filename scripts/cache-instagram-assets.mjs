@@ -1,7 +1,10 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const datasetPath = path.resolve('Services', 'dataset_instagram-scraper_2026-03-17_23-20-07-130.json');
+const datasetPath = path.resolve(
+  'Services',
+  'dataset_instagram-scraper_2026-03-17_23-20-07-130.json',
+);
 const outputDir = path.resolve('public', 'instagram');
 
 function toFileName(key) {
@@ -11,8 +14,8 @@ function toFileName(key) {
 async function download(url, outputFile) {
   const response = await fetch(url, {
     headers: {
-      'User-Agent': 'Mozilla/5.0'
-    }
+      'User-Agent': 'Mozilla/5.0',
+    },
   });
 
   if (!response.ok) {
@@ -34,7 +37,7 @@ async function main() {
   if (profile?.profilePicUrlHD && profile?.id) {
     downloads.set(`profile-${profile.id}`, {
       url: profile.profilePicUrlHD,
-      file: toFileName(`profile-${profile.id}`)
+      file: toFileName(`profile-${profile.id}`),
     });
   }
 
@@ -44,7 +47,7 @@ async function main() {
     if (post?.displayUrl && postKey) {
       downloads.set(postKey, {
         url: post.displayUrl,
-        file: toFileName(postKey)
+        file: toFileName(postKey),
       });
     }
 
@@ -54,7 +57,7 @@ async function main() {
       if (child?.displayUrl && childKey) {
         downloads.set(childKey, {
           url: child.displayUrl,
-          file: toFileName(childKey)
+          file: toFileName(childKey),
         });
       }
     }
@@ -65,6 +68,17 @@ async function main() {
   for (const entry of downloads.values()) {
     await download(entry.url, entry.file);
   }
+
+  const feed = latestPosts
+    .filter((post) => post?.displayUrl && (post?.shortCode || post?.id))
+    .slice(0, 12)
+    .map((post) => ({
+      src: `/instagram/${toFileName(post.shortCode || post.id)}`,
+      alt: 'Latest Instagram post by Jack Garcia Co.',
+    }));
+
+  await writeFile(path.join(outputDir, 'feed.json'), `${JSON.stringify(feed, null, 2)}\n`);
+  console.log('Saved feed.json');
 }
 
 main().catch((error) => {

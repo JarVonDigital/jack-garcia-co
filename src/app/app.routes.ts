@@ -10,7 +10,14 @@ export const routes: Routes = [
   {
     path: 'services',
     title: 'Jack Garcia Co. | Services',
-    loadComponent: () => import('./pages/services-page.component').then((m) => m.ServicesPageComponent),
+    loadComponent: () =>
+      import('./pages/services-page.component').then((m) => m.ServicesPageComponent),
+  },
+  {
+    path: 'wedding-packages',
+    title: 'Jack Garcia Co. | Wedding Packages',
+    loadComponent: () =>
+      import('./pages/wedding-packages-page.component').then((m) => m.WeddingPackagesPageComponent),
   },
   {
     path: 'about',
@@ -20,12 +27,14 @@ export const routes: Routes = [
   {
     path: 'reviews',
     title: 'Jack Garcia Co. | Reviews',
-    loadComponent: () => import('./pages/reviews-page.component').then((m) => m.ReviewsPageComponent),
+    loadComponent: () =>
+      import('./pages/reviews-page.component').then((m) => m.ReviewsPageComponent),
   },
   {
     path: 'inquire',
     title: 'Jack Garcia Co. | Inquire',
-    loadComponent: () => import('./pages/inquire-page.component').then((m) => m.InquirePageComponent),
+    loadComponent: () =>
+      import('./pages/inquire-page.component').then((m) => m.InquirePageComponent),
   },
   {
     path: '**',

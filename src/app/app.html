@@ -1,13 +1,302 @@
-<main>
-  <header class="site-header" [class.menu-open]="menuOpen()" [class.scrolled]="scrolled()"><a class="brand" href="#top" aria-label="Jack Garcia and Co. home">Jack Garcia <i>&amp; Co.</i></a><button class="menu-toggle" type="button" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen()" aria-controls="site-nav"><span></span><span></span><span class="sr-only">Toggle navigation</span></button><nav id="site-nav" aria-label="Primary navigation"><a href="#about" (click)="closeMenu()">About</a><a href="#services" (click)="closeMenu()">Services</a><a href="#testimonials" (click)="closeMenu()">Kind words</a><a href="#pricing" (click)="closeMenu()">Investment</a><a class="nav-cta" href="#inquire" (click)="closeMenu()">Inquire now <span aria-hidden="true">↗</span></a></nav></header>
-  <section class="hero" id="top" aria-labelledby="hero-title"><div class="hero-shade"></div><div class="hero-content shell"><p class="kicker light">Florida wedding &amp; lifestyle photographer</p><h1 id="hero-title">Timeless imagery for the moments <em>that matter most.</em></h1><p class="hero-subtitle">Natural, story-driven photographs for the way it all felt — throughout Florida and wherever your story takes you.</p><a class="button button-light" href="#inquire">Begin your story <span aria-hidden="true">↓</span></a></div><div class="hero-bottom shell"><div class="hero-meta"><span>Jack Garcia &amp; Co.</span><span>Florida + available anywhere</span></div><div class="hero-scroll">Scroll to explore <b aria-hidden="true">↓</b></div></div></section>
-  <section class="intro shell section" id="about"><p class="kicker">A little about the experience</p><div class="intro-grid"><h2>Photos that feel like <em>you.</em></h2><div><p>My approach is easygoing, intentional, and centered on the real moments unfolding in front of me. I’ll give you just enough direction to feel confident, then leave room for the laughter, movement, and honest connection that make your story yours.</p><a class="text-link" href="#inquire">Meet your photographer <span aria-hidden="true">↗</span></a></div></div></section>
-  <section class="services section shell" id="services" aria-labelledby="services-title"><div class="section-top"><div><p class="kicker">How we can work together</p><h2 id="services-title">For every kind of <em>celebration.</em></h2></div><p class="section-copy">Weddings lead the way, with relaxed sessions for all the meaningful chapters around them.</p></div><div class="service-cards">@for (service of services; track service.title) { <article class="service-card"><img [src]="service.image" [alt]="service.alt" loading="lazy"><div><p class="service-number">{{ service.number }}</p><h3>{{ service.title }}</h3><p>{{ service.description }}</p><a class="text-link" [href]="service.link">{{ service.action }} <span aria-hidden="true">↘</span></a></div></article> }</div></section>
-  <section class="testimonials section" id="testimonials" aria-labelledby="testimonials-title"><div class="shell"><p class="kicker">Kind words</p><h2 id="testimonials-title">Stories told by the people <em>in them.</em></h2><div class="testimonial-grid"><figure><blockquote>“We could not be happier with our photographer. He has such an artistic eye, and his talent with lighting, editing, and composition is incredible. Every photo feels intentional, beautiful, and full of life.”</blockquote><figcaption>— Christy Gilbreath, Google review</figcaption></figure><figure><blockquote>“Jack is an amazing photographer! He took our family pictures at Bonnet Springs and we loved how they turned out. I especially appreciated how efficient Jack was, being mindful of my elderly grandparents and making sure we had all the picture combinations we wanted.”</blockquote><figcaption>— Tatiana Benitez, Google review</figcaption><a class="text-link" href="#inquire">Create your own story <span aria-hidden="true">↗</span></a></figure></div><p class="testimonial-note"><a href="https://www.google.com/maps/place/Jack+Garcia+%26+Co./@27.698638,-83.804601,7z/data=!3m1!4b1!4m6!3m5!1s0x27ace56edb23204f:0x731de65368019cc4!8m2!3d27.698638!4d-83.804601!16s%2Fg%2F11y_zf646_?entry=ttu" target="_blank" rel="noreferrer">5.0 on Google from 13 reviews <span aria-hidden="true">↗</span></a></p></div></section>
-  <section class="pricing section" id="pricing" aria-labelledby="pricing-title"><div class="shell"><div class="pricing-head"><p class="kicker">Wedding photography</p><h2 id="pricing-title">Your day, told <em>fully.</em></h2><p>Thoughtful coverage for celebrations big and small. Each collection is designed to keep the focus on your people and the moments you’ll want to return to.</p></div><div class="collection-grid">@for (collection of collections; track collection.name) { <article class="collection" [class.featured]="collection.featured"><p class="collection-label">{{ collection.label }}</p><h3>{{ collection.name }}</h3><p class="collection-for">{{ collection.audience }}</p><ul>@for (item of collection.includes; track item) { <li>{{ item }}</li> }</ul><p class="price"><small>Starting at</small>${{ collection.price }}</p><a [class]="collection.featured ? 'button button-dark' : 'button button-outline'" href="#inquire">Inquire about this collection <span aria-hidden="true">↗</span></a></article> }</div><div class="a-la-carte"><div><p class="kicker">Prefer to build your own?</p><h3>À la carte coverage</h3><p>Start with one hour or one wedding moment, then create a pace that fits your celebration.</p></div><div class="a-la-price"><strong>$400</strong><span>base coverage</span></div><div class="moment-list"><span>Getting ready</span><span>Details</span><span>First look</span><span>Ceremony</span><span>Portraits</span><span>Reception</span></div><p class="a-la-note">Each additional wedding moment is $200 and covers up to one hour.</p></div><div class="enhancements"><p class="kicker">Enhance your story</p><div><span>Extra hour <b>$225</b></span><span>Second photographer <b>$350</b></span><span>Drone coverage <b>$250</b></span><span>Polaroid pictures <b>$50</b></span></div></div></div></section>
-  <section class="content-creation section shell" aria-labelledby="content-title"><div class="content-image"><img src="/images/jack-garcia-content-creation.jpg" alt="Couple embracing in the ocean with a surfboard" loading="lazy"></div><div class="content-copy"><p class="kicker">Something extra</p><h2 id="content-title">Content creation, with all the <em>feeling.</em></h2><p>Real, phone-captured behind-the-scenes moments made for sharing. Raw clips arrive within 24–48 hours, with edited Reels delivered in 2–4 days.</p><div class="content-rates"><span>Non-wedding events <b>$100 / hour</b></span><span>Wedding coverage <b>from $300</b></span><span>Full experience <b>$900 / 10 hours</b></span></div><a class="text-link" href="#inquire">Ask about content creation <span aria-hidden="true">↗</span></a></div></section>
-  <section class="details"><div class="shell details-grid"><div><p class="kicker">The good to know</p><h2>Easy from the <em>start.</em></h2></div><div class="detail"><span>01</span><div><h3>Save your date</h3><p>A 30% retainer secures wedding dates; all other sessions require a 50% retainer.</p></div></div><div class="detail"><span>02</span><div><h3>Wherever your story is</h3><p>Florida-based and available anywhere. A $50 travel fee applies to locations over one hour away.</p></div></div><div class="detail"><span>03</span><div><h3>Made for comfort</h3><p>No stiff posing or pressure. I’ll help you feel present, so your images stay true to you.</p></div></div></div></section>
-  <section class="gallery-section section" aria-labelledby="gallery-title"><div class="shell"><div class="gallery-heading"><div><p class="kicker">A few more stories</p><h2 id="gallery-title">Made for the moments you’ll <em>keep coming back to.</em></h2></div><a class="text-link" href="https://www.instagram.com/jackgarcia.co/" target="_blank" rel="noreferrer">See more on Instagram <span aria-hidden="true">↗</span></a></div><div class="portfolio-gallery"><figure class="gallery-chapel"><img src="/images/jack-garcia-gallery-truck.jpg" alt="Couple kissing in a red vintage truck at night" loading="lazy"></figure><figure class="gallery-greenhouse"><img src="/images/jack-garcia-gallery-ring.jpg" alt="Engagement ring shared by a couple in a greenhouse" loading="lazy"></figure><figure class="gallery-graduate"><img src="/images/jack-garcia-gallery-bw.jpg" alt="Black-and-white portrait of Jack holding a camera" loading="lazy"></figure><figure class="gallery-ring"><img src="/images/jack-garcia-gallery-boots.jpg" alt="Tiny cowboy boots set between larger boots for a newborn session" loading="lazy"></figure><figure class="gallery-walk"><img src="/images/jack-garcia-gallery-graduate.jpg" alt="Graduate standing in a field at sunset" loading="lazy"></figure><figure class="gallery-portrait"><img src="/images/jack-garcia-gallery-beach.jpg" alt="Couple with a surfboard on the beach" loading="lazy"></figure></div></div></section>
-  <section class="inquire" id="inquire" aria-labelledby="inquire-title"><div class="shell inquiry-grid"><div><p class="kicker light">Let’s make something lasting</p><h2 id="inquire-title">Tell me about your <em>day.</em></h2><p>Select your service first, then share only the details that matter. I’ll be in touch soon.</p><a href="mailto:jdgimages06@gmail.com">jdgimages06@gmail.com</a></div><form [formGroup]="inquiryForm" (ngSubmit)="sendInquiry()" novalidate><p class="form-note">Fields marked <span aria-hidden="true">*</span> are required.</p><label class="service-picker">What are you celebrating?<select formControlName="service" aria-describedby="service-error"><option value="Wedding">Wedding</option><option value="Couples / Proposal">Couples / Proposal</option><option value="Graduation">Graduation</option><option value="Family / Lifestyle">Family / Lifestyle</option><option value="Content Creation">Content Creation</option></select></label><div class="form-row"><label>Your name <span aria-hidden="true">*</span><input formControlName="name" autocomplete="name" aria-invalid="{{ inquiryForm.controls.name.touched && inquiryForm.controls.name.invalid }}" required></label><label>Email address <span aria-hidden="true">*</span><input formControlName="email" type="email" autocomplete="email" aria-invalid="{{ inquiryForm.controls.email.touched && inquiryForm.controls.email.invalid }}" required></label></div><div class="form-row"><label>Phone number <span aria-hidden="true">*</span><input formControlName="phone" type="tel" autocomplete="tel" aria-invalid="{{ inquiryForm.controls.phone.touched && inquiryForm.controls.phone.invalid }}" required></label><label>Event or session date <span aria-hidden="true">*</span><input formControlName="date" type="date" aria-invalid="{{ inquiryForm.controls.date.touched && inquiryForm.controls.date.invalid }}" required></label></div><label>Location <span aria-hidden="true">*</span><input formControlName="location" placeholder="City or venue" aria-invalid="{{ inquiryForm.controls.location.touched && inquiryForm.controls.location.invalid }}" required></label>@if (isWedding()) { <div class="wedding-fields"><p>Wedding details</p><label>Estimated guest count<input formControlName="guests" type="number" min="1" placeholder="Optional"></label><label>What matters most to you? <span aria-hidden="true">*</span><textarea formControlName="details" rows="3" placeholder="Tell me about your ceremony, coverage, or the moments you want remembered." aria-invalid="{{ inquiryForm.controls.details.touched && inquiryForm.controls.details.invalid }}" required></textarea></label></div> } @else { <label>Tell me a little more <span aria-hidden="true">*</span><textarea formControlName="details" rows="3" placeholder="What do you have in mind?" aria-invalid="{{ inquiryForm.controls.details.touched && inquiryForm.controls.details.invalid }}" required></textarea></label> }@if (inquiryForm.touched && inquiryForm.invalid) { <p class="form-error" role="alert">Please complete the required fields, add a valid email and phone number, and verify you’re human.</p> }<label class="human-check"><input formControlName="humanCheck" type="checkbox" required><span class="human-check-mark" aria-hidden="true">✓</span><span><b>Quick human check</b><small>I’m not a robot</small></span></label><button class="button button-light" type="submit">Send inquiry <span aria-hidden="true">↗</span></button>@if (submitted()) { <p class="form-success" role="status">Your email app should now be open with your complete inquiry. Thank you!</p> }</form></div></section>
-  <footer class="site-footer shell"><a class="brand" href="#top">Jack Garcia <i>&amp; Co.</i></a><span>Natural photographs · Meaningful stories</span><a href="https://www.instagram.com/jackgarcia.co/" target="_blank" rel="noreferrer">Instagram ↗</a><span>© 2026</span></footer>
-</main>
+@if (isWeddingPackagesPage()) {
+  <app-wedding-packages-page />
+} @else {
+  <main>
+    <app-site-header />
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-shade"></div>
+      <div class="hero-content shell">
+        <p class="kicker light">Wedding &amp; lifestyle photographer</p>
+        <h1 id="hero-title">Timeless imagery for the moments <em>that matter most.</em></h1>
+        <p class="hero-subtitle">
+          Natural, story-driven photographs for the way it all felt — throughout Florida and
+          wherever your story takes you.
+        </p>
+        <a class="button button-light" href="#inquire"
+          >Begin your story <span aria-hidden="true">↓</span></a
+        >
+      </div>
+      <div class="hero-bottom shell">
+        <div class="hero-meta">
+          <span>Jack Garcia &amp; Co.</span><span>Florida + available anywhere</span>
+        </div>
+        <div class="hero-scroll">Scroll to explore <b aria-hidden="true">↓</b></div>
+      </div>
+    </section>
+    <section class="intro shell section" id="about">
+      <p class="kicker">A little about the experience</p>
+      <div class="intro-grid">
+        <h2>Photos that feel like <em>you.</em></h2>
+        <div>
+          <p>
+            My approach is easygoing, intentional, and centered on the real moments unfolding in
+            front of me. I’ll give you just enough direction to feel confident, then leave room for
+            the laughter, movement, and honest connection that make your story yours.
+          </p>
+          <a class="text-link" href="#inquire"
+            >Meet your photographer <span aria-hidden="true">↗</span></a
+          >
+        </div>
+      </div>
+    </section>
+    <section class="services section shell" id="services" aria-labelledby="services-title">
+      <div class="section-top">
+        <div>
+          <p class="kicker">How we can work together</p>
+          <h2 id="services-title">For every kind of <em>celebration.</em></h2>
+        </div>
+        <p class="section-copy">
+          Weddings lead the way, with relaxed sessions for all the meaningful chapters around them.
+        </p>
+      </div>
+      <div class="service-cards">
+        @for (service of services; track service.title) {
+          <article class="service-card">
+            <a
+              class="service-card-image-link"
+              [href]="service.link"
+              [attr.aria-label]="service.action"
+            >
+              <img [src]="service.image" [alt]="service.alt" loading="lazy" />
+            </a>
+            <div>
+              <p class="service-number">{{ service.number }}</p>
+              <h3>{{ service.title }}</h3>
+              <p>{{ service.description }}</p>
+              <a class="text-link" [href]="service.link"
+                >{{ service.action }} <span aria-hidden="true">↘</span></a
+              >
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+    <section class="testimonials section" id="testimonials" aria-labelledby="testimonials-title">
+      <div class="shell">
+        <p class="kicker">Kind words</p>
+        <h2 id="testimonials-title">Stories told by the people <em>in them.</em></h2>
+        <div class="testimonial-grid">
+          <figure>
+            <blockquote>
+              “We could not be happier with our photographer. He has such an artistic eye, and his
+              talent with lighting, editing, and composition is incredible. Every photo feels
+              intentional, beautiful, and full of life.”
+            </blockquote>
+            <figcaption>— Christy Gilbreath, Google review</figcaption>
+          </figure>
+          <figure>
+            <blockquote>
+              “Jack is an amazing photographer! He took our family pictures at Bonnet Springs and we
+              loved how they turned out. I especially appreciated how efficient Jack was, being
+              mindful of my elderly grandparents and making sure we had all the picture combinations
+              we wanted.”
+            </blockquote>
+            <figcaption>— Tatiana Benitez, Google review</figcaption>
+            <a class="text-link" href="#inquire"
+              >Create your own story <span aria-hidden="true">↗</span></a
+            >
+          </figure>
+        </div>
+        <p class="testimonial-note">
+          <a
+            href="https://www.google.com/maps/place/Jack+Garcia+%26+Co./@27.698638,-83.804601,7z/data=!3m1!4b1!4m6!3m5!1s0x27ace56edb23204f:0x731de65368019cc4!8m2!3d27.698638!4d-83.804601!16s%2Fg%2F11y_zf646_?entry=ttu"
+            target="_blank"
+            rel="noreferrer"
+            >5.0 on Google from 13 reviews <span aria-hidden="true">↗</span></a
+          >
+        </p>
+      </div>
+    </section>
+    <section class="content-creation section shell" aria-labelledby="content-title">
+      <div class="content-image">
+        <img
+          src="/images/jack-garcia-content-creation.jpg"
+          alt="Couple embracing in the ocean with a surfboard"
+          loading="lazy"
+        />
+      </div>
+      <div class="content-copy">
+        <p class="kicker">Something extra</p>
+        <h2 id="content-title">Content creation, with all the <em>feeling.</em></h2>
+        <p>
+          Real, phone-captured behind-the-scenes moments made for sharing. Raw clips arrive within
+          24–48 hours, with edited Reels delivered in 2–4 days.
+        </p>
+        <a class="text-link" href="/wedding-packages#content-creation"
+          >Explore content creation <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </section>
+    <section class="details">
+      <div class="shell details-grid">
+        <div>
+          <p class="kicker">The good to know</p>
+          <h2>Easy from the <em>start.</em></h2>
+        </div>
+        <div class="detail">
+          <span>01</span>
+          <div>
+            <h3>Save your date</h3>
+            <p>A 30% retainer secures wedding dates; all other sessions require a 50% retainer.</p>
+          </div>
+        </div>
+        <div class="detail">
+          <span>02</span>
+          <div>
+            <h3>Wherever your story is</h3>
+            <p>Florida-based and available anywhere. Travel fees may apply beyond one hour.</p>
+          </div>
+        </div>
+        <div class="detail">
+          <span>03</span>
+          <div>
+            <h3>Made for comfort</h3>
+            <p>
+              No stiff posing or pressure. I’ll help you feel present, so your images stay true to
+              you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="gallery-section section" aria-labelledby="gallery-title">
+      <div class="shell">
+        <div class="gallery-heading">
+          <div>
+            <p class="kicker">A few more stories</p>
+            <h2 id="gallery-title">Made for the moments you’ll <em>keep coming back to.</em></h2>
+          </div>
+          <a
+            class="text-link"
+            href="https://www.instagram.com/jackgarcia.co/"
+            target="_blank"
+            rel="noreferrer"
+            >See more on Instagram <span aria-hidden="true">↗</span></a
+          >
+        </div>
+        <div class="portfolio-gallery" aria-label="Latest work from Instagram">
+          @for (image of instagramImages(); track image.src; let index = $index) {
+            <figure [class]="'gallery-feed-item gallery-feed-item-' + index">
+              <img [src]="image.src" [alt]="image.alt" loading="lazy" />
+            </figure>
+          }
+        </div>
+      </div>
+    </section>
+    <section class="inquire" id="inquire" aria-labelledby="inquire-title">
+      <div class="shell inquiry-grid">
+        <div>
+          <p class="kicker light">Let’s make something lasting</p>
+          <h2 id="inquire-title">Tell me about your <em>day.</em></h2>
+          <p>
+            Select your service first, then share only the details that matter. I’ll be in touch
+            soon.
+          </p>
+          <a href="mailto:jdgimages06@gmail.com">jdgimages06@gmail.com</a>
+        </div>
+        <form [formGroup]="inquiryForm" (ngSubmit)="sendInquiry()" novalidate>
+          <p class="form-note">Fields marked <span aria-hidden="true">*</span> are required.</p>
+          <label class="service-picker"
+            >What are you celebrating?<select
+              formControlName="service"
+              aria-describedby="service-error"
+            >
+              <option value="Wedding">Wedding</option>
+              <option value="Couples / Proposal">Couples / Proposal</option>
+              <option value="Graduation">Graduation</option>
+              <option value="Family / Lifestyle">Family / Lifestyle</option>
+              <option value="Content Creation">Content Creation</option>
+            </select></label
+          >
+          <div class="form-row">
+            <label
+              >Your name <span aria-hidden="true">*</span
+              ><input
+                formControlName="name"
+                autocomplete="name"
+                aria-invalid="{{
+                  inquiryForm.controls.name.touched && inquiryForm.controls.name.invalid
+                }}"
+                required /></label
+            ><label
+              >Email address <span aria-hidden="true">*</span
+              ><input
+                formControlName="email"
+                type="email"
+                autocomplete="email"
+                aria-invalid="{{
+                  inquiryForm.controls.email.touched && inquiryForm.controls.email.invalid
+                }}"
+                required
+            /></label>
+          </div>
+          <div class="form-row">
+            <label
+              >Phone number <span aria-hidden="true">*</span
+              ><input
+                formControlName="phone"
+                type="tel"
+                autocomplete="tel"
+                aria-invalid="{{
+                  inquiryForm.controls.phone.touched && inquiryForm.controls.phone.invalid
+                }}"
+                required /></label
+            ><label
+              >Event or session date <span aria-hidden="true">*</span
+              ><input
+                formControlName="date"
+                type="date"
+                aria-invalid="{{
+                  inquiryForm.controls.date.touched && inquiryForm.controls.date.invalid
+                }}"
+                required
+            /></label>
+          </div>
+          <label
+            >Location <span aria-hidden="true">*</span
+            ><input
+              formControlName="location"
+              placeholder="City or venue"
+              aria-invalid="{{
+                inquiryForm.controls.location.touched && inquiryForm.controls.location.invalid
+              }}"
+              required
+          /></label>
+          <label
+            >Tell me a little more <span aria-hidden="true">*</span
+            ><textarea
+              formControlName="details"
+              rows="3"
+              placeholder="Tell me about the coverage or moments you want remembered."
+              aria-invalid="{{
+                inquiryForm.controls.details.touched && inquiryForm.controls.details.invalid
+              }}"
+              required
+            ></textarea>
+          </label>
+          @if (inquiryForm.touched && inquiryForm.invalid) {
+            <p class="form-error" role="alert">
+              Please complete the required fields, add a valid email and phone number, and verify
+              you’re human.
+            </p>
+          }
+          <label class="human-check"
+            ><input formControlName="humanCheck" type="checkbox" required /><span
+              class="human-check-mark"
+              aria-hidden="true"
+              >✓</span
+            ><span><b>Quick human check</b><small>I’m not a robot</small></span></label
+          ><button class="button button-light" type="submit">
+            Send inquiry <span aria-hidden="true">↗</span>
+          </button>
+          @if (submitted()) {
+            <p class="form-success" role="status">
+              Your email app should now be open with your complete inquiry. Thank you!
+            </p>
+          }
+        </form>
+      </div>
+    </section>
+    <app-site-footer />
+  </main>
+}

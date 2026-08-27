@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+/* Jack Garcia & Co. / Color System 01 */
+:root {
+  --color-green-50: #f1f3ec; --color-green-100: #dde3d8; --color-green-200: #c5cfc1; --color-green-300: #aeb7a7;
+  --color-green-400: #8b9988; --color-green-600: #5f6f5c; --color-green-800: #445745; --color-green-950: #25352c;
+  --color-neutral-0: #fcfbf7; --color-neutral-50: #f5f1e8; --color-neutral-100: #e9e2d6; --color-neutral-300: #d5c9b9;
+  --color-neutral-500: #988979; --color-neutral-700: #5a4e42; --color-neutral-950: #2d2b26;
+  --color-accent-clay-200: #d8b8a9; --color-accent-clay-400: #b66f58; --color-accent-clay-700: #874c3c;
+  --color-accent-brass-500: #b58c56; --color-accent-olive-700: #817548;
+  --page-background: var(--color-neutral-50); --page-ink: var(--color-neutral-950); --page-muted: var(--color-neutral-700);
+  --page-line: color-mix(in srgb, var(--color-green-950) 20%, transparent);
+}
+* { box-sizing: border-box; }
+html { background: var(--color-green-950); scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: var(--page-background); color: var(--page-ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+/* A fixed, non-interactive overlay gives every section the soft texture of film grain. */
+body::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.9'/%3E%3C/svg%3E");
+  content: '';
+  inset: 0;
+  mix-blend-mode: soft-light;
+  opacity: .13;
+  pointer-events: none;
+  position: fixed;
+  z-index: 2147483647;
+}
+button, a { font: inherit; }
+a { color: inherit; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

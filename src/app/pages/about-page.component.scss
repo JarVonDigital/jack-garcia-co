@@ -1,0 +1,232 @@
+:host {
+  display: block;
+  height: 100svh;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.about-page {
+  background: var(--color-green-950);
+  color: var(--color-neutral-0);
+  height: 100vh;
+  height: 100svh;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+}
+
+.about-portrait {
+  inset: 0 0 0 43%;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+.about-portrait::after {
+  background: linear-gradient(
+    90deg,
+    var(--color-green-950) 0%,
+    rgba(37, 53, 44, 0.7) 8%,
+    rgba(37, 53, 44, 0) 27%
+  );
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.about-portrait img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 43%;
+  width: 100%;
+}
+
+.about-copy {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  max-width: min(43vw, 43rem);
+  padding: calc(88px + 2rem) clamp(1.25rem, 4vw, 4.5rem) 5.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.about-kicker {
+  color: var(--color-green-200);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  margin: 0 0 clamp(1.25rem, 3vh, 2rem);
+  text-transform: uppercase;
+}
+
+.about-kicker::before {
+  background: currentColor;
+  content: '';
+  display: inline-block;
+  height: 1px;
+  margin: 0 0.7rem 0.2rem 0;
+  width: 28px;
+}
+
+h1 {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(2.75rem, 5vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  line-height: 0.98;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 em {
+  color: var(--color-green-200);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+}
+
+.about-intro {
+  color: var(--color-green-100);
+  font-size: clamp(0.98rem, 1.25vw, 1.12rem);
+  line-height: 1.75;
+  margin: clamp(1.25rem, 3vh, 2rem) 0 0;
+  max-width: 34rem;
+}
+
+.about-link {
+  align-items: center;
+  align-self: flex-start;
+  border-bottom: 1px solid rgba(252, 251, 247, 0.7);
+  display: inline-flex;
+  font-size: 0.68rem;
+  gap: 1rem;
+  letter-spacing: 0.13em;
+  margin-top: clamp(1.4rem, 3.5vh, 2.4rem);
+  padding-bottom: 0.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.about-link:hover,
+.about-link:focus-visible {
+  border-color: var(--color-accent-brass-500);
+  color: var(--color-green-200);
+}
+
+.about-services {
+  bottom: clamp(1.25rem, 3vw, 2.25rem);
+  color: var(--color-green-300);
+  font-size: 0.6rem;
+  font-weight: 700;
+  left: clamp(1.25rem, 4vw, 4.5rem);
+  letter-spacing: 0.16em;
+  margin: 0;
+  position: absolute;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.about-services span {
+  color: var(--color-accent-brass-500);
+  margin-inline: 0.65rem;
+}
+
+@media (max-width: 800px) {
+  .about-portrait {
+    inset: 72px 0 0;
+  }
+
+  .about-portrait::after {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(37, 53, 44, 0.08) 16%,
+        rgba(37, 53, 44, 0.3) 45%,
+        rgba(37, 53, 44, 0.97) 100%
+      ),
+      linear-gradient(90deg, rgba(37, 53, 44, 0.18), rgba(37, 53, 44, 0));
+  }
+
+  .about-portrait img {
+    object-position: center 38%;
+  }
+
+  .about-copy {
+    justify-content: flex-end;
+    max-width: 44rem;
+    padding: calc(72px + env(safe-area-inset-top) + 2rem) clamp(1.25rem, 5vw, 2.5rem) 5.75rem;
+  }
+
+  h1 {
+    font-size: clamp(2.45rem, 10vw, 4.5rem);
+    max-width: 10ch;
+  }
+
+  .about-intro {
+    max-width: 39rem;
+  }
+
+  .about-services {
+    bottom: calc(1.25rem + env(safe-area-inset-bottom));
+    left: clamp(1.25rem, 5vw, 2.5rem);
+  }
+}
+
+@media (max-width: 440px) {
+  .about-copy {
+    padding-bottom: 5.25rem;
+  }
+
+  .about-kicker {
+    margin-bottom: 1rem;
+  }
+
+  .about-intro {
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .about-link {
+    margin-top: 1.15rem;
+  }
+
+  .about-services span {
+    margin-inline: 0.35rem;
+  }
+}
+
+@media (max-height: 690px) {
+  .about-copy {
+    padding-bottom: 4.5rem;
+  }
+
+  .about-kicker {
+    margin-bottom: 0.85rem;
+  }
+
+  h1 {
+    font-size: clamp(2.3rem, 8vh, 4.35rem);
+  }
+
+  .about-intro {
+    line-height: 1.55;
+    margin-top: 1rem;
+  }
+
+  .about-link {
+    margin-top: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-link {
+    transition: none;
+  }
+}

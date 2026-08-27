@@ -1,23 +1,51 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter, Router } from '@angular/router';
+
 import { App } from './app';
+import { routes } from './app.routes';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [provideRouter(routes)],
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  it('creates the application shell', () => {
     const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('renders the routed home headline', async () => {
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/');
+
     const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
     await fixture.whenStable();
+    fixture.detectChanges();
+
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, jack-garcia-co');
+
+    expect(compiled.querySelector('#hero-title')?.textContent).toContain('Timeless imagery');
+  });
+
+  it('renders the footer with the current copyright year', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const footerText = compiled.querySelector('.site-footer')?.textContent ?? '';
+
+    expect(footerText).toContain(`${new Date().getFullYear()} Jack Garcia & Co.`);
+    expect(footerText).toContain('JarVonDigital LLC');
+  });
+
+  it('renders the primary inquiry call to action', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    expect(compiled.querySelector('.nav-cta')?.textContent).toContain('Inquire now');
   });
 });

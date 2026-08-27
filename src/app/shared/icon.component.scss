@@ -1,0 +1,19 @@
+:host {
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 0.9em;
+  margin-left: 0.85rem;
+  vertical-align: -0.05em;
+  width: 0.9em;
+}
+
+svg {
+  display: block;
+  fill: none;
+  height: 100%;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 1.2;
+  width: 100%;
+}

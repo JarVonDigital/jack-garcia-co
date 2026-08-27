@@ -1,12 +1,209 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRouteSnapshot, NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { SiteFooterComponent } from './shared/site-footer.component';
+import { SiteHeaderComponent } from './shared/site-header.component';
+import { IconComponent } from './shared/icon.component';
+
+type InstagramImage = { src: string; alt: string };
+type SeoMetadata = { title: string; description: string };
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [
+    ReactiveFormsModule,
+    RouterOutlet,
+    IconComponent,
+    SiteFooterComponent,
+    SiteHeaderComponent,
+  ],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss', './layout-updates.scss'],
 })
-export class App {
-  protected readonly title = signal('jack-garcia-co');
+export class App implements OnInit {
+  protected readonly submitted = signal(false);
+  protected readonly submitting = signal(false);
+  protected readonly submissionError = signal(false);
+  protected readonly isAboutPage = signal(false);
+  protected readonly isWeddingPackagesPage = signal(false);
+  protected readonly isHomePage = signal(true);
+  protected readonly instagramImages = signal<InstagramImage[]>([
+    { src: '/instagram/DPgqnz2DZqB.jpg', alt: 'Recent work by Jack Garcia Co.' },
+    { src: '/instagram/DV8077-jatl.jpg', alt: 'Recent work by Jack Garcia Co.' },
+    { src: '/instagram/DV1F6RbDXin.jpg', alt: 'Recent work by Jack Garcia Co.' },
+    { src: '/instagram/DV1Dph5jTum.jpg', alt: 'Recent work by Jack Garcia Co.' },
+    { src: '/instagram/DVq9DuSDU0q.jpg', alt: 'Recent work by Jack Garcia Co.' },
+    { src: '/instagram/DVZMEnhjXtp.jpg', alt: 'Recent work by Jack Garcia Co.' },
+  ]);
+  protected readonly inquiryForm = new FormGroup({
+    name: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(2)],
+    }),
+    email: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
+    }),
+    phone: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(7)],
+    }),
+    service: new FormControl('Wedding', { nonNullable: true, validators: [Validators.required] }),
+    date: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    location: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(2)],
+    }),
+    details: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(10)],
+    }),
+    humanCheck: new FormControl(false, {
+      nonNullable: true,
+      validators: [Validators.requiredTrue],
+    }),
+    website: new FormControl('', { nonNullable: true }),
+  });
+  protected readonly services = [
+    {
+      number: '01',
+      title: 'Weddings',
+      description: 'Full, honest storytelling for the day you’ve waited for.',
+      action: 'Explore wedding packages',
+      link: '/wedding-packages',
+      image: '/images/jack-garcia-wedding-service.jpg',
+      srcSet:
+        '/images/responsive/jack-garcia-wedding-service-960.jpg 720w, /images/responsive/jack-garcia-wedding-service-1600.jpg 1200w, /images/jack-garcia-wedding-service.jpg 3072w',
+      alt: 'Newlyweds in front of a white chapel',
+    },
+    {
+      number: '02',
+      title: 'Couples',
+      description: 'Warm, natural photographs for the season you are in.',
+      action: 'Start an inquiry',
+      link: '#inquire',
+      image: '/images/jack-garcia-couples-service.jpg',
+      srcSet:
+        '/images/responsive/jack-garcia-couples-service-960.jpg 720w, /images/responsive/jack-garcia-couples-service-1600.jpg 1200w, /images/jack-garcia-couples-service.jpg 3072w',
+      alt: 'Couple walking through a greenhouse',
+    },
+    {
+      number: '03',
+      title: 'Lifestyle',
+      description: 'Graduates, families, and milestones worth remembering.',
+      action: 'Start an inquiry',
+      link: '#inquire',
+      image: '/images/jack-garcia-graduation-service.jpg',
+      srcSet:
+        '/images/responsive/jack-garcia-graduation-service-960.jpg 720w, /images/responsive/jack-garcia-graduation-service-1600.jpg 1200w, /images/jack-garcia-graduation-service.jpg 3072w',
+      alt: 'Graduate standing in a wildflower field',
+    },
+  ];
+
+  constructor(
+    private readonly router: Router,
+    private readonly viewportScroller: ViewportScroller,
+    private readonly title: Title,
+    private readonly meta: Meta,
+  ) {
+    this.viewportScroller.setOffset([0, 88]);
+    const initialUrl = typeof window === 'undefined' ? this.router.url : window.location.pathname;
+    this.syncPageFromRoute(initialUrl);
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) this.syncPageFromRoute(event.urlAfterRedirects);
+    });
+  }
+
+  ngOnInit(): void {
+    if (this.isHomePage()) this.loadInstagramFeed();
+  }
+
+  private syncPageFromRoute(url: string): void {
+    const path = url.split(/[?#]/, 1)[0].replace(/\/+$/, '') || '/';
+    this.isHomePage.set(path === '/');
+    this.isAboutPage.set(path === '/about');
+    this.isWeddingPackagesPage.set(path === '/wedding-packages');
+    this.updateSeoMetadata();
+  }
+
+  private updateSeoMetadata(): void {
+    let route: ActivatedRouteSnapshot = this.router.routerState.snapshot.root;
+    while (route.firstChild) route = route.firstChild;
+    const seo = route.data['seo'] as SeoMetadata | undefined;
+    if (!seo) return;
+
+    this.title.setTitle(seo.title);
+    this.meta.updateTag({ name: 'description', content: seo.description });
+    this.meta.updateTag({ property: 'og:title', content: seo.title });
+    this.meta.updateTag({ property: 'og:description', content: seo.description });
+    this.meta.updateTag({ name: 'twitter:title', content: seo.title });
+    this.meta.updateTag({ name: 'twitter:description', content: seo.description });
+  }
+
+  protected loadInstagramFeed(): void {
+    fetch('/instagram/feed.json')
+      .then((response) => (response.ok ? response.json() : Promise.reject(response)))
+      .then((feed: unknown) => {
+        if (!Array.isArray(feed)) return;
+        const images = feed.filter(
+          (item): item is InstagramImage =>
+            typeof item?.src === 'string' && typeof item?.alt === 'string',
+        );
+        if (images.length) this.instagramImages.set(images.slice(0, 6));
+      })
+      .catch(() => undefined);
+  }
+  protected async sendInquiry(): Promise<void> {
+    if (this.inquiryForm.invalid) {
+      this.inquiryForm.markAllAsTouched();
+      return;
+    }
+    const form = this.inquiryForm.getRawValue();
+    if (form.website) {
+      this.submitted.set(true);
+      this.inquiryForm.reset();
+      return;
+    }
+
+    this.submitting.set(true);
+    this.submissionError.set(false);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/jdgimages06@gmail.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          service: form.service,
+          date: form.date,
+          location: form.location,
+          details: form.details,
+          _subject: `New ${form.service} inquiry from ${form.name}`,
+          _replyto: form.email,
+          _template: 'table',
+          _honey: form.website,
+        }),
+      });
+      const result: unknown = await response.json().catch(() => null);
+      if (
+        !response.ok ||
+        (typeof result === 'object' &&
+          result !== null &&
+          'success' in result &&
+          result.success === false)
+      ) {
+        throw new Error('Inquiry delivery failed');
+      }
+      this.submitted.set(true);
+      this.inquiryForm.reset();
+    } catch {
+      this.submissionError.set(true);
+    } finally {
+      this.submitting.set(false);
+    }
+  }
 }

@@ -1,0 +1,58 @@
+:host {
+  display: block;
+}
+
+.site-footer {
+  align-items: center;
+  display: flex;
+  font-size: 0.65rem;
+  justify-content: space-between;
+  letter-spacing: 0.11em;
+  margin-inline: auto;
+  max-width: 1400px;
+  min-height: 100px;
+  padding-inline: clamp(1.25rem, 4vw, 4.5rem);
+  text-transform: uppercase;
+}
+
+.brand {
+  background: url('/jack-garcia-logo.svg') center / 120% auto no-repeat;
+  display: block;
+  font-size: 0;
+  height: 44px;
+  text-decoration: none;
+  width: 150px;
+}
+
+.site-footer a:not(.brand) {
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .site-footer {
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+    justify-content: center;
+    min-height: 82px;
+    padding-block: 0.75rem;
+  }
+
+  .brand {
+    flex: 0 0 120px;
+    height: 38px;
+    width: 120px;
+  }
+
+  .site-footer span,
+  .site-footer a:not(.brand) {
+    font-size: 0.56rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .site-footer span:first-of-type {
+    display: none;
+  }
+}

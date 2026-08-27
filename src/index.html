@@ -1,13 +1,61 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>JackGarciaCo</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Florida Wedding &amp; Portrait Photographer | Jack Garcia &amp; Co.</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Jack Garcia Co. offers editorial-style photography for weddings, engagements, portraits, and milestone stories."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jack Garcia &amp; Co." />
+    <meta property="og:title" content="Florida Wedding &amp; Portrait Photographer | Jack Garcia &amp; Co." />
+    <meta
+      property="og:description"
+      content="Editorial wedding, engagement, family, and milestone photography across Florida."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Florida Wedding &amp; Portrait Photographer | Jack Garcia &amp; Co." />
+    <meta
+      name="twitter:description"
+      content="Editorial wedding, engagement, family, and milestone photography across Florida."
+    />
+    <meta name="theme-color" content="#25352c" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..800&family=Cinzel:wght@400..600&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="icon.svg" />
+    <link rel="apple-touch-icon" href="icon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Jack Garcia & Co.",
+        "description": "Editorial wedding, engagement, portrait, and milestone photography across Florida.",
+        "areaServed": { "@type": "State", "name": "Florida" },
+        "sameAs": [
+          "https://www.instagram.com/jackgarcia.co/",
+          "https://www.google.com/maps/place/Jack+Garcia+%26+Co./@27.698638,-83.804601,7z/data=!3m1!4b1!4m6!3m5!1s0x27ace56edb23204f:0x731de65368019cc4!8m2!3d27.698638!4d-83.804601!16s%2Fg%2F11y_zf646_?entry=ttu"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+    <script>
+      const isLocalDevelopment = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
+      if ('serviceWorker' in navigator && location.protocol === 'https:' && !isLocalDevelopment) {
+        window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
+      }
+    </script>
+  </body>
 </html>

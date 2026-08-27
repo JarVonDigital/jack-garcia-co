@@ -28,9 +28,7 @@ describe('App', () => {
 
     const compiled = fixture.nativeElement as HTMLElement;
 
-    expect(compiled.querySelector('.hero-title')?.textContent).toContain(
-      'Florida wedding and portrait photography',
-    );
+    expect(compiled.querySelector('#hero-title')?.textContent).toContain('Timeless imagery');
   });
 
   it('renders the footer with the current copyright year', () => {
@@ -39,7 +37,7 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const footerText = compiled.querySelector('.site-footer')?.textContent ?? '';
 
-    expect(footerText).toContain(`${new Date().getFullYear()} Jack Garcia Co.`);
+    expect(footerText).toContain(`${new Date().getFullYear()} Jack Garcia & Co.`);
     expect(footerText).toContain('JarVonDigital LLC');
   });
 
@@ -48,6 +46,6 @@ describe('App', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    expect(compiled.querySelector('.topbar-cta')?.textContent).toContain('Inquire today');
+    expect(compiled.querySelector('.nav-cta')?.textContent).toContain('Inquire now');
   });
 });

@@ -1,16 +1,24 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRouteSnapshot, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SiteFooterComponent } from './shared/site-footer.component';
 import { SiteHeaderComponent } from './shared/site-header.component';
 import { IconComponent } from './shared/icon.component';
 
 type InstagramImage = { src: string; alt: string };
+type SeoMetadata = { title: string; description: string };
 
 @Component({
   selector: 'app-root',
-  imports: [ReactiveFormsModule, RouterOutlet, IconComponent, SiteFooterComponent, SiteHeaderComponent],
+  imports: [
+    ReactiveFormsModule,
+    RouterOutlet,
+    IconComponent,
+    SiteFooterComponent,
+    SiteHeaderComponent,
+  ],
   templateUrl: './app.html',
   styleUrls: ['./app.scss', './layout-updates.scss'],
 })
@@ -18,6 +26,7 @@ export class App implements OnInit {
   protected readonly submitted = signal(false);
   protected readonly submitting = signal(false);
   protected readonly submissionError = signal(false);
+  protected readonly isAboutPage = signal(false);
   protected readonly isWeddingPackagesPage = signal(false);
   protected readonly isHomePage = signal(true);
   protected readonly instagramImages = signal<InstagramImage[]>([
@@ -55,6 +64,7 @@ export class App implements OnInit {
       nonNullable: true,
       validators: [Validators.requiredTrue],
     }),
+    website: new FormControl('', { nonNullable: true }),
   });
   protected readonly services = [
     {
@@ -72,8 +82,8 @@ export class App implements OnInit {
       number: '02',
       title: 'Couples',
       description: 'Warm, natural photographs for the season you are in.',
-      action: 'View wedding packages',
-      link: '/wedding-packages',
+      action: 'Start an inquiry',
+      link: '#inquire',
       image: '/images/jack-garcia-couples-service.jpg',
       srcSet:
         '/images/responsive/jack-garcia-couples-service-960.jpg 720w, /images/responsive/jack-garcia-couples-service-1600.jpg 1200w, /images/jack-garcia-couples-service.jpg 3072w',
@@ -83,8 +93,8 @@ export class App implements OnInit {
       number: '03',
       title: 'Lifestyle',
       description: 'Graduates, families, and milestones worth remembering.',
-      action: 'View wedding packages',
-      link: '/wedding-packages',
+      action: 'Start an inquiry',
+      link: '#inquire',
       image: '/images/jack-garcia-graduation-service.jpg',
       srcSet:
         '/images/responsive/jack-garcia-graduation-service-960.jpg 720w, /images/responsive/jack-garcia-graduation-service-1600.jpg 1200w, /images/jack-garcia-graduation-service.jpg 3072w',
@@ -95,9 +105,12 @@ export class App implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly viewportScroller: ViewportScroller,
+    private readonly title: Title,
+    private readonly meta: Meta,
   ) {
     this.viewportScroller.setOffset([0, 88]);
-    this.syncPageFromRoute(this.router.url);
+    const initialUrl = typeof window === 'undefined' ? this.router.url : window.location.pathname;
+    this.syncPageFromRoute(initialUrl);
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) this.syncPageFromRoute(event.urlAfterRedirects);
     });
@@ -110,7 +123,23 @@ export class App implements OnInit {
   private syncPageFromRoute(url: string): void {
     const path = url.split(/[?#]/, 1)[0].replace(/\/+$/, '') || '/';
     this.isHomePage.set(path === '/');
+    this.isAboutPage.set(path === '/about');
     this.isWeddingPackagesPage.set(path === '/wedding-packages');
+    this.updateSeoMetadata();
+  }
+
+  private updateSeoMetadata(): void {
+    let route: ActivatedRouteSnapshot = this.router.routerState.snapshot.root;
+    while (route.firstChild) route = route.firstChild;
+    const seo = route.data['seo'] as SeoMetadata | undefined;
+    if (!seo) return;
+
+    this.title.setTitle(seo.title);
+    this.meta.updateTag({ name: 'description', content: seo.description });
+    this.meta.updateTag({ property: 'og:title', content: seo.title });
+    this.meta.updateTag({ property: 'og:description', content: seo.description });
+    this.meta.updateTag({ name: 'twitter:title', content: seo.title });
+    this.meta.updateTag({ name: 'twitter:description', content: seo.description });
   }
 
   protected loadInstagramFeed(): void {
@@ -132,6 +161,12 @@ export class App implements OnInit {
       return;
     }
     const form = this.inquiryForm.getRawValue();
+    if (form.website) {
+      this.submitted.set(true);
+      this.inquiryForm.reset();
+      return;
+    }
+
     this.submitting.set(true);
     this.submissionError.set(false);
 
@@ -150,14 +185,21 @@ export class App implements OnInit {
           _subject: `New ${form.service} inquiry from ${form.name}`,
           _replyto: form.email,
           _template: 'table',
-          _honey: '',
+          _honey: form.website,
         }),
       });
       const result: unknown = await response.json().catch(() => null);
-      if (!response.ok || (typeof result === 'object' && result !== null && 'success' in result && result.success === false)) {
+      if (
+        !response.ok ||
+        (typeof result === 'object' &&
+          result !== null &&
+          'success' in result &&
+          result.success === false)
+      ) {
         throw new Error('Inquiry delivery failed');
       }
       this.submitted.set(true);
+      this.inquiryForm.reset();
     } catch {
       this.submissionError.set(true);
     } finally {

@@ -196,7 +196,10 @@ const JackGarciaPreset = definePreset(Aura, {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes, withInMemoryScrolling({ anchorScrolling: 'enabled' })),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'top' }),
+    ),
     provideAnimationsAsync(),
     providePrimeNG({
       ripple: false,

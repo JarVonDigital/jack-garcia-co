@@ -58,6 +58,17 @@
   padding: 0.85rem 1rem;
 }
 
+@media (min-width: 801px) {
+  .site-header nav .nav-page-link {
+    order: 2;
+  }
+
+  .site-header nav .nav-cta {
+    margin-left: auto;
+    order: 3;
+  }
+}
+
 .nav-cta app-icon {
   margin-left: 1rem;
 }

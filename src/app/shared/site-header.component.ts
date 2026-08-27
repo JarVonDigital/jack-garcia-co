@@ -7,8 +7,14 @@ import { IconComponent } from './icon.component';
   selector: 'app-site-header',
   imports: [IconComponent, RouterLink],
   template: `
-    <header class="site-header" [class.menu-open]="menuOpen()" [class.scrolled]="scrolled() || forceSolid">
-      <a class="brand" routerLink="/" aria-label="Jack Garcia and Co. home">Jack Garcia <i>&amp; Co.</i></a>
+    <header
+      class="site-header"
+      [class.menu-open]="menuOpen()"
+      [class.scrolled]="scrolled() || forceSolid"
+    >
+      <a class="brand" routerLink="/" aria-label="Jack Garcia and Co. home"
+        >Jack Garcia <i>&amp; Co.</i></a
+      >
       <button
         class="menu-toggle"
         type="button"
@@ -19,18 +25,22 @@ import { IconComponent } from './icon.component';
         <span></span><span></span><span class="sr-only">Toggle navigation</span>
       </button>
       <nav id="site-nav" aria-label="Primary navigation">
-        <a routerLink="/" (click)="closeMenu()">Home</a><a routerLink="/" fragment="services" (click)="closeMenu()"
-          >Services</a
+        <a routerLink="/" (click)="closeMenu()">Home</a
+        ><a routerLink="/" fragment="services" (click)="closeMenu()">Services</a
         ><a routerLink="/" fragment="testimonials" (click)="closeMenu()">Kind words</a
-        ><a routerLink="/wedding-packages" (click)="closeMenu()">Investment</a
         ><a class="nav-cta" routerLink="/" fragment="inquire" (click)="closeMenu()"
-          >Inquire now <app-icon name="arrow-up-right" aria-hidden="true" /></a
-        >
+          >Inquire now <app-icon name="arrow-up-right" aria-hidden="true"
+        /></a
+        ><a class="nav-page-link" routerLink="/about" (click)="closeMenu()">About</a
+        ><a class="nav-page-link" routerLink="/wedding-packages" (click)="closeMenu()">Investment</a>
       </nav>
     </header>
   `,
   styleUrl: './site-header.component.scss',
-  host: { '(window:scroll)': 'onWindowScroll()' },
+  host: {
+    '(window:scroll)': 'onWindowScroll()',
+    '(document:keydown.escape)': 'closeMenu()',
+  },
 })
 export class SiteHeaderComponent {
   @Input() forceSolid = false;

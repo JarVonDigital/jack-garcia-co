@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { IconComponent } from '../shared/icon.component';
 
 @Component({
   standalone: true,
-  imports: [RouterLink],
+  imports: [IconComponent, RouterLink],
   templateUrl: './about-page.component.html',
-  styleUrls: ['./page-styles.scss', './about-page.component.scss'],
+  styleUrl: './about-page.component.scss',
 })
 export class AboutPageComponent {}

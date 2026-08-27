@@ -43,7 +43,6 @@ import { IconComponent } from '../shared/icon.component';
               <p class="collection-summary">Elopements, courthouse weddings &amp; short celebrations</p>
               <ul>
                 <li>3 consecutive hours of coverage</li>
-                <li>3 wedding moments of your choice</li>
                 <li>Online gallery of high-resolution images</li>
               </ul>
               <p class="collection-price"><span>Starting at</span>$800</p>
@@ -71,6 +70,7 @@ import { IconComponent } from '../shared/icon.component';
                 <li>10 hours of wedding coverage</li>
                 <li>1-hour engagement session</li>
                 <li>Second photographer included</li>
+                <li>Online gallery of high-resolution images</li>
               </ul>
               <p class="collection-price"><span>Starting at</span>$2,600</p>
               <a class="text-link" href="/#inquire">Inquire about this collection <app-icon name="arrow-up-right" aria-hidden="true" /></a>
@@ -87,7 +87,7 @@ import { IconComponent } from '../shared/icon.component';
             <strong>$400</strong>
           </div>
           <div class="package-rule"></div>
-          <p class="packages-includes">Includes up to 1 hour of photography.</p>
+          <p class="packages-includes">Includes up to 1 hour of photography or 1 wedding moment.</p>
           <p class="packages-note">
             Moment coverage is designed for short, specific portions of your celebration. For
             continuous or extended coverage, additional hourly coverage applies.
@@ -95,7 +95,7 @@ import { IconComponent } from '../shared/icon.component';
 
           <div class="packages-heading-row packages-heading-row-spaced">
             <h2>Add moments</h2>
-            <strong>$250 each</strong>
+            <strong>$200 each</strong>
           </div>
           <div class="package-rule"></div>
           <ul class="moments-list">
@@ -115,18 +115,18 @@ import { IconComponent } from '../shared/icon.component';
           <dl class="enhancements-list">
             <div>
               <dt>Extra hour of coverage</dt>
-              <dd>$250/hr</dd>
+              <dd>$225/hr</dd>
             </div>
             <div>
               <dt>Second photographer</dt>
-              <dd>$400</dd>
+              <dd>$350</dd>
             </div>
             <div>
-              <dt>Disposable film camera</dt>
-              <dd>$100</dd>
+              <dt>Drone coverage</dt>
+              <dd>$250</dd>
             </div>
             <div>
-              <dt>Instant film keepsakes</dt>
+              <dt>Polaroid pictures</dt>
               <dd>$50</dd>
             </div>
           </dl>
@@ -147,24 +147,41 @@ import { IconComponent } from '../shared/icon.component';
         <div class="content-creation-copy">
           <p class="kicker">Something extra</p>
           <h2 id="content-creation-title">Content creation, with all the <em>feeling.</em></h2>
-          <p>
+          <p class="content-creation-description">
             Real, phone-captured behind-the-scenes moments made for sharing. Raw clips arrive within
             24–48 hours, with edited Reels delivered in 2–4 days.
           </p>
           <dl class="content-creation-rates">
             <div>
               <dt>Non-wedding events</dt>
-              <dd>$100 / hour</dd>
+              <dd>$100/hr · 1-hour min.</dd>
             </div>
             <div>
-              <dt>Wedding coverage</dt>
-              <dd>From $300</dd>
+              <dt>Weddings</dt>
+              <dd>$100/hr · 2-hour min.</dd>
             </div>
             <div>
-              <dt>Full experience</dt>
-              <dd>$900 / 10 hours</dd>
+              <dt>3 hours · Basics</dt>
+              <dd>$300</dd>
+            </div>
+            <div>
+              <dt>5 hours · Most popular</dt>
+              <dd>$450</dd>
+            </div>
+            <div>
+              <dt>8 hours · Full day</dt>
+              <dd>$750</dd>
+            </div>
+            <div>
+              <dt>10 hours · Full experience</dt>
+              <dd>$900</dd>
             </div>
           </dl>
+          <p class="content-creation-bundle-note">
+            Discounted 5-, 8-, and 10-hour package pricing applies when content creation is booked
+            with a Jack Garcia &amp; Co. wedding photography collection. Bundle savings range from
+            $100–$200.
+          </p>
         </div>
       </section>
 
@@ -185,7 +202,7 @@ import { IconComponent } from '../shared/icon.component';
             <span>02</span>
             <div>
               <h3>Wherever your story is</h3>
-              <p>Florida-based and available anywhere. Travel fees may apply beyond one hour.</p>
+              <p>Florida-based and available anywhere. A $50 travel fee applies beyond one hour.</p>
             </div>
           </div>
           <div class="package-detail">

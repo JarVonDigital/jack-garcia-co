@@ -14,8 +14,15 @@
 }
 
 .site-main.is-packages-route,
+.site-main.is-about-route,
 .site-main.home-main {
   padding-top: 0;
+}
+
+.site-main.is-about-route {
+  flex: 0 0 100svh;
+  height: 100svh;
+  overflow: hidden;
 }
 
 @media (max-width: 800px) {
@@ -116,8 +123,7 @@
   width: 24px;
 }
 .hero {
-  background: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=2200&q=90')
-    center 42% / cover;
+  background: url('/images/responsive/jack-garcia-wedding-hero-1600.jpg') center 42% / cover;
   color: var(--color-neutral-0);
   display: flex;
   flex-direction: column;

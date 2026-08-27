@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [RouterLink],
+  imports: [ReactiveFormsModule, RouterLink],
   template: `
     <section class="page">
       <section class="hero hero-split inquire-hero">
@@ -11,14 +12,15 @@ import { RouterLink } from '@angular/router';
           <p class="eyebrow">Inquire</p>
           <h1>Share what you are planning and receive a thoughtful next step.</h1>
           <p class="lede">
-            Whether you are planning a wedding weekend, engagement session, family portraits, or graduation photos,
-            this is the place to share your date, location, and the feeling you want your gallery to hold.
+            Whether you are planning a wedding weekend, engagement session, family portraits, or
+            graduation photos, this is the place to share your date, location, and the feeling you
+            want your gallery to hold.
           </p>
 
           <div class="inquire-snapshot">
             <div>
-              <p class="testimonial-label">Response window</p>
-              <strong>Within two business days</strong>
+              <p class="testimonial-label">What to expect</p>
+              <strong>A personal reply from Jack</strong>
             </div>
             <div>
               <p class="testimonial-label">Based in</p>
@@ -41,16 +43,21 @@ import { RouterLink } from '@angular/router';
             </li>
             <li>
               <strong>Receive tailored guidance.</strong>
-              <span>Jack follows up with availability, collection recommendations, and next steps.</span>
+              <span
+                >Jack follows up with availability, collection recommendations, and next
+                steps.</span
+              >
             </li>
             <li>
               <strong>Move forward with confidence.</strong>
-              <span>Once the fit is right, you will receive booking details and planning support.</span>
+              <span
+                >Once the fit is right, you will receive booking details and planning support.</span
+              >
             </li>
           </ol>
           <p class="inquire-aside">
-            If your date is still flexible, share the season or timeframe you are considering and Jack can guide you
-            from there.
+            If your date is still flexible, share the season or timeframe you are considering and
+            Jack can guide you from there.
           </p>
         </article>
       </section>
@@ -62,86 +69,173 @@ import { RouterLink } from '@angular/router';
               <p class="eyebrow">Start your inquiry</p>
               <h2>Share the details that matter most.</h2>
               <p class="lede">
-                A little context goes a long way. The more you can share here, the easier it is to recommend coverage,
-                timing, and next steps that fit naturally.
+                A little context goes a long way. The more you can share here, the easier it is to
+                recommend coverage, timing, and next steps that fit naturally.
               </p>
             </div>
 
-            <form class="inquiry-form" novalidate (submit)="$event.preventDefault()">
+            <form
+              class="inquiry-form"
+              [formGroup]="inquiryForm"
+              novalidate
+              (ngSubmit)="sendInquiry()"
+            >
+              <p class="required-note">
+                Fields marked <span aria-hidden="true">*</span> are required.
+              </p>
+              <label class="honeypot-field" aria-hidden="true">
+                Leave this field empty
+                <input formControlName="website" tabindex="-1" autocomplete="off" />
+              </label>
+
               <div class="field-grid">
                 <label class="field-group">
-                  <span>Full name</span>
-                  <input class="text-input" type="text" name="fullName" autocomplete="name" required />
+                  <span>Full name <b aria-hidden="true">*</b></span>
+                  <input
+                    class="text-input"
+                    type="text"
+                    formControlName="name"
+                    autocomplete="name"
+                    required
+                  />
                 </label>
 
                 <label class="field-group">
-                  <span>Email address</span>
-                  <input class="text-input" type="email" name="email" autocomplete="email" required />
+                  <span>Email address <b aria-hidden="true">*</b></span>
+                  <input
+                    class="text-input"
+                    type="email"
+                    formControlName="email"
+                    autocomplete="email"
+                    required
+                  />
                 </label>
 
                 <label class="field-group">
-                  <span>Phone number</span>
-                  <input class="text-input" type="tel" name="phone" autocomplete="tel" />
+                  <span>Phone number <b aria-hidden="true">*</b></span>
+                  <input
+                    class="text-input"
+                    type="tel"
+                    formControlName="phone"
+                    autocomplete="tel"
+                    required
+                  />
                 </label>
 
                 <label class="field-group">
-                  <span>Service type</span>
-                  <select class="text-input" name="serviceType" required>
-                    <option value="" selected disabled>Select one</option>
-                    <option value="wedding">Wedding</option>
-                    <option value="engagement">Engagement</option>
-                    <option value="couples">Couples</option>
-                    <option value="families">Families</option>
-                    <option value="graduation">Graduation</option>
-                    <option value="brand">Brand or lifestyle</option>
-                    <option value="other">Other</option>
+                  <span>Service type <b aria-hidden="true">*</b></span>
+                  <select class="text-input" formControlName="service" required>
+                    <option value="" disabled>Select one</option>
+                    <option value="Wedding">Wedding</option>
+                    <option value="Engagement">Engagement</option>
+                    <option value="Couples">Couples</option>
+                    <option value="Families">Families</option>
+                    <option value="Graduation">Graduation</option>
+                    <option value="Brand or lifestyle">Brand or lifestyle</option>
+                    <option value="Other">Other</option>
                   </select>
                 </label>
 
                 <label class="field-group">
-                  <span>Date or timeframe</span>
-                  <input class="text-input" type="text" name="date" autocomplete="off" required />
+                  <span>Date or timeframe <b aria-hidden="true">*</b></span>
+                  <input
+                    class="text-input"
+                    type="text"
+                    formControlName="date"
+                    autocomplete="off"
+                    required
+                  />
                 </label>
 
                 <label class="field-group">
-                  <span>Location or venue</span>
-                  <input class="text-input" type="text" name="location" autocomplete="address-level2" required />
+                  <span>Location or venue <b aria-hidden="true">*</b></span>
+                  <input
+                    class="text-input"
+                    type="text"
+                    formControlName="location"
+                    autocomplete="address-level2"
+                    required
+                  />
                 </label>
 
                 <label class="field-group">
                   <span>Estimated coverage or budget range</span>
-                  <select class="text-input" name="budget">
-                    <option value="" selected disabled>Select one</option>
-                    <option value="under-500">Under $500</option>
-                    <option value="500-1200">$500-$1,200</option>
-                    <option value="1200-2500">$1,200-$2,500</option>
-                    <option value="2500-plus">$2,500+</option>
-                    <option value="not-sure">Not sure yet</option>
+                  <select class="text-input" formControlName="budget">
+                    <option value="">Select one</option>
+                    <option value="Under $500">Under $500</option>
+                    <option value="$500-$1,200">$500-$1,200</option>
+                    <option value="$1,200-$2,500">$1,200-$2,500</option>
+                    <option value="$2,500+">$2,500+</option>
+                    <option value="Not sure yet">Not sure yet</option>
                   </select>
                 </label>
 
                 <label class="field-group">
                   <span>How did you hear about Jack?</span>
-                  <input class="text-input" type="text" name="referralSource" autocomplete="off" />
+                  <input
+                    class="text-input"
+                    type="text"
+                    formControlName="referralSource"
+                    autocomplete="off"
+                  />
                 </label>
               </div>
 
               <label class="field-group field-group-full">
-                <span>What are you planning?</span>
-                <textarea class="text-input textarea-input" name="details" rows="6" required></textarea>
+                <span>What are you planning? <b aria-hidden="true">*</b></span>
+                <textarea
+                  class="text-input textarea-input"
+                  formControlName="details"
+                  rows="6"
+                  required
+                ></textarea>
               </label>
 
               <label class="field-group field-group-full">
                 <span>Anything else Jack should know?</span>
-                <textarea class="text-input textarea-input textarea-compact" name="notes" rows="4"></textarea>
+                <textarea
+                  class="text-input textarea-input textarea-compact"
+                  formControlName="notes"
+                  rows="4"
+                ></textarea>
               </label>
+
+              @if (inquiryForm.touched && inquiryForm.invalid) {
+                <p class="submission-message submission-error" role="alert">
+                  Please complete the required fields and enter a valid email address.
+                </p>
+              }
+
+              @if (submitted()) {
+                <p class="submission-message submission-success" role="status">
+                  Your inquiry has been sent. Thank you — Jack will be in touch soon.
+                </p>
+              }
+
+              @if (submissionError()) {
+                <p class="submission-message submission-error" role="alert">
+                  Your inquiry could not be sent. Please try again or email
+                  <a href="mailto:jdgimages06@gmail.com">jdgimages06@gmail.com</a>.
+                </p>
+              }
 
               <div class="form-footer">
                 <p class="form-note">
-                  Helpful details include the atmosphere you want, any portrait priorities, family dynamics to be aware
-                  of, and anything that would make the experience feel easy and personal.
+                  Helpful details include the atmosphere you want, any portrait priorities, family
+                  dynamics to be aware of, and anything that would make the experience feel easy and
+                  personal.
                 </p>
-                <button class="button-link button-link-primary form-submit" type="submit">Send inquiry</button>
+                <button
+                  class="button-link button-link-primary form-submit"
+                  type="submit"
+                  [disabled]="submitting()"
+                >
+                  @if (submitting()) {
+                    Sending inquiry…
+                  } @else {
+                    Send inquiry
+                  }
+                </button>
               </div>
             </form>
           </div>
@@ -162,8 +256,8 @@ import { RouterLink } from '@angular/router';
               <p class="eyebrow">Availability</p>
               <h3>Planning ahead always helps.</h3>
               <p>
-                Weddings and destination dates tend to book furthest in advance, while portrait sessions often have
-                more flexibility when schedules align.
+                Weddings and destination dates tend to book furthest in advance, while portrait
+                sessions often have more flexibility when schedules align.
               </p>
             </article>
 
@@ -171,12 +265,16 @@ import { RouterLink } from '@angular/router';
               <p class="eyebrow">Need context first</p>
               <h3>Not sure which collection fits your plans?</h3>
               <p>
-                That is completely fine. Share the vision you have so far and Jack can recommend the coverage level
-                that makes the most sense.
+                That is completely fine. Share the vision you have so far and Jack can recommend the
+                coverage level that makes the most sense.
               </p>
               <div class="button-row">
-                <a class="button-link button-link-secondary" routerLink="/" fragment="services">Review services</a>
-                <a class="button-link button-link-secondary" routerLink="/" fragment="testimonials">Read reviews</a>
+                <a class="button-link button-link-secondary" routerLink="/" fragment="services"
+                  >Review services</a
+                >
+                <a class="button-link button-link-secondary" routerLink="/" fragment="testimonials"
+                  >Read reviews</a
+                >
               </div>
             </article>
           </div>
@@ -186,11 +284,17 @@ import { RouterLink } from '@angular/router';
       <section class="cta-banner">
         <div>
           <p class="eyebrow">Still exploring</p>
-          <h2>Review services and client feedback, then come back when you are ready to reach out.</h2>
+          <h2>
+            Review services and client feedback, then come back when you are ready to reach out.
+          </h2>
         </div>
         <div class="button-row">
-          <a class="button-link button-link-secondary" routerLink="/" fragment="services">Review services</a>
-          <a class="button-link button-link-secondary" routerLink="/" fragment="testimonials">Read reviews</a>
+          <a class="button-link button-link-secondary" routerLink="/" fragment="services"
+            >Review services</a
+          >
+          <a class="button-link button-link-secondary" routerLink="/" fragment="testimonials"
+            >Read reviews</a
+          >
         </div>
       </section>
     </section>
@@ -295,8 +399,7 @@ import { RouterLink } from '@angular/router';
         gap: 1.5rem;
         background:
           radial-gradient(circle at top right, rgba(228, 232, 220, 0.9), transparent 26%),
-          linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent 30%),
-          var(--paper-soft);
+          linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent 30%), var(--paper-soft);
       }
 
       .inquiry-form-header {
@@ -306,6 +409,25 @@ import { RouterLink } from '@angular/router';
       .inquiry-form {
         display: grid;
         gap: 1rem;
+      }
+
+      .required-note {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 0.82rem;
+      }
+
+      .required-note span,
+      .field-group b {
+        color: #8a4435;
+      }
+
+      .honeypot-field {
+        position: absolute;
+        left: -10000px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
       }
 
       .field-grid {
@@ -354,6 +476,10 @@ import { RouterLink } from '@angular/router';
         background: rgba(255, 255, 255, 0.92);
       }
 
+      .text-input.ng-invalid.ng-touched {
+        border-color: #9d4e3c;
+      }
+
       .textarea-input {
         min-height: 10rem;
         resize: vertical;
@@ -383,6 +509,28 @@ import { RouterLink } from '@angular/router';
         cursor: pointer;
         width: auto;
         font-family: inherit;
+      }
+
+      .form-submit:disabled {
+        cursor: wait;
+        opacity: 0.68;
+      }
+
+      .submission-message {
+        margin: 0;
+        padding: 0.9rem 1rem;
+        border: 1px solid currentColor;
+        line-height: 1.6;
+      }
+
+      .submission-error {
+        color: #783f32;
+        background: rgba(180, 91, 69, 0.08);
+      }
+
+      .submission-success {
+        color: var(--olive-800);
+        background: rgba(88, 101, 77, 0.1);
       }
 
       .sidebar-stack {
@@ -416,4 +564,93 @@ import { RouterLink } from '@angular/router';
     `,
   ],
 })
-export class InquirePageComponent {}
+export class InquirePageComponent {
+  protected readonly submitted = signal(false);
+  protected readonly submitting = signal(false);
+  protected readonly submissionError = signal(false);
+  protected readonly inquiryForm = new FormGroup({
+    name: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(2)],
+    }),
+    email: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
+    }),
+    phone: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(7)],
+    }),
+    service: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    date: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    location: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(2)],
+    }),
+    budget: new FormControl('', { nonNullable: true }),
+    referralSource: new FormControl('', { nonNullable: true }),
+    details: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(10)],
+    }),
+    notes: new FormControl('', { nonNullable: true }),
+    website: new FormControl('', { nonNullable: true }),
+  });
+
+  protected async sendInquiry(): Promise<void> {
+    this.submitted.set(false);
+    this.submissionError.set(false);
+
+    if (this.inquiryForm.invalid) {
+      this.inquiryForm.markAllAsTouched();
+      return;
+    }
+
+    const form = this.inquiryForm.getRawValue();
+    if (form.website) {
+      this.submitted.set(true);
+      this.inquiryForm.reset();
+      return;
+    }
+
+    this.submitting.set(true);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/jdgimages06@gmail.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone || 'Not provided',
+          service: form.service,
+          date: form.date,
+          location: form.location,
+          budget: form.budget || 'Not provided',
+          referral_source: form.referralSource || 'Not provided',
+          details: form.details,
+          notes: form.notes || 'None',
+          _subject: `New ${form.service} inquiry from ${form.name}`,
+          _replyto: form.email,
+          _template: 'table',
+          _honey: form.website,
+        }),
+      });
+      const result: unknown = await response.json().catch(() => null);
+      const rejectedByProvider =
+        typeof result === 'object' &&
+        result !== null &&
+        'success' in result &&
+        result.success === false;
+
+      if (!response.ok || rejectedByProvider) throw new Error('Inquiry delivery failed');
+
+      this.submitted.set(true);
+      this.inquiryForm.reset();
+    } catch {
+      this.submissionError.set(true);
+    } finally {
+      this.submitting.set(false);
+    }
+  }
+}

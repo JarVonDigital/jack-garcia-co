@@ -393,10 +393,15 @@
   line-height: 0.98;
   margin: 0;
 }
-.content-creation-copy > p:last-of-type {
+.content-creation-description,
+.content-creation-bundle-note {
   color: var(--page-muted);
   line-height: 1.75;
   margin: 1.5rem 0 0;
+}
+
+.content-creation-bundle-note {
+  font-size: 0.86rem;
 }
 .content-creation-rates {
   border-bottom: 1px solid var(--page-line);

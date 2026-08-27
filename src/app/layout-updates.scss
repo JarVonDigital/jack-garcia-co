@@ -1,13 +1,15 @@
 .site-header {
   background: transparent;
   position: fixed;
-  transition: background-color .25s ease, box-shadow .25s ease;
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
   z-index: 10;
 }
 
 .site-header.scrolled {
-  background: rgba(37, 53, 44, .96);
-  box-shadow: 0 1px 0 rgba(197, 207, 193, .24);
+  background: rgba(37, 53, 44, 0.96);
+  box-shadow: 0 1px 0 rgba(197, 207, 193, 0.24);
 }
 
 /* The supplied logo is dark, so the fixed hero navigation uses a light treatment. */
@@ -19,47 +21,106 @@
   width: 176px;
 }
 
-.site-header .brand { filter: invert(66%) sepia(18%) saturate(744%) hue-rotate(354deg) brightness(88%) contrast(89%); }
-.site-footer .brand { filter: none; font-size: 0; height: 44px; width: 150px; }
-section[id] { scroll-margin-top: 88px; }
+.site-header .brand {
+  filter: invert(66%) sepia(18%) saturate(744%) hue-rotate(354deg) brightness(88%) contrast(89%);
+}
+.site-footer .brand {
+  filter: none;
+  font-size: 0;
+  height: 44px;
+  width: 150px;
+}
+section[id] {
+  scroll-margin-top: 88px;
+}
 
 .inquire form {
-  background: rgba(37, 53, 44, .22);
-  border: 1px solid rgba(221, 227, 216, .4);
+  background: rgba(37, 53, 44, 0.22);
+  border: 1px solid rgba(221, 227, 216, 0.4);
   padding: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.inquire input::placeholder, .inquire textarea::placeholder { color: var(--color-green-200); opacity: .72; }
-.inquire input, .inquire select, .inquire textarea { border-bottom-color: var(--color-green-100); }
-.service-picker { background: rgba(197, 207, 193, .13); border: 1px solid rgba(221, 227, 216, .35); padding: 1rem; }
-.service-picker select { font-size: 1.05rem; }
-.wedding-fields { border-left: 2px solid var(--color-accent-brass-500); display: grid; gap: 1.3rem; padding-left: 1rem; }
-.wedding-fields > p { color: var(--color-green-100); font-family: Cinzel, Georgia, serif; font-size: .75rem; letter-spacing: .14em; margin: 0; text-transform: uppercase; }
+.inquire input::placeholder,
+.inquire textarea::placeholder {
+  color: var(--color-green-200);
+  opacity: 0.72;
+}
+.inquire input,
+.inquire select,
+.inquire textarea {
+  border-bottom-color: var(--color-green-100);
+}
+.service-picker {
+  background: rgba(197, 207, 193, 0.13);
+  border: 1px solid rgba(221, 227, 216, 0.35);
+  padding: 1rem;
+}
+.service-picker select {
+  font-size: 1.05rem;
+}
+.wedding-fields {
+  border-left: 2px solid var(--color-accent-brass-500);
+  display: grid;
+  gap: 1.3rem;
+  padding-left: 1rem;
+}
+.wedding-fields > p {
+  color: var(--color-green-100);
+  font-family: Cinzel, Georgia, serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  margin: 0;
+  text-transform: uppercase;
+}
 
-.intro h2 em, .services h2 em, .pricing h2 em, .content-creation h2 em { color: var(--color-green-600); }
-.testimonials h2 em { color: var(--color-green-800); }
-
-@media (max-width: 700px) {
-  .hero-bottom span:last-child { display: none; }
+.intro h2 em,
+.services h2 em,
+.pricing h2 em,
+.content-creation h2 em {
+  color: var(--color-green-600);
+}
+.testimonials h2 em {
+  color: var(--color-green-800);
 }
 
 @media (max-width: 640px) {
-  .site-footer { align-items: center; flex-direction: row; flex-wrap: nowrap; gap: .65rem; justify-content: space-between; min-height: 82px; padding-block: .75rem; }
-  .site-footer .brand { flex: 0 0 120px; height: 38px; width: 120px; }
-  .site-footer span { font-size: .56rem; letter-spacing: .07em; }
-  .site-footer a:not(.brand) { font-size: .56rem; }
+  .site-footer {
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.65rem;
+    justify-content: space-between;
+    min-height: 82px;
+    padding-block: 0.75rem;
+  }
+  .site-footer .brand {
+    flex: 0 0 120px;
+    height: 38px;
+    width: 120px;
+  }
+  .site-footer span {
+    font-size: 0.56rem;
+    letter-spacing: 0.07em;
+  }
+  .site-footer a:not(.brand) {
+    font-size: 0.56rem;
+  }
 }
 
 @media (max-width: 440px) {
-  .site-footer span:first-of-type { display: none; }
+  .site-footer span:first-of-type {
+    display: none;
+  }
 }
 
-.testimonials { background: var(--color-green-100); }
+.testimonials {
+  background: var(--color-green-100);
+}
 
 .testimonials h2 {
   font-size: clamp(2.6rem, 5.2vw, 5.6rem);
-  letter-spacing: -.08em;
-  line-height: .98;
+  letter-spacing: -0.08em;
+  line-height: 0.98;
   margin: 0;
   max-width: 850px;
 }
@@ -69,6 +130,22 @@ section[id] { scroll-margin-top: 88px; }
   gap: 1px;
   grid-template-columns: 1fr 1fr;
   margin-top: 4rem;
+}
+
+/* Compact, scroll-snapped cards keep more reviews available without extending the section. */
+.testimonial-grid {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  max-width: 980px;
+  overflow-x: auto;
+  padding: 0.25rem 0.25rem 1rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+.testimonial-grid figure {
+  flex: 0 0 min(82%, 430px);
+  scroll-snap-align: start;
 }
 
 .testimonial-grid figure {
@@ -83,26 +160,39 @@ section[id] { scroll-margin-top: 88px; }
 .testimonial-grid blockquote {
   font-family: Cinzel, Georgia, serif;
   font-size: clamp(1.35rem, 2.1vw, 2rem);
-  letter-spacing: -.05em;
+  letter-spacing: -0.05em;
   line-height: 1.45;
   margin: 0;
 }
 
 .testimonial-grid figcaption {
   color: var(--page-muted);
-  font-size: .68rem;
-  letter-spacing: .13em;
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
   margin-top: auto;
   padding-top: 2rem;
   text-transform: uppercase;
 }
 
-.testimonial-note { color: var(--page-muted); font-size: .72rem; line-height: 1.5; margin: 1.25rem 0 0; }
-.testimonial-grid .text-link { align-self: flex-start; margin-top: 1.25rem; }
+.testimonial-note {
+  color: var(--page-muted);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  margin: 1.25rem 0 0;
+}
+.testimonial-grid .text-link {
+  align-self: flex-start;
+  margin-top: 1.25rem;
+}
 
-.hero { background-image: url('/images/jack-garcia-wedding-hero.jpg'); background-position: center 58%; }
+.hero {
+  background-image: url('/images/jack-garcia-wedding-hero.jpg');
+  background-position: center 58%;
+}
 
-.gallery-section { background: var(--color-neutral-50); }
+.gallery-section {
+  background: var(--color-neutral-50);
+}
 
 .gallery-heading {
   align-items: end;
@@ -114,124 +204,218 @@ section[id] { scroll-margin-top: 88px; }
 
 .gallery-heading h2 {
   font-size: clamp(2.6rem, 5.2vw, 5.6rem);
-  letter-spacing: -.08em;
-  line-height: .98;
+  letter-spacing: -0.08em;
+  line-height: 0.98;
   margin: 0;
   max-width: 760px;
 }
 
 .portfolio-gallery {
   display: grid;
-  gap: clamp(.75rem, 1.5vw, 1.35rem);
-  grid-template-columns: 1.1fr .8fr 1fr;
+  gap: clamp(0.75rem, 1.5vw, 1.35rem);
+  grid-template-columns: 1.1fr 0.8fr 1fr;
 }
 
-.portfolio-gallery figure { margin: 0; overflow: hidden; }
+.portfolio-gallery figure {
+  margin: 0;
+  overflow: hidden;
+}
 
 .portfolio-gallery img {
   display: block;
   height: 100%;
   object-fit: cover;
-  transition: transform .6s ease;
+  transition: transform 0.6s ease;
   width: 100%;
 }
 
-.portfolio-gallery figure:hover img { transform: scale(1.035); }
-.gallery-chapel { aspect-ratio: .77; }
-.gallery-greenhouse { aspect-ratio: .7; margin-top: clamp(2.5rem, 7vw, 7rem) !important; }
-.gallery-graduate { aspect-ratio: .77; }
-.gallery-ring { aspect-ratio: .77; }
-.gallery-walk { aspect-ratio: .72; }
-.gallery-portrait { aspect-ratio: .77; }
+.portfolio-gallery figure:hover img {
+  transform: scale(1.035);
+}
+.gallery-feed-item-0 {
+  aspect-ratio: 0.77;
+  grid-row: span 2;
+}
+.gallery-feed-item-1 {
+  aspect-ratio: 1;
+}
+.gallery-feed-item-2 {
+  aspect-ratio: 1;
+}
+.gallery-feed-item-3 {
+  aspect-ratio: 0.9;
+}
+.gallery-feed-item-4 {
+  aspect-ratio: 1;
+}
+.gallery-feed-item-5 {
+  aspect-ratio: 0.9;
+}
+.gallery-greenhouse {
+  aspect-ratio: 0.7;
+  margin-top: clamp(2.5rem, 7vw, 7rem) !important;
+}
+.gallery-graduate {
+  aspect-ratio: 0.77;
+}
+.gallery-ring {
+  aspect-ratio: 0.77;
+}
+.gallery-walk {
+  aspect-ratio: 0.72;
+}
+.gallery-portrait {
+  aspect-ratio: 0.77;
+}
 
 @media (max-width: 800px) {
-  .testimonial-grid { grid-template-columns: 1fr; }
-  .gallery-heading { align-items: start; flex-direction: column; }
-  .gallery-heading .text-link { margin-top: 0; }
-  .portfolio-gallery { grid-template-columns: 1fr 1fr; }
-  .gallery-chapel { grid-row: span 2; }
-  .gallery-graduate { align-self: start; }
+  .gallery-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+  .gallery-heading .text-link {
+    margin-top: 0;
+  }
+  .portfolio-gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+  .gallery-feed-item-0 {
+    grid-row: span 2;
+  }
+  .gallery-graduate {
+    align-self: start;
+  }
 }
 
 @media (max-width: 540px) {
-  .portfolio-gallery { grid-template-columns: 1fr; }
-  .gallery-chapel { grid-row: auto; }
-  .gallery-greenhouse { margin-top: 0 !important; }
+  .portfolio-gallery {
+    display: flex;
+    gap: 0.9rem;
+    margin-right: calc(clamp(1.25rem, 4vw, 4.5rem) * -1);
+    overflow-x: auto;
+    padding-right: clamp(1.25rem, 4vw, 4.5rem);
+    scroll-padding-inline: 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+  .portfolio-gallery figure {
+    aspect-ratio: 0.78 !important;
+    flex: 0 0 min(76vw, 320px);
+    scroll-snap-align: start;
+  }
+  .gallery-feed-item-0 {
+    grid-row: auto;
+  }
+  .gallery-greenhouse {
+    margin-top: 0 !important;
+  }
 }
 
 /* Keep testimonial credits aligned even when the review lengths differ. */
-.testimonial-grid blockquote { order: 1; }
-.testimonial-grid .text-link { order: 2; }
-.testimonial-grid figcaption { margin-top: auto; order: 3; padding-top: 1.5rem; }
+.testimonial-grid blockquote {
+  order: 1;
+}
+.testimonial-grid .text-link {
+  order: 2;
+}
+.testimonial-grid figcaption {
+  margin-top: auto;
+  order: 3;
+  padding-top: 1.5rem;
+}
 
 /* The header logo uses a brighter brass treatment for legibility over photography. */
 .site-header .brand {
-  filter: invert(79%) sepia(30%) saturate(460%) hue-rotate(355deg) brightness(98%) contrast(91%) drop-shadow(0 1px 1px rgba(37, 53, 44, .9));
+  filter: invert(79%) sepia(30%) saturate(460%) hue-rotate(355deg) brightness(98%) contrast(91%)
+    drop-shadow(0 1px 1px rgba(37, 53, 44, 0.9));
 }
 
-/* Keep the scroll invitation in a dedicated, centered second row. */
+/* Match the investment hero's two-label rail on the home page. */
 .hero-bottom {
   align-items: center;
-  display: grid;
-  gap: .7rem;
-  justify-items: center;
-}
-
-.hero-meta {
   display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-.hero-scroll { text-align: center; }
-
-@media (max-width: 540px) {
-  .hero-meta { gap: 0; }
+  justify-content: space-between;
 }
 
 .form-note {
   color: var(--color-green-100);
-  font-size: .68rem;
-  letter-spacing: .08em;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
   margin: 0;
 }
 
-.form-note span, label > span[aria-hidden='true'] { color: var(--color-accent-brass-500); }
-.inquire input[aria-invalid='true'], .inquire textarea[aria-invalid='true'] { border-bottom-color: var(--color-accent-brass-500); }
-.form-error { color: var(--color-neutral-0); font-size: .78rem; line-height: 1.5; margin: 0; }
+.form-note span,
+label > span[aria-hidden='true'] {
+  color: var(--color-accent-brass-500);
+}
+.inquire input[aria-invalid='true'],
+.inquire textarea[aria-invalid='true'] {
+  border-bottom-color: var(--color-accent-brass-500);
+}
+.form-error {
+  color: var(--color-neutral-0);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin: 0;
+}
 
 .human-check {
   align-items: center;
-  background: rgba(197, 207, 193, .1);
-  border: 1px solid rgba(221, 227, 216, .35);
+  background: rgba(197, 207, 193, 0.1);
+  border: 1px solid rgba(221, 227, 216, 0.35);
   cursor: pointer;
   display: flex;
-  gap: .8rem;
+  gap: 0.8rem;
   min-height: 58px;
-  padding: .65rem .8rem;
+  padding: 0.65rem 0.8rem;
   text-transform: none;
 }
 
-.human-check input { height: 1px; opacity: 0; position: absolute; width: 1px; }
+.human-check input {
+  height: 1px;
+  opacity: 0;
+  position: absolute;
+  width: 1px;
+}
 .human-check-mark {
   align-items: center;
   border: 1px solid var(--color-green-100);
   color: transparent;
   display: inline-flex;
-  font-size: .8rem;
+  font-size: 0.8rem;
   height: 20px;
   justify-content: center;
   width: 20px;
 }
-.human-check input:checked + .human-check-mark { background: var(--color-accent-brass-500); border-color: var(--color-accent-brass-500); color: var(--color-green-950); }
-.human-check input:focus-visible + .human-check-mark { outline: 2px solid var(--color-neutral-0); outline-offset: 3px; }
-.human-check b { color: var(--color-neutral-0); display: block; font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
-.human-check small { color: var(--color-green-100); display: block; font-size: .72rem; letter-spacing: 0; margin-top: .12rem; }
+.human-check input:checked + .human-check-mark {
+  background: var(--color-accent-brass-500);
+  border-color: var(--color-accent-brass-500);
+  color: var(--color-green-950);
+}
+.human-check input:focus-visible + .human-check-mark {
+  outline: 2px solid var(--color-neutral-0);
+  outline-offset: 3px;
+}
+.human-check b {
+  color: var(--color-neutral-0);
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.human-check small {
+  color: var(--color-green-100);
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0;
+  margin-top: 0.12rem;
+}
 
 /* Balance the inquiry composition with a subtle editorial information panel. */
 .inquiry-grid > div:first-child {
-  background: rgba(37, 53, 44, .13);
-  border: 1px solid rgba(221, 227, 216, .24);
+  background: rgba(37, 53, 44, 0.13);
+  border: 1px solid rgba(221, 227, 216, 0.24);
   display: flex;
   flex-direction: column;
   min-height: 100%;
@@ -242,18 +426,23 @@ section[id] { scroll-margin-top: 88px; }
 
 .inquiry-grid > div:first-child::after {
   bottom: -1.1rem;
-  color: rgba(197, 207, 193, .15);
+  color: rgba(197, 207, 193, 0.15);
   content: 'JG';
   font-family: Cinzel, Georgia, serif;
   font-size: clamp(6rem, 15vw, 14rem);
-  letter-spacing: -.14em;
-  line-height: .8;
+  letter-spacing: -0.14em;
+  line-height: 0.8;
   position: absolute;
   right: 1.25rem;
 }
 
-.inquiry-grid > div:first-child > * { position: relative; z-index: 1; }
+.inquiry-grid > div:first-child > * {
+  position: relative;
+  z-index: 1;
+}
 
 @media (max-width: 800px) {
-  .inquiry-grid > div:first-child { min-height: auto; }
+  .inquiry-grid > div:first-child {
+    min-height: auto;
+  }
 }

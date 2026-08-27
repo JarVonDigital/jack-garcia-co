@@ -1,0 +1,530 @@
+:host {
+  display: block;
+}
+
+.packages-page {
+  background: var(--color-neutral-50);
+  min-height: 100vh;
+}
+.shell {
+  margin-inline: auto;
+  max-width: 1400px;
+  padding-inline: clamp(1.25rem, 4vw, 4.5rem);
+}
+.packages-hero {
+  background: url('/images/jack-garcia-wedding-service.jpg') center 42% / cover;
+  color: var(--color-neutral-0);
+  display: flex;
+  flex-direction: column;
+  min-height: 780px;
+  min-height: 100svh;
+  position: relative;
+}
+.packages-hero-shade {
+  background: linear-gradient(
+    90deg,
+    rgba(28, 36, 29, 0.8),
+    rgba(28, 36, 29, 0.38) 54%,
+    rgba(28, 36, 29, 0.12)
+  );
+  inset: 0;
+  position: absolute;
+}
+.packages-hero-copy {
+  margin: auto;
+  padding-bottom: 5rem;
+  padding-top: 10rem;
+  position: relative;
+  width: 100%;
+}
+.kicker {
+  color: var(--color-green-800);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  margin: 0 0 1.5rem;
+  text-transform: uppercase;
+}
+.kicker::before {
+  background: currentColor;
+  content: '';
+  display: inline-block;
+  height: 1px;
+  margin: 0 0.7rem 0.2rem 0;
+  width: 28px;
+}
+.kicker.light {
+  color: var(--color-green-100);
+}
+.packages-hero h1 {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(3rem, 6.7vw, 6.6rem);
+  font-weight: 500;
+  letter-spacing: -0.08em;
+  line-height: 0.98;
+  margin: 0;
+  max-width: 900px;
+}
+.packages-hero h1 em,
+.packages-inquiry h2 em,
+.content-creation-copy h2 em {
+  color: var(--color-green-200);
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+.packages-hero-copy > p:last-of-type {
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.7;
+  max-width: 510px;
+}
+.button {
+  align-items: center;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.68rem;
+  gap: 2rem;
+  justify-content: space-between;
+  letter-spacing: 0.13em;
+  margin-top: 1.5rem;
+  padding: 1rem 1.2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 0.2s;
+}
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-3px);
+}
+.button-light {
+  background: var(--color-neutral-0);
+  color: var(--color-green-950);
+}
+.packages-hero-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  font-size: 0.62rem;
+  justify-content: space-between;
+  letter-spacing: 0.13em;
+  padding-bottom: 1.4rem;
+  padding-top: 1.4rem;
+  position: relative;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.wedding-collections {
+  background: var(--color-neutral-50);
+  padding-block: clamp(5rem, 10vw, 9rem);
+}
+.collections-heading {
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+  max-width: 660px;
+}
+.collections-heading h2 {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(2.6rem, 5.2vw, 5.6rem);
+  font-weight: 500;
+  letter-spacing: -0.08em;
+  line-height: 0.98;
+  margin: 0;
+}
+.collections-heading h2 em {
+  color: var(--color-green-600);
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+.collections-heading > p:last-child {
+  color: var(--page-muted);
+  line-height: 1.75;
+  margin: 1.5rem 0 0;
+  max-width: 570px;
+}
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.collection-card {
+  border: 1px solid var(--page-line);
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(650px, 44vw, 820px);
+  padding: clamp(2.75rem, 4.5vw, 5rem);
+}
+.collection-card-featured {
+  background: radial-gradient(circle at 58% 32%, #6c806b 0%, var(--color-green-600) 62%, #52614f 100%);
+  border-color: var(--color-green-600);
+  color: var(--color-neutral-0);
+}
+.collection-label {
+  color: var(--color-accent-brass-500);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  margin: 0 0 2.1rem;
+  text-transform: uppercase;
+}
+.collection-card-featured .collection-label {
+  color: var(--color-accent-brass-500);
+}
+.collection-card h3 {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(2rem, 2.8vw, 3.1rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 1;
+  margin: 0;
+}
+.collection-summary {
+  color: var(--page-muted);
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  line-height: 1.6;
+  margin: 1.7rem 0 3rem;
+  min-height: 3.2em;
+}
+.collection-card-featured .collection-summary {
+  color: var(--color-green-100);
+}
+.collection-card ul {
+  border-top: 1px solid var(--page-line);
+  list-style: none;
+  margin: 0;
+  padding: 2.4rem 0 0;
+}
+.collection-card li {
+  color: var(--page-muted);
+  font-size: clamp(0.92rem, 1.05vw, 1.12rem);
+  line-height: 1.5;
+  margin-bottom: 1.15rem;
+  padding-left: 2rem;
+  position: relative;
+}
+.collection-card li::before {
+  background: var(--color-accent-brass-500);
+  content: '';
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 0.75rem;
+  width: 0.85rem;
+}
+.collection-card-featured ul {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.collection-card-featured li {
+  color: var(--color-green-100);
+}
+.collection-price {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(2.5rem, 3.7vw, 4rem);
+  letter-spacing: -0.07em;
+  line-height: 1;
+  margin: auto 0 2.2rem;
+}
+.collection-price span {
+  display: block;
+  font-family: inherit;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  margin-bottom: 0.85rem;
+  text-transform: uppercase;
+}
+.collection-card .text-link {
+  align-items: center;
+  border: 1px solid var(--color-green-950);
+  color: inherit;
+  display: flex;
+  font-size: 0.7rem;
+  font-weight: 500;
+  justify-content: space-between;
+  letter-spacing: 0.14em;
+  padding: 1.25rem 1.8rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.collection-card .text-link:hover,
+.collection-card .text-link:focus-visible {
+  background: var(--color-green-950);
+  color: var(--color-neutral-0);
+}
+.collection-card-featured .text-link {
+  background: var(--color-green-950);
+  border-color: var(--color-green-950);
+}
+.collection-card-featured .text-link:hover,
+.collection-card-featured .text-link:focus-visible {
+  background: var(--color-neutral-0);
+  color: var(--color-green-950);
+}
+
+.packages-menu {
+  background: var(--color-green-600);
+  color: var(--color-neutral-0);
+  padding-block: clamp(3rem, 7vw, 6rem);
+}
+.packages-menu-inner {
+  max-width: 1120px;
+}
+.package-rule {
+  background: rgba(255, 255, 255, 0.52);
+  height: 1px;
+}
+.packages-heading-row {
+  align-items: baseline;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1.1rem 0;
+}
+.packages-heading-row h2,
+.enhancements-title {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(1.55rem, 3vw, 2.45rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  margin: 0;
+  text-transform: uppercase;
+}
+.packages-heading-row strong {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(1.35rem, 2.6vw, 2rem);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.packages-includes {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  margin: clamp(2rem, 5vw, 4rem) 0 2rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+.packages-note {
+  color: var(--color-green-100);
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  line-height: 1.55;
+  margin: 0 auto;
+  max-width: 790px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.packages-heading-row-spaced {
+  margin-top: clamp(4rem, 9vw, 7rem);
+}
+.moments-list {
+  display: grid;
+  gap: 1.2rem clamp(2rem, 8vw, 10rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  margin: 2.5rem 0 0;
+  padding: 0 1rem;
+}
+.moments-list li {
+  color: var(--color-green-100);
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.38rem);
+}
+.enhancements-title {
+  margin: clamp(4rem, 8vw, 7rem) 0 1.1rem;
+}
+.enhancements-list {
+  display: grid;
+  gap: 0;
+  margin: 1rem 0 0;
+}
+.enhancements-list > div {
+  align-items: baseline;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1.2rem 1rem;
+}
+.enhancements-list dt,
+.enhancements-list dd {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  margin: 0;
+  text-transform: uppercase;
+}
+.enhancements-list dd {
+  color: var(--color-green-100);
+  white-space: nowrap;
+}
+
+.content-creation-package {
+  align-items: center;
+  display: grid;
+  gap: clamp(3rem, 8vw, 9rem);
+  grid-template-columns: 0.9fr 1.1fr;
+  padding-block: clamp(5rem, 10vw, 10rem);
+}
+.content-creation-image {
+  height: 620px;
+}
+.content-creation-image img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.content-creation-copy {
+  max-width: 560px;
+}
+.content-creation-copy h2,
+.packages-inquiry h2 {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(2.6rem, 5.2vw, 5.6rem);
+  font-weight: 500;
+  letter-spacing: -0.08em;
+  line-height: 0.98;
+  margin: 0;
+}
+.content-creation-copy > p:last-of-type {
+  color: var(--page-muted);
+  line-height: 1.75;
+  margin: 1.5rem 0 0;
+}
+.content-creation-rates {
+  border-bottom: 1px solid var(--page-line);
+  border-top: 1px solid var(--page-line);
+  display: grid;
+  margin: 2rem 0 0;
+}
+.content-creation-rates > div {
+  align-items: baseline;
+  border-bottom: 1px solid var(--page-line);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.content-creation-rates > div:last-child {
+  border-bottom: 0;
+}
+.content-creation-rates dt,
+.content-creation-rates dd {
+  font-size: 0.8rem;
+  margin: 0;
+  text-transform: uppercase;
+}
+.content-creation-rates dd {
+  font-family: Cinzel, Georgia, serif;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.package-details {
+  background: var(--color-green-950);
+  color: var(--color-neutral-0);
+  padding-block: clamp(4rem, 8vw, 8rem);
+}
+.package-details-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1.15fr repeat(3, 0.8fr);
+}
+.package-details .kicker {
+  color: var(--color-green-200);
+}
+.package-details h2 {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(2.6rem, 5.2vw, 5.6rem);
+  font-weight: 500;
+  letter-spacing: -0.08em;
+  line-height: 0.98;
+  margin: 0;
+}
+.package-details h2 em {
+  color: var(--color-green-300);
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+.package-detail {
+  border-left: 1px solid var(--color-green-600);
+  padding-left: 1.1rem;
+}
+.package-detail > span {
+  color: var(--color-accent-brass-500);
+  font-family: Cinzel, Georgia, serif;
+  font-size: 0.72rem;
+}
+.package-detail h3 {
+  font-family: Cinzel, Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  margin: 1rem 0 0.5rem;
+}
+.package-detail p {
+  color: var(--color-green-100);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.packages-inquiry {
+  align-items: center;
+  background: var(--color-green-950);
+  color: var(--color-neutral-0);
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  max-width: none;
+  padding-block: clamp(4rem, 8vw, 8rem);
+}
+.packages-inquiry h2 {
+  font-size: clamp(2.5rem, 5vw, 4.8rem);
+}
+.packages-inquiry .button {
+  flex: none;
+  margin-top: 0;
+}
+@media (max-width: 800px) {
+  .content-creation-package {
+    grid-template-columns: 1fr;
+  }
+  .package-details-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .package-details-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+  .collections-grid {
+    grid-template-columns: 1fr;
+  }
+  .collection-card {
+    min-height: auto;
+  }
+  .collection-price {
+    margin-top: 2.5rem;
+  }
+  .content-creation-image {
+    height: 460px;
+  }
+}
+@media (max-width: 540px) {
+  .packages-hero {
+    min-height: 700px;
+  }
+  .packages-hero-bottom span:first-child {
+    display: none;
+  }
+  .packages-hero-bottom {
+    justify-content: flex-end;
+  }
+  .moments-list {
+    grid-template-columns: 1fr;
+  }
+  .packages-heading-row h2 {
+    max-width: 60%;
+  }
+  .packages-inquiry {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .package-details-grid {
+    grid-template-columns: 1fr;
+  }
+}

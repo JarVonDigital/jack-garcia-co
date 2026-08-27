@@ -175,8 +175,8 @@ import { RouterLink } from '@angular/router';
                 that makes the most sense.
               </p>
               <div class="button-row">
-                <a class="button-link button-link-secondary" routerLink="/services">Review services</a>
-                <a class="button-link button-link-secondary" routerLink="/reviews">Read reviews</a>
+                <a class="button-link button-link-secondary" routerLink="/" fragment="services">Review services</a>
+                <a class="button-link button-link-secondary" routerLink="/" fragment="testimonials">Read reviews</a>
               </div>
             </article>
           </div>
@@ -189,8 +189,8 @@ import { RouterLink } from '@angular/router';
           <h2>Review services and client feedback, then come back when you are ready to reach out.</h2>
         </div>
         <div class="button-row">
-          <a class="button-link button-link-secondary" routerLink="/services">Review services</a>
-          <a class="button-link button-link-secondary" routerLink="/reviews">Read reviews</a>
+          <a class="button-link button-link-secondary" routerLink="/" fragment="services">Review services</a>
+          <a class="button-link button-link-secondary" routerLink="/" fragment="testimonials">Read reviews</a>
         </div>
       </section>
     </section>

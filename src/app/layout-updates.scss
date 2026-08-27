@@ -192,6 +192,18 @@ section[id] {
   background-position: center 58%;
 }
 
+@media (max-width: 800px) {
+  .hero {
+    background-image: url('/images/responsive/jack-garcia-wedding-hero-1600.jpg');
+  }
+}
+
+@media (max-width: 540px) {
+  .hero {
+    background-image: url('/images/responsive/jack-garcia-wedding-hero-960.jpg');
+  }
+}
+
 .gallery-section {
   background: var(--color-neutral-50);
 }

@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { SiteFooterComponent } from '../shared/site-footer.component';
-import { SiteHeaderComponent } from '../shared/site-header.component';
 import { IconComponent } from '../shared/icon.component';
 
 @Component({
   standalone: true,
   selector: 'app-wedding-packages-page',
-  imports: [IconComponent, SiteFooterComponent, SiteHeaderComponent],
+  imports: [IconComponent],
   template: `
-    <main class="packages-page">
-      <app-site-header />
+    <div class="packages-page">
       <section class="packages-hero" aria-labelledby="packages-title">
         <div class="packages-hero-shade"></div>
         <div class="packages-hero-copy shell">
@@ -140,8 +137,11 @@ import { IconComponent } from '../shared/icon.component';
         <div class="content-creation-image">
           <img
             src="/images/jack-garcia-content-creation.jpg"
+            srcset="/images/responsive/jack-garcia-content-creation-960.jpg 720w, /images/responsive/jack-garcia-content-creation-1600.jpg 1200w, /images/jack-garcia-content-creation.jpg 3072w"
+            sizes="(max-width: 800px) 100vw, 45vw"
             alt="Couple embracing in the ocean with a surfboard"
             loading="lazy"
+            decoding="async"
           />
         </div>
         <div class="content-creation-copy">
@@ -207,8 +207,7 @@ import { IconComponent } from '../shared/icon.component';
           >Start an inquiry <app-icon name="arrow-up-right" aria-hidden="true" /></a
         >
       </section>
-      <app-site-footer />
-    </main>
+    </div>
   `,
   styleUrl: './wedding-packages-page.component.scss',
 })

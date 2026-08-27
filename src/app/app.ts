@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
-import { WeddingPackagesPageComponent } from './pages/wedding-packages-page.component';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SiteFooterComponent } from './shared/site-footer.component';
 import { SiteHeaderComponent } from './shared/site-header.component';
 import { IconComponent } from './shared/icon.component';
@@ -10,7 +10,7 @@ type InstagramImage = { src: string; alt: string };
 
 @Component({
   selector: 'app-root',
-  imports: [ReactiveFormsModule, IconComponent, SiteFooterComponent, SiteHeaderComponent, WeddingPackagesPageComponent],
+  imports: [ReactiveFormsModule, RouterOutlet, IconComponent, SiteFooterComponent, SiteHeaderComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.scss', './layout-updates.scss'],
 })
@@ -19,6 +19,7 @@ export class App implements OnInit {
   protected readonly submitting = signal(false);
   protected readonly submissionError = signal(false);
   protected readonly isWeddingPackagesPage = signal(false);
+  protected readonly isHomePage = signal(true);
   protected readonly instagramImages = signal<InstagramImage[]>([
     { src: '/instagram/DPgqnz2DZqB.jpg', alt: 'Recent work by Jack Garcia Co.' },
     { src: '/instagram/DV8077-jatl.jpg', alt: 'Recent work by Jack Garcia Co.' },
@@ -63,6 +64,8 @@ export class App implements OnInit {
       action: 'Explore wedding packages',
       link: '/wedding-packages',
       image: '/images/jack-garcia-wedding-service.jpg',
+      srcSet:
+        '/images/responsive/jack-garcia-wedding-service-960.jpg 720w, /images/responsive/jack-garcia-wedding-service-1600.jpg 1200w, /images/jack-garcia-wedding-service.jpg 3072w',
       alt: 'Newlyweds in front of a white chapel',
     },
     {
@@ -72,6 +75,8 @@ export class App implements OnInit {
       action: 'View wedding packages',
       link: '/wedding-packages',
       image: '/images/jack-garcia-couples-service.jpg',
+      srcSet:
+        '/images/responsive/jack-garcia-couples-service-960.jpg 720w, /images/responsive/jack-garcia-couples-service-1600.jpg 1200w, /images/jack-garcia-couples-service.jpg 3072w',
       alt: 'Couple walking through a greenhouse',
     },
     {
@@ -81,11 +86,17 @@ export class App implements OnInit {
       action: 'View wedding packages',
       link: '/wedding-packages',
       image: '/images/jack-garcia-graduation-service.jpg',
+      srcSet:
+        '/images/responsive/jack-garcia-graduation-service-960.jpg 720w, /images/responsive/jack-garcia-graduation-service-1600.jpg 1200w, /images/jack-garcia-graduation-service.jpg 3072w',
       alt: 'Graduate standing in a wildflower field',
     },
   ];
 
-  constructor(private readonly router: Router) {
+  constructor(
+    private readonly router: Router,
+    private readonly viewportScroller: ViewportScroller,
+  ) {
+    this.viewportScroller.setOffset([0, 88]);
     this.syncPageFromRoute(this.router.url);
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) this.syncPageFromRoute(event.urlAfterRedirects);
@@ -93,11 +104,12 @@ export class App implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.isWeddingPackagesPage()) this.loadInstagramFeed();
+    if (this.isHomePage()) this.loadInstagramFeed();
   }
 
   private syncPageFromRoute(url: string): void {
     const path = url.split(/[?#]/, 1)[0].replace(/\/+$/, '') || '/';
+    this.isHomePage.set(path === '/');
     this.isWeddingPackagesPage.set(path === '/wedding-packages');
   }
 

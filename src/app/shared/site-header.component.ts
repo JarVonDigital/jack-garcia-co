@@ -1,13 +1,14 @@
-import { Component, signal } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { IconComponent } from './icon.component';
 
 @Component({
   standalone: true,
   selector: 'app-site-header',
-  imports: [IconComponent],
+  imports: [IconComponent, RouterLink],
   template: `
-    <header class="site-header" [class.menu-open]="menuOpen()" [class.scrolled]="scrolled()">
-      <a class="brand" href="/" aria-label="Jack Garcia and Co. home">Jack Garcia <i>&amp; Co.</i></a>
+    <header class="site-header" [class.menu-open]="menuOpen()" [class.scrolled]="scrolled() || forceSolid">
+      <a class="brand" routerLink="/" aria-label="Jack Garcia and Co. home">Jack Garcia <i>&amp; Co.</i></a>
       <button
         class="menu-toggle"
         type="button"
@@ -18,11 +19,11 @@ import { IconComponent } from './icon.component';
         <span></span><span></span><span class="sr-only">Toggle navigation</span>
       </button>
       <nav id="site-nav" aria-label="Primary navigation">
-        <a href="/" (click)="closeMenu()">Home</a><a href="/#services" (click)="closeMenu()"
+        <a routerLink="/" (click)="closeMenu()">Home</a><a routerLink="/" fragment="services" (click)="closeMenu()"
           >Services</a
-        ><a href="/#testimonials" (click)="closeMenu()">Kind words</a
-        ><a href="/wedding-packages" (click)="closeMenu()">Investment</a
-        ><a class="nav-cta" href="/#inquire" (click)="closeMenu()"
+        ><a routerLink="/" fragment="testimonials" (click)="closeMenu()">Kind words</a
+        ><a routerLink="/wedding-packages" (click)="closeMenu()">Investment</a
+        ><a class="nav-cta" routerLink="/" fragment="inquire" (click)="closeMenu()"
           >Inquire now <app-icon name="arrow-up-right" aria-hidden="true" /></a
         >
       </nav>
@@ -32,6 +33,7 @@ import { IconComponent } from './icon.component';
   host: { '(window:scroll)': 'onWindowScroll()' },
 })
 export class SiteHeaderComponent {
+  @Input() forceSolid = false;
   protected readonly menuOpen = signal(false);
   protected readonly scrolled = signal(typeof window !== 'undefined' && window.scrollY > 24);
 

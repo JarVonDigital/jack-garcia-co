@@ -11,7 +11,7 @@
   --page-line: color-mix(in srgb, var(--color-green-950) 20%, transparent);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { background: var(--color-green-950); scroll-behavior: smooth; }
 body { margin: 0; min-width: 320px; background: var(--page-background); color: var(--page-ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 /* A fixed, non-interactive overlay gives every section the soft texture of film grain. */
 body::after {

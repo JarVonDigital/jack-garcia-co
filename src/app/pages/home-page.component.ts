@@ -50,7 +50,7 @@ import { RouterLink } from '@angular/router';
                     </div>
                     <div class="button-row">
                       <a class="button-link button-link-primary" routerLink="/inquire">Start your inquiry</a>
-                      <a class="button-link button-link-secondary" routerLink="/services">See the collections</a>
+                      <a class="button-link button-link-secondary" routerLink="/" fragment="services">See the collections</a>
                     </div>
                   </div>
 
@@ -122,7 +122,7 @@ import { RouterLink } from '@angular/router';
               </p>
               <div class="button-row">
                 <a class="button-link button-link-primary" routerLink="/inquire">Inquire today</a>
-                <a class="button-link button-link-secondary" routerLink="/services">Explore services</a>
+                <a class="button-link button-link-secondary" routerLink="/" fragment="services">Explore services</a>
               </div>
             </div>
 

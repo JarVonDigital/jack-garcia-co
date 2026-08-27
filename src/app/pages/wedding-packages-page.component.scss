@@ -20,6 +20,18 @@
   min-height: 100svh;
   position: relative;
 }
+
+@media (max-width: 800px) {
+  .packages-hero {
+    background-image: url('/images/responsive/jack-garcia-wedding-service-1600.jpg');
+  }
+}
+
+@media (max-width: 540px) {
+  .packages-hero {
+    background-image: url('/images/responsive/jack-garcia-wedding-service-960.jpg');
+  }
+}
 .packages-hero-shade {
   background: linear-gradient(
     90deg,

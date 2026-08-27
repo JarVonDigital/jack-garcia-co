@@ -158,11 +158,13 @@ section[id] {
 }
 
 .testimonial-grid blockquote {
-  font-family: Cinzel, Georgia, serif;
-  font-size: clamp(1.35rem, 2.1vw, 2rem);
-  letter-spacing: -0.05em;
-  line-height: 1.45;
+  /* Use a text face here: Cinzel renders its lowercase characters as capitals. */
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.05rem, 1.55vw, 1.35rem);
+  letter-spacing: -0.015em;
+  line-height: 1.55;
   margin: 0;
+  text-transform: none;
 }
 
 .testimonial-grid figcaption {
@@ -188,6 +190,18 @@ section[id] {
 .hero {
   background-image: url('/images/jack-garcia-wedding-hero.jpg');
   background-position: center 58%;
+}
+
+@media (max-width: 800px) {
+  .hero {
+    background-image: url('/images/responsive/jack-garcia-wedding-hero-1600.jpg');
+  }
+}
+
+@media (max-width: 540px) {
+  .hero {
+    background-image: url('/images/responsive/jack-garcia-wedding-hero-960.jpg');
+  }
 }
 
 .gallery-section {

@@ -1,8 +1,7 @@
-@if (isWeddingPackagesPage()) {
-  <app-wedding-packages-page />
-} @else {
-  <main>
-    <app-site-header />
+<div class="site-shell">
+  <app-site-header [forceSolid]="!isHomePage() && !isWeddingPackagesPage()" />
+  @if (isHomePage()) {
+  <main class="site-main home-main">
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-shade"></div>
       <div class="hero-content shell">
@@ -54,7 +53,14 @@
               [href]="service.link"
               [attr.aria-label]="service.action"
             >
-              <img [src]="service.image" [alt]="service.alt" loading="lazy" />
+              <img
+                [src]="service.image"
+                [srcset]="service.srcSet"
+                sizes="(max-width: 540px) 100vw, (max-width: 800px) 45vw, 33vw"
+                [alt]="service.alt"
+                loading="lazy"
+                decoding="async"
+              />
             </a>
             <div>
               <p class="service-number">{{ service.number }}</p>
@@ -108,8 +114,11 @@
       <div class="content-image">
         <img
           src="/images/jack-garcia-content-creation.jpg"
+          srcset="/images/responsive/jack-garcia-content-creation-960.jpg 720w, /images/responsive/jack-garcia-content-creation-1600.jpg 1200w, /images/jack-garcia-content-creation.jpg 3072w"
+          sizes="(max-width: 800px) 100vw, 45vw"
           alt="Couple embracing in the ocean with a surfboard"
           loading="lazy"
+          decoding="async"
         />
       </div>
       <div class="content-copy">
@@ -299,6 +308,11 @@
         </form>
       </div>
     </section>
-    <app-site-footer />
   </main>
-}
+  } @else {
+    <main class="site-main" [class.is-packages-route]="isWeddingPackagesPage()">
+      <router-outlet />
+    </main>
+  }
+  <app-site-footer />
+</div>

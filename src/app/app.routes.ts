@@ -8,12 +8,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/home-page.component').then((m) => m.HomePageComponent),
   },
   {
-    path: 'services',
-    title: 'Jack Garcia Co. | Services',
-    loadComponent: () =>
-      import('./pages/services-page.component').then((m) => m.ServicesPageComponent),
-  },
-  {
     path: 'wedding-packages',
     title: 'Jack Garcia Co. | Wedding Packages',
     loadComponent: () =>
@@ -23,12 +17,6 @@ export const routes: Routes = [
     path: 'about',
     title: 'Jack Garcia Co. | About',
     loadComponent: () => import('./pages/about-page.component').then((m) => m.AboutPageComponent),
-  },
-  {
-    path: 'reviews',
-    title: 'Jack Garcia Co. | Reviews',
-    loadComponent: () =>
-      import('./pages/reviews-page.component').then((m) => m.ReviewsPageComponent),
   },
   {
     path: 'inquire',

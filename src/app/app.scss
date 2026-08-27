@@ -2,6 +2,28 @@
   display: block;
 }
 
+.site-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.site-main {
+  flex: 1;
+  padding-top: 88px;
+}
+
+.site-main.is-packages-route,
+.site-main.home-main {
+  padding-top: 0;
+}
+
+@media (max-width: 800px) {
+  .site-main {
+    padding-top: calc(72px + env(safe-area-inset-top));
+  }
+}
+
 .service-card-image-link {
   display: block;
   overflow: hidden;

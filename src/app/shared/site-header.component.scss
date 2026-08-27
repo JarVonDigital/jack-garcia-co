@@ -45,6 +45,10 @@
 }
 
 .site-header nav a {
+  align-items: center;
+  display: inline-flex;
+  min-height: 44px;
+  padding-block: 0.45rem;
   text-decoration: none;
 }
 
@@ -92,6 +96,18 @@
     padding-top: env(safe-area-inset-top);
   }
 
+  .site-header::before {
+    background: var(--color-green-950);
+    content: '';
+    height: env(safe-area-inset-top);
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateY(-100%);
+    z-index: -1;
+  }
+
   .menu-toggle {
     display: block;
   }
@@ -101,9 +117,10 @@
     display: none;
     flex-direction: column;
     inset: calc(72px + env(safe-area-inset-top)) 0 auto;
-    padding: 2rem;
+    padding: 1.2rem 2rem;
     position: absolute;
     text-align: center;
+    z-index: 1;
   }
 
   .menu-open nav {

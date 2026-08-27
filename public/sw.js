@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jack-garcia-co-v1';
+const CACHE_NAME = 'jack-garcia-co-v2';
 const APP_SHELL = ['/', '/manifest.webmanifest', '/icon.svg'];
 
 self.addEventListener('install', (event) => {
